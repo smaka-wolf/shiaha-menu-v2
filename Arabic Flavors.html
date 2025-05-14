@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Arabic Flavors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .shisha-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+        .shisha-image {
+            width: 100%;
+            height: 120vh;
+            object-fit: cover;
+            transform: translateY(-30%);
+            opacity: 0.5;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div class="shisha-image-wrapper">
+        <img 
+            src="https://storage.googleapis.com/a1aa/image/0005864d-bf41-4ab5-962c-18eaad099de1.jpg"
+            alt="Decorative image of a shisha pipe with golden background"
+            class="shisha-image"
+        />
+        <button 
+            aria-label="Back" 
+            onclick="window.location.href='menu shisha.html'" 
+            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
+        >
+            <i class="fas fa-chevron-left text-red-600"></i>
+        </button>
+    </div>
+
+    <div class="max-w-3xl w-full bg-white rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
+        <div class="pt-8 pb-8 px-8 text-center">
+            <h1 class="text-gray-800 text-lg font-normal mb-8">Arabic Flavors</h1>
+            <p class="text-red-600 text-lg mb-12">AED 140</p>
+            <div class="text-left text-gray-800 text-sm">
+                <h2 class="font-semibold mb-3">Arabic Nights Flavors</h2>
+                <ul class="divide-y divide-gray-300">
+                    <li class="py-2">Grape Mint</li>
+                    <li class="py-2">Grape</li>
+                    <li class="py-2">Double Apple</li>
+                    <li class="py-2">Gum</li>
+                    <li class="py-2">Gum Mint</li>
+                    <li class="py-2">Mint</li>
+                    <li class="py-2">Gum Cinnamon</li>
+                    <li class="py-2">Orange</li>
+                    <li class="py-2">Lemon Mint</li>
+                    <li class="py-2 flex justify-between text-lg items-center">
+                        <span>Extra Head</span>
+                        <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const shishaImage = document.querySelector('.shisha-image');
+            const wrapper = document.querySelector('.shisha-image-wrapper');
+            const flavorsContainer = document.querySelector('.max-w-3xl');
+            
+            window.addEventListener('scroll', () => {
+                const rect = flavorsContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                // Calculate progress from 0 (flavors container bottom at viewport bottom) to 1 (flavors container top at viewport top)
+                let progress = 1 - (rect.top / windowHeight);
+                progress = Math.min(Math.max(progress, 0), 1);
+                
+                // Opacity from 0.5 to 1 based on scroll progress
+                const opacity = 0.5 + (progress * 0.5);
+                // TranslateY from -30% to 0% based on scroll progress
+                const translateY = -30 + (progress * 30);
+                
+                shishaImage.style.opacity = opacity;
+                shishaImage.style.transform = `translateY(${translateY}%)`;
+            });
+        });
+    </script>
+</body>
+</html>

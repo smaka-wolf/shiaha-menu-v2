@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Turkish Flavors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .shisha-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+        .shisha-image {
+            width: 100%;
+            height: 120vh;
+            object-fit: cover;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(252, 155, 155, 0.5);
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .close-button {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 60;
+        }
+        .close-button:hover {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div class="shisha-image-wrapper">
+        <img 
+            src="imag/hookah image.jpg"
+            alt="Decorative image of a shisha pipe with golden background"
+            class="shisha-image"
+        />
+        <button 
+            aria-label="Back" 
+            onclick="window.location.href='menu shisha.html'" 
+            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
+        >
+            <i class="fas fa-chevron-left text-red-600"></i>
+        </button>
+    </div>
+
+    <div class="max-w-3xl w-full bg-white rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
+        <div class="pt-8 pb-8 px-8 text-center">
+            <h1 class="text-gray-800 text-lg font-normal mb-8">Turkish Flavors</h1>
+            <p class="text-gray-600 text-lg mb-12">AED 140</p>
+            <div class="text-left text-gray-800 text-sm">
+                <h2 class="font-semibold mb-3">Turkish Delight Flavors</h2>
+                <ul class="divide-y divide-gray-300">
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('istanbul')">Istanbul Night</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('marbella')">Marbella</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('lime')">Lime spice Peach</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('love66')">Love 66</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('lady')">Lady killer</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('watermelon')">Watermelon</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('melon')">Melon</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('peach')">Peach</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('blueberry')">Blueberry</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('sweetmelon')">Sweet Melon</li>
+                    <li class="py-2 flex justify-between text-lg items-center">
+                        <span>Extra Head</span>
+                        <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="flavorModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content bg-white w-11/12 max-w-lg mx-auto my-auto rounded-xl shadow-xl p-6">
+            <div class="relative">
+                <button class="close-button" onclick="closeModal(event, true)">
+                    <i class="fas fa-times text-red-600"></i>
+                </button>
+                <img id="flavorImage" src="" alt="" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
+                <p id="flavorDescription" class="text-gray-700 text-lg"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const shishaImage = document.querySelector('.shisha-image');
+            const flavorsContainer = document.querySelector('.max-w-3xl');
+            
+            window.addEventListener('scroll', () => {
+                const rect = flavorsContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                let progress = 1 - (rect.top / windowHeight);
+                progress = Math.min(Math.max(progress, 0), 1);
+                
+                const opacity = 1 - progress;
+                const scale = 0.8 + (progress * 0.2);
+                
+                shishaImage.style.opacity = opacity;
+                shishaImage.style.transform = `scale(${scale})`;
+            });
+        });
+
+        // Flavor details modal
+        const flavorDetails = {
+            istanbul: {
+                title: 'Istanbul Night Mix flovor ',
+                image: 'imag/istanbul night image.webp',
+                description: 'Blueberry, Red berry, Blackcurrant, A touch of balanced acidity with soft sweetness.'
+            },
+            marbella: {
+                title: 'Marbella Mix Flovor ',
+                image: 'imag/marbella image.png',
+                description: 'Cherry, Caramel, Chocolate, The flavors resemble those of European sweets or chocolate desserts with fruits.'
+            },
+            lime: {
+                title: 'Lime Spice Peach',
+                image: 'imag/lime spice peach.webp',
+                description: 'A unique fusion of tangy lime, warming spices, and sweet peach creates a perfectly balanced flavor profile.'
+            },
+            love66: {
+                title: 'Love 66 Mix flovor',
+                image: 'imag/love66 image.png',
+                description: 'Passion fruit, Honeydew Watermelon, Mint, Clear fruit sweetness with a slight chill.'
+            },
+            lady: {
+                title: 'Lady Killer Mix flovor',
+                image: 'imag/lady killer image.png',
+                description: 'Honeydew melon, Mango, Berries, Light Mint, Smooth sweetness balanced with a light coolness.'
+            },
+            watermelon: {
+                title: 'Watermelon',
+                image: 'imag/watermelon.webp',
+                description: 'Pure, refreshing watermelon flavor that brings the taste of summer to your session.'
+            },
+            melon: {
+                title: 'Melon',
+                image: 'imag/melon.webp',
+                description: 'Sweet and aromatic melon flavor, delivering a smooth and satisfying experience.'
+            },
+            peach: {
+                title: 'Peach',
+                image: 'imag/peach.webp',
+                description: 'Juicy and sweet peach flavor that captures the essence of fresh summer fruits.'
+            },
+            blueberry: {
+                title: 'Blueberry',
+                image: 'imag/blueberry.webp',
+                description: 'Rich and sweet blueberry flavor with a perfect balance of tartness.'
+            },
+            sweetmelon: {
+                title: 'Sweet Melon',
+                image: 'imag/sweet melon.webp',
+                description: 'An enhanced melon flavor with extra sweetness for a more indulgent experience.'
+            }
+        };
+
+        function showFlavorDetails(flavor) {
+            const modal = document.getElementById('flavorModal');
+            const details = flavorDetails[flavor];
+            
+            document.getElementById('flavorTitle').textContent = details.title;
+            document.getElementById('flavorDescription').textContent = details.description;
+            document.getElementById('flavorImage').src = details.image;
+            document.getElementById('flavorImage').alt = details.title;
+            
+            modal.classList.add('show');
+        }
+
+        function closeModal(event, fromButton = false) {
+            if (fromButton) {
+                event.stopPropagation();
+                document.getElementById('flavorModal').classList.remove('show');
+            } else if (event.target === event.currentTarget) {
+                document.getElementById('flavorModal').classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
