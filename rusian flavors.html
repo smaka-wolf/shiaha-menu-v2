@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Russian Flavors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .shisha-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+        .shisha-image {
+            width: 100%;
+            height: 120vh;
+            object-fit: cover;
+            transform: translateY(-30%);
+            opacity: 0.5;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div class="shisha-image-wrapper">
+        <img 
+            src="imag/roket image.webp"
+            alt="Decorative image of a shisha pipe with golden background"
+            class="shisha-image"
+        />
+        <button 
+            aria-label="Back" 
+            onclick="window.location.href='menu shisha.html'" 
+            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
+        >
+            <i class="fas fa-chevron-left text-red-600"></i>
+        </button>
+    </div>
+
+    <div class="max-w-3xl w-full bg-white rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
+        <div class="pt-8 pb-8 px-8 text-center">
+            <h1 class="text-gray-800 text-lg font-normal mb-8">Russian Flavors</h1>
+            <p class="text-gray-600 text-lg mb-12">AED 220</p>
+            <div class="text-left text-gray-800 text-sm">
+                <h2 class="font-semibold mb-3">Russian Flavors</h2>
+                <ul class="divide-y divide-red-300">
+                    <li class="py-2 ">Ananas Shock</li>
+                    <li class="py-2 ">Blueberry Crumble</li>
+                    <li class="py-2 ">Belgium Waffles</li>
+                    <li class="py-2 ">Bananapapa</li>
+                    <li class="py-2 ">Pinkman</li>
+                    <li class="py-2 ">Garnet</li>
+                    <li class="py-2 ">Cola</li>
+                    <li class="py-2 ">Supernova</li>
+                    <li class="py-2 ">Ice Cream</li>
+                    <li class="py-2 ">Falling Star</li>
+                    <li class="py-2 ">Kiwi Smoothie</li>
+                    <li class="py-2 ">Needls</li>
+                    <li class="py-2 ">Lemon Blast</li>
+                    <li class="py-2 ">No Aroma Limoncello</li>
+                    <li class="py-2 ">Burley Opuntia</li>
+                    <li class="py-2 ">Nord Star</li>
+                    <li class="py-2 ">Strawberry Mille-Feuille</li>
+                    <li class="py-2 ">Banana</li>
+                    <li class="py-2 ">Epic Yoghurt</li>
+                    <li class="py-2 ">Melonade</li>
+                    <li class="py-2 ">Vanilla</li>
+                    <li class="py-2 ">Coconut</li>
+                    <li class="py-2 ">Haribon</li>
+                    <li class="py-2 ">Raspberry</li>
+                    <li class="py-2 ">Na Chile</li>
+                    <li class="py-2 ">Kashmir Citrus</li>
+                    <li class="py-2 ">Peach Iced Tea</li>
+                    <li class="py-2 ">Unicorn</li>
+                    <li class="py-2 ">Viva La Fiesta</li>
+                    <li class="py-2 ">Blue Mist</li>
+                    <li class="py-2 flex justify-between text-lg items-center">
+                        <span>Extra Head</span>
+                        <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const shishaImage = document.querySelector('.shisha-image');
+            const flavorsContainer = document.querySelector('.max-w-3xl');
+            
+            window.addEventListener('scroll', () => {
+                const rect = flavorsContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                let progress = 1 - (rect.top / windowHeight);
+                progress = Math.min(Math.max(progress, 0), 1);
+                
+                const opacity = 1 - progress;
+                const scale = 0.8 + (progress * 0.2);
+                
+                shishaImage.style.opacity = opacity;
+                shishaImage.style.transform = `scale(${scale})`;
+            });
+        });
+    </script>
+</body>
+</html>

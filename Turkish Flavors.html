@@ -17,8 +17,8 @@
             width: 100%;
             height: 120vh;
             object-fit: cover;
-            opacity: 1;
-            transform: scale(1);
+            transform: translateY(-30%);
+            opacity: 0.5;
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .back-button {
@@ -89,10 +89,10 @@
     <div class="max-w-3xl w-full bg-white rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
             <h1 class="text-gray-800 text-lg font-normal mb-8">Turkish Flavors</h1>
-            <p class="text-gray-600 text-lg mb-12">AED 140</p>
+            <p class="text-gray-600 text-lg mb-12">AED 180</p>
             <div class="text-left text-gray-800 text-sm">
                 <h2 class="font-semibold mb-3">Turkish Delight Flavors</h2>
-                <ul class="divide-y divide-gray-300">
+                <ul class="divide-y divide-red-300">
                     <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('istanbul')">Istanbul Night</li>
                     <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('marbella')">Marbella</li>
                     <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('lime')">Lime spice Peach</li>
@@ -119,7 +119,7 @@
                 <button class="close-button" onclick="closeModal(event, true)">
                     <i class="fas fa-times text-red-600"></i>
                 </button>
-                <img id="flavorImage" src="" alt="" class="w-full h-48 object-cover rounded-lg mb-4">
+                <img id="flavorImage" src="" alt="" class="w-full h-80 object-cover rounded-lg mb-4">
                 <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
                 <p id="flavorDescription" class="text-gray-700 text-lg"></p>
             </div>
@@ -149,55 +149,31 @@
         // Flavor details modal
         const flavorDetails = {
             istanbul: {
-                title: 'Istanbul Night Mix flovor ',
+                title: 'Istanbul Night Mix flavor ',
                 image: 'imag/istanbul night image.webp',
                 description: 'Blueberry, Red berry, Blackcurrant, A touch of balanced acidity with soft sweetness.'
             },
             marbella: {
-                title: 'Marbella Mix Flovor ',
+                title: 'Marbella Mix Flavor ',
                 image: 'imag/marbella image.png',
                 description: 'Cherry, Caramel, Chocolate, The flavors resemble those of European sweets or chocolate desserts with fruits.'
             },
             lime: {
-                title: 'Lime Spice Peach',
-                image: 'imag/lime spice peach.webp',
-                description: 'A unique fusion of tangy lime, warming spices, and sweet peach creates a perfectly balanced flavor profile.'
+                title: 'Lime Spice Peach Mix flavor',
+                image: 'imag/lime space peach image.png',
+                description: 'Grilled Peaches,Lemon(Lime) A tangy and refreshing touch, Spices.'
             },
             love66: {
-                title: 'Love 66 Mix flovor',
+                title: 'Love 66 Mix flavor',
                 image: 'imag/love66 image.png',
                 description: 'Passion fruit, Honeydew Watermelon, Melon, Mint, Clear fruit sweetness with a slight chill.'
             },
             lady: {
-                title: 'Lady Killer Mix flovor',
+                title: 'Lady Killer Mix flavor',
                 image: 'imag/lady killer image.png',
                 description: 'Honeydew melon, Mango, Berries, Light Mint, Smooth sweetness balanced with a light coolness.'
             },
-            watermelon: {
-                title: 'Watermelon',
-                image: 'imag/watermelon.webp',
-                description: 'Pure, refreshing watermelon flavor that brings the taste of summer to your session.'
-            },
-            melon: {
-                title: 'Melon',
-                image: 'imag/melon.webp',
-                description: 'Sweet and aromatic melon flavor, delivering a smooth and satisfying experience.'
-            },
-            peach: {
-                title: 'Peach',
-                image: 'imag/peach.webp',
-                description: 'Juicy and sweet peach flavor that captures the essence of fresh summer fruits.'
-            },
-            blueberry: {
-                title: 'Blueberry',
-                image: 'imag/blueberry.webp',
-                description: 'Rich and sweet blueberry flavor with a perfect balance of tartness.'
-            },
-            sweetmelon: {
-                title: 'Sweet Melon',
-                image: 'imag/sweet melon.webp',
-                description: 'An enhanced melon flavor with extra sweetness for a more indulgent experience.'
-            }
+
         };
 
         function showFlavorDetails(flavor) {

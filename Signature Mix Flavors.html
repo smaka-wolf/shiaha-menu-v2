@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Signature Mix Flavors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .shisha-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+        }
+        .shisha-image {
+            width: 100%;
+            height: 120vh;
+            object-fit: cover;
+            transform: translateY(-30%);
+            opacity: 0.5;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .back-button {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+    </style>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(252, 155, 155, 0.5);
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .close-button {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 60;
+        }
+        .close-button:hover {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div class="shisha-image-wrapper">
+        <img 
+            src="imag/reacter image.webp"
+            alt="Decorative image of a shisha pipe with golden background"
+            class="shisha-image"
+        />
+        <button 
+            aria-label="Back" 
+            onclick="window.location.href='menu shisha.html'" 
+            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
+        >
+            <i class="fas fa-chevron-left text-red-600"></i>
+        </button>
+    </div>
+
+    <div class="max-w-3xl w-full bg-white rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
+        <div class="pt-8 pb-8 px-8 text-center">
+            <h1 class="text-gray-800 text-lg font-normal mb-8">Signature Mix</h1>
+            <p class="text-gray-600 text-lg mb-12">AED 350</p>
+            <div class="text-left text-gray-800 text-sm">
+                <h2 class="font-semibold mb-3">Signature Mix Flavors</h2>
+                <ul class="divide-y divide-gray-300">
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('blume')">Blume</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('luxuria')">Luxuria</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('leonardo')">Leonardo</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('exotic')">Exotic Dreams</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('moonlight')">Moonlight</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('loveberry')">Love Berry</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('axa')">Mr. AXA</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('grandmother')">Grandmother Cake</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('olala')">Olala</li>
+                    <li class="py-2 flex justify-between text-lg items-center">
+                        <span>Extra Head</span>
+                        <span class="text-red-600 text-lg font-normal">+AED 100.00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="flavorModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content bg-white w-11/12 max-w-lg mx-auto my-auto rounded-xl shadow-xl p-6">
+            <div class="relative">
+                <button class="close-button" onclick="closeModal(event, true)">
+                    <i class="fas fa-times text-red-600"></i>
+                </button>
+                <img id="flavorImage" src="" alt="" class="w-full h-60 object-cover rounded-lg mb-4">
+                <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
+                <p id="flavorDescription" class="text-gray-700 text-lg"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Flavor details
+        const flavorDetails = {
+            blume: {
+                title: 'Blume Mix Flavor',
+                image: 'imag/blume1 mix image.png',
+                description: 'Lady killer 25%, Watermelon 25%, Blueberry 50%.'
+            },
+            luxuria: {
+                title: 'Luxuria Mix Flavor',
+                image: 'imag/blume2 mix image.png',
+                description: 'Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml.'
+            },
+            leonardo: {
+                title: 'Leonardo Mix Flavor',
+                image: 'imag/blume3 mix image.png',
+                description: 'Gum Mint 20%, Orange 30%, Vanilla 50%.'
+            },
+            exotic: {
+                title: 'Exotic Dreams Mix Flavor',
+                image: 'imag/blume4 mix image.png',
+                description: 'Melon 40%, Banana 40%, Coconut 20%.'
+            },
+            moonlight: {
+                title: 'Moonlight Mix Flavor',
+                image: 'imag/blume5 mix image.png',
+                description: 'Faling Star 40%, Istanbul Night 50%, SuperNova 10%.'
+            },
+            loveberry: {
+                title: 'Love Berry Mix Flavor',
+                image: 'imag/blume mix image.png',
+                description: 'Alternative Cherry 40%, Neebles 20%, Pomegranate 40%.'
+            },
+            axa: {
+                title: 'Mr. AXA Mix Flavor',
+                image: 'imag/blume mix image.png',
+                description: 'Melon 50%, Melonade 45%, SuperNova 5%.'
+            },
+            grandmother: {
+                title: 'Grandmother Cake Mix Flavor',
+                image: 'imag/blume mix image.png',
+                description: 'Belgium Waffles 20%, Melonade 20%, Buleberry Crumble 60%.'
+            },
+            olala: {
+                title: 'Olala Mix Flavor',
+                image: 'imag/blume mix image.png',
+                description: 'Cola 25%, limn mint 75%.'
+            }
+        };
+
+        function showFlavorDetails(flavor) {
+            const modal = document.getElementById('flavorModal');
+            const details = flavorDetails[flavor];
+            
+            document.getElementById('flavorTitle').textContent = details.title;
+            document.getElementById('flavorDescription').textContent = details.description;
+            document.getElementById('flavorImage').src = details.image;
+            document.getElementById('flavorImage').alt = details.title;
+            
+            modal.classList.add('show');
+        }
+
+        function closeModal(event, fromButton = false) {
+            if (fromButton) {
+                event.stopPropagation();
+                document.getElementById('flavorModal').classList.remove('show');
+            } else if (event.target === event.currentTarget) {
+                document.getElementById('flavorModal').classList.remove('show');
+            }
+        }
+
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const shishaImage = document.querySelector('.shisha-image');
+            const flavorsContainer = document.querySelector('.max-w-3xl');
+            
+            window.addEventListener('scroll', () => {
+                const rect = flavorsContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                let progress = 1 - (rect.top / windowHeight);
+                progress = Math.min(Math.max(progress, 0), 1);
+                
+                const opacity = 1 - progress;
+                const scale = 0.8 + (progress * 0.2);
+                
+                shishaImage.style.opacity = opacity;
+                shishaImage.style.transform = `scale(${scale})`;
+            });
+        });
+    </script>
+</body>
+</html>
