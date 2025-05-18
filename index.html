@@ -2,6 +2,7 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
   Blume shisha Menu
   </title>
@@ -9,13 +10,17 @@
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
-    body {
-        background-image: url('imag/image\ menu\ blume2.png');
-        background-size: cover;        /* تغطي كامل الشاشة */
-        background-position: center;   /* تبقى الصورة متمركزة */
-        background-repeat: no-repeat;  /* بدون تكرار */
-        height: 100vh;                 /* الطول كامل الشاشة */
-
+    body { 
+      margin: 0;
+  padding: 0;
+  background-image: url('imag/image\ menu\ blume2.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  background-attachment: fixed; /* تخلي الصورة ثابتة */
+       
       }
   </style>
  </head>
