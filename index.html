@@ -3,12 +3,18 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e53e3e">
   <title>
-  Blume shisha Menu
+ Blume Nemu Shisha
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
   <style>
     body { 
       margin: 0;
@@ -53,6 +59,19 @@
     <a href="menu shisha.html" class="block w-full py-4 text-base font-normal hover:bg-gray-300">Shisha Menu</a>
   </div>
   <!-- Bottom center logo -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function (registration) {
+            console.log('✅ ServiceWorker registered: ', registration.scope);
+          })
+          .catch(function (error) {
+            console.log('❌ ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>  
  </body>
  <script src="menu.js"></script>
 </html>
