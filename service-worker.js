@@ -10,7 +10,6 @@ const urlsToCache = [
   `${BASE_PATH}/Turkish Flavors.html`,
   `${BASE_PATH}/Signature Mix Flavors.html`,
   `${BASE_PATH}/test .html`,
-  `${BASE_PATH}/update,`,
 
   // JavaScript Files
   `${BASE_PATH}/menu.js`,
