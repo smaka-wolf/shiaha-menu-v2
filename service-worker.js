@@ -1,44 +1,45 @@
 const CACHE_NAME = "blume-nemu-cache-v1";
+const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [
-  ".",
+  `${BASE_PATH}/`,
   // HTML Files
-  "index.html",
-  "menu shisha.html",
-  "rusian flavors.html",
-  "Arabic Flavors.html",
-  "Turkish Flavors.html",
-  "Signature Mix Flavors.html",
-  "test .html",
-  "update,",
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/menu shisha.html`,
+  `${BASE_PATH}/rusian flavors.html`,
+  `${BASE_PATH}/Arabic Flavors.html`,
+  `${BASE_PATH}/Turkish Flavors.html`,
+  `${BASE_PATH}/Signature Mix Flavors.html`,
+  `${BASE_PATH}/test .html`,
+  `${BASE_PATH}/update,`,
 
   // JavaScript Files
-  "menu.js",
+  `${BASE_PATH}/menu.js`,
 
   // PWA Files
-  "manifest.json",
-  "service-worker.js",
+  `${BASE_PATH}/manifest.json`,
+  `${BASE_PATH}/service-worker.js`,
 
   // Icons
-  "icons/icon-192.png",
-  "icons/icon-512.png",
+  `${BASE_PATH}/icons/icon-192.png`,
+  `${BASE_PATH}/icons/icon-512.png`,
 
   // Images
-  "imag/blume1 mix image.png",
-  "imag/blume2 mix image.png",
-  "imag/blume3 mix image.png",
-  "imag/blume4 mix image.png",
-  "imag/blume5 mix image.png",
-  "imag/hookah image.jpg",
-  "imag/hookah2 image.jpg",
-  "imag/image menu blume.png",
-  "imag/image menu blume3.png",
-  "imag/istanbul night image.webp",
-  "imag/lady killer image.png",
-  "imag/lime space peach image.png",
-  "imag/love66 image.png",
-  "imag/marbella image.png",
-  "imag/reacter image.webp",
-  "imag/roket image.webp"
+  `${BASE_PATH}/imag/blume1 mix image.png`,
+  `${BASE_PATH}/imag/blume2 mix image.png`,
+  `${BASE_PATH}/imag/blume3 mix image.png`,
+  `${BASE_PATH}/imag/blume4 mix image.png`,
+  `${BASE_PATH}/imag/blume5 mix image.png`,
+  `${BASE_PATH}/imag/hookah image.jpg`,
+  `${BASE_PATH}/imag/hookah2 image.jpg`,
+  `${BASE_PATH}/imag/image menu blume.png`,
+  `${BASE_PATH}/imag/image menu blume3.png`,
+  `${BASE_PATH}/imag/istanbul night image.webp`,
+  `${BASE_PATH}/imag/lady killer image.png`,
+  `${BASE_PATH}/imag/lime space peach image.png`,
+  `${BASE_PATH}/imag/love66 image.png`,
+  `${BASE_PATH}/imag/marbella image.png`,
+  `${BASE_PATH}/imag/reacter image.webp`,
+  `${BASE_PATH}/imag/roket image.webp`
 ];
 
 // ✅ تنصيب الكاش أول مرة
@@ -109,7 +110,7 @@ self.addEventListener("fetch", (event) => {
           })
           .catch(() => {
             // If both cache and network fail, return offline page
-            return caches.match('index.html');
+            return caches.match(`${BASE_PATH}/index.html`);
           });
       })
   );
