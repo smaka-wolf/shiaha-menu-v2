@@ -1,44 +1,53 @@
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0B093F" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  
-  <title>
- Blume Menu Shisha
-  </title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {}
-      }
-    }
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link rel="manifest" href="https://smaka-wolf.github.io/shiaha-menu-v2/manifest.json">
-  <link rel="icon" type="image/png" sizes="192x192" href="https://smaka-wolf.github.io/shiaha-menu-v2/icons/icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="https://smaka-wolf.github.io/shiaha-menu-v2/icons/icon-512.png">
-  <link rel="apple-touch-icon" href="https://smaka-wolf.github.io/shiaha-menu-v2/icons/icon-192.png">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body { 
-      margin: 0;
-  padding: 0;
-  background-image: url('imag/image\ menu\ blume3.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-  background-color: #0a2c5a; /* ← اللون لي بغيتي يظهر فالأطراف */
-  background-attachment: fixed; /* تخلي الصورة ثابتة */
-       
+    <!-- Android theme color -->
+    <meta name="theme-color" content="#0B093F">
+
+    <!-- iOS PWA settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- جرب black بدل default -->
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="https://smaka-wolf.github.io/shiaha-menu-v2/manifest.json" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="https://smaka-wolf.github.io/shiaha-menu-v2/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://smaka-wolf.github.io/shiaha-menu-v2/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://smaka-wolf.github.io/shiaha-menu-v2/icons/icon-512.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {}
+        }
       }
-  </style>
- </head>
+    </script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+
+    <title>Blume Menu Shisha</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('imag/image menu blume3.png');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
+        background-color: #0a2c5a; /* ← اللون ديال الأطراف */
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
  <body class="bg-white min-h-screen p-4">
   <!-- Top left chat icon -->
   <button aria-label="Chat" class="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full p-2 shadow-md">
