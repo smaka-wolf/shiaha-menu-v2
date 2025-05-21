@@ -1,6 +1,6 @@
 const CACHE_NAME = "blume-menu-cache-v3";  // Incremented version for path handling fixes
 const BASE_PATH = "/shiaha-menu-v2";
-const urlsToCache = [
+const urlsToCache = [ 
   `${BASE_PATH}/`,
   // HTML Files
   `${BASE_PATH}/index.html`,
@@ -30,7 +30,7 @@ const urlsToCache = [
   `${BASE_PATH}/imag/blume5 mix image.png`,
   `${BASE_PATH}/imag/hookah image.jpg`,
   `${BASE_PATH}/imag/hookah2 image.jpg`,
-  `${BASE_PATH}/imag/blume55.png`,
+  `${BASE_PATH}/imag/blume backg5.png`,
   `${BASE_PATH}/imag/istanbul night image.webp`,
   `${BASE_PATH}/imag/lady killer image.png`,
   `${BASE_PATH}/imag/lime space peach image.png`,
