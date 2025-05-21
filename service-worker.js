@@ -14,6 +14,14 @@ const urlsToCache = [
   // JavaScript Files
   `${BASE_PATH}/menu.js`,
 
+  // CSS Files
+  `${BASE_PATH}/src/styles.css`,
+  `${BASE_PATH}/input.css`,
+
+  // Configuration Files
+  `${BASE_PATH}/tailwind.config.js`,
+  `${BASE_PATH}/package.json`,
+
   // PWA Files
   `${BASE_PATH}/manifest.json`,
   `${BASE_PATH}/service-worker.js`,
@@ -38,7 +46,8 @@ const urlsToCache = [
   `${BASE_PATH}/imag/love66 image.png`,
   `${BASE_PATH}/imag/marbella image.png`,
   `${BASE_PATH}/imag/reacter image.webp`,
-  `${BASE_PATH}/imag/roket image.webp`
+  `${BASE_PATH}/imag/roket image.webp`,
+  `${BASE_PATH}/imag/blume55.png`
 ];
 
 // ✅ تنصيب الكاش أول مرة
