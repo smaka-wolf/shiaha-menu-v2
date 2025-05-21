@@ -1,5 +1,5 @@
 const CACHE_NAME = "blume-menu-cache-v1";
-const BASE_PATH = "/shiaha-menu-v2";
+const BASE_PATH = "https://smaka-wolf.github.io/shiaha-menu-v2";
 const urlsToCache = [
   `${BASE_PATH}/`,
   // HTML Files
