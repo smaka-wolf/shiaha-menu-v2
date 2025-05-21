@@ -37,103 +37,161 @@
    <h1 class="text-center text-gray-800 text-lg mb-4">
     Shisha Menu
    </h1>
-   <div class="flex justify-center space-x-4 mb-8">
-    <a href="#arabic-style" class="relative rounded-md overflow-hidden w-24 h-20 flex-shrink-0 border-b-2 border-red-600 block">
-     <img alt="Arabic Style Shisha with yellow curtain background and hookah base" class="w-full h-full object-cover" height="80" src="imag/hookah image.jpg" width="96"/>
-     <span class="absolute bottom-1 left-1 text-white text-xs font-normal drop-shadow-md">
-      Arabic Style Shisha
-     </span>
+
+   <!--head image -->
+   <div class="flex overflow-x-auto space-x-4 mb-8 px-4 py-2 scrollbar-hide">
+    <!-- Arabic -->
+    <a href="#arabic-style" class="min-w-[150px] bg-white rounded-lg shadow-md flex-shrink-0 p-2 relative">
+      <img src="imag/hookah image.jpg" alt="Arabic Style" class="w-full h-24 object-cover rounded-md">
+      <span class="absolute bottom-2 left-2 text-white text-xs font-semibold drop-shadow-md">
+        Arabic Style
+      </span>
     </a>
-    <a href="#turkish-style" class="relative rounded-md overflow-hidden w-24 h-20 flex-shrink-0 border-b-2 border-transparent block">
-     <img alt="Turkish Style Shisha with yellow curtain background and hookah base" class="w-full h-full object-cover" height="80" src="imag/hookah image.jpg" width="96"/>
-     <span class="absolute bottom-1 left-1 text-white text-xs font-normal drop-shadow-md">
-      Turkish Style Shisha
-     </span>
+  
+    <!-- Turkish -->
+    <a href="#turkish-style" class="min-w-[150px] bg-white rounded-lg shadow-md flex-shrink-0 p-2 relative">
+      <img src="imag/hookah image.jpg" alt="Turkish Style" class="w-full h-24 object-cover rounded-md">
+      <span class="absolute bottom-2 left-2 text-white text-xs font-semibold drop-shadow-md">
+        Turkish Style
+      </span>
     </a>
-    <a href="#russian-style" class="relative rounded-md overflow-hidden w-24 h-20 flex-shrink-0 border-b-2 border-transparent block">
-     <img alt="Russian Style Shisha with yellow curtain background and hookah base" class="w-full h-full object-cover" height="80" src="imag/roket image.webp" width="96"/>
-     <span class="absolute bottom-1 left-1 text-white text-xs font-normal drop-shadow-md">
-      Russian Style Shisha
-     </span>
+  
+    <!-- Russian -->
+    <a href="#russian-style" class="min-w-[150px] bg-white rounded-lg shadow-md flex-shrink-0 p-2 relative">
+      <img src="imag/roket image.webp" alt="Russian Style" class="w-full h-24 object-cover rounded-md">
+      <span class="absolute bottom-2 left-2 text-white text-xs font-semibold drop-shadow-md">
+        Russian Style
+      </span>
     </a>
-    <a href="#signature-mix" class="relative rounded-md overflow-hidden w-24 h-20 flex-shrink-0 border-b-2 border-transparent block">
-     <img alt="Signature Mix Shisha with yellow curtain background and hookah base" class="w-full h-full object-cover" height="80" src="imag/reacter image.webp" width="96"/>
-     <span class="absolute bottom-1 left-1 text-white text-xs font-normal drop-shadow-md">
-      Signature Mix Shisha
-     </span>
+  
+    <!-- Signature Mix -->
+    <a href="#signature-mix" class="min-w-[150px] bg-white rounded-lg shadow-md flex-shrink-0 p-2 relative">
+      <img src="imag/reacter image.webp" alt="Signature Mix" class="w-full h-24 object-cover rounded-md">
+      <span class="absolute bottom-2 left-2 text-white text-xs font-semibold drop-shadow-md">
+        Signature Mix
+      </span>
     </a>
-   </div>
+  </div>
+   
  <!-- arabic style shisha  -->
-   <section id="arabic-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200">
-    <a href="Arabic Flavors.html" class="block no-underline text-inherit">
-     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
+ <section id="arabic-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+  <a href="Arabic Flavors.html" class="block no-underline text-inherit">
+    <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
       Arabic Style Shisha
-     </h2>
-     <p class="text-center text-gray-700 mb-4 font-medium">
+    </h2>
+    <p class="text-center text-gray-700 mb-4 font-medium">
       AED 140
-     </p>
-     <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
-      <img alt="Large image of Arabic Style Shisha with yellow curtain background and hookah base" class="w-full object-cover" height="256" src="imag/hookah image.jpg" width="256"/>
+    </p>
+
+    <!-- ✅ الشارة المائلة -->
+    <span class="absolute overflow-hidden w-[150px] h-[150px] top-[-10px] left-[-10px] flex items-center justify-center z-10">
+      <span class="absolute w-[150%] h-[40px] bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 rotate-[-45deg] -translate-y-5 flex items-center justify-center text-white font-bold uppercase shadow-lg">
+      Classic
+      </span>
+    </span>
+
+    <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
+      <img alt="Large image of Arabic Style Shisha with yellow curtain background and hookah base"
+        class="w-full object-cover" height="256" src="imag/hookah image.jpg" width="256" />
       <p class="text-center text-gray-800 py-3 font-medium">
-       Arabic Flavors
+        Arabic Flavors
       </p>
-     </div>
-    </a>
+    </div>
+  </a>
+</section>
+
  <!--turkish style shisha -->
-   </section>
-   <section id="turkish-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200">
-    <a href="Turkish Flavors.html" class="block no-underline text-inherit">
-     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
-       Turkish Style Shisha
-     </h2>
-     <p class="text-center text-gray-700 mb-4 font-medium">
+</section>
+<section id="turkish-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+  <a href="Turkish Flavors.html" class="block no-underline text-inherit">
+    <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
+      Turkish Style Shisha
+    </h2>
+    <p class="text-center text-gray-700 mb-4 font-medium">
       AED 180
-     </p>
-     <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
-      <img alt="Large image of Arabic Style Shisha with yellow curtain background and hookah base" class="w-full object-cover" height="256" src="imag/hookah image.jpg" width="256"/>
+    </p>
+
+    <!-- ✅ الشارة المائلة -->
+    <span class="absolute overflow-hidden w-[150px] h-[150px] top-[-10px] left-[-10px] flex items-center justify-center z-10">
+      <span class="absolute w-[150%] h-[40px] bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 rotate-[-45deg] -translate-y-5 flex items-center justify-center text-white font-bold uppercase shadow-lg">
+        Premium
+      </span>
+    </span>
+
+    <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
+      <img alt="Large image of Turkish Style Shisha with yellow curtain background and hookah base" class="w-full object-cover" height="256" src="imag/hookah image.jpg" width="256" />
       <p class="text-center text-gray-800 py-3 font-medium">
-       Turkish Flavors
+        Turkish Flavors
       </p>
-     </div>
-    </a>
+    </div>
+  </a>
+</section>
+
  <!--Russian style shisha -->
    </section>
-   <section id="russian-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200">
-    <a href="rusian flavors.html" class="block no-underline text-inherit">
-     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
-       Russian Style Shisha
-     </h2>
-     <p class="text-center text-gray-700 mb-4 font-medium">
+ <section id="russian-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+  <a href="rusian flavors.html" class="block no-underline text-inherit">
+    <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
+      Russian Style Shisha
+    </h2>
+    <p class="text-center text-gray-700 mb-4 font-medium">
       AED 220
-     </p>
-     <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
-      <img alt="Large image of Arabic Style Shisha with yellow curtain background and hookah base" class="w-full object-cover" height="256" src="imag/roket image.webp" width="256"/>
+    </p>
+
+    <!-- ✅ الشارة المائلة -->
+    <span class="absolute overflow-hidden w-[150px] h-[150px] top-[-10px] left-[-10px] flex items-center justify-center z-10">
+      <span class="absolute w-[150%] h-[40px] bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 rotate-[-45deg] -translate-y-5 flex items-center justify-center text-white font-bold uppercase shadow-lg">
+       Luxury
+      </span>
+    </span>
+
+    <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
+      <img alt="Large image of Russian Style Shisha with yellow curtain background and hookah base"
+        class="w-full object-cover" height="256" src="imag/roket image.webp" width="256" />
       <p class="text-center text-gray-800 py-3 font-medium">
-       Russian Flavors
+        Russian Flavors
       </p>
-     </div>
-    </a>
+    </div>
+  </a>
+</section>
+
  <!--Signature mix shisha -->
-   </section>
-   <section id="signature-mix" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200">
-    <a href="Signature Mix Flavors.html" class="block no-underline text-inherit">
-     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
-       Signature Mix Shisha
-     </h2>
-     <p class="text-center text-gray-700 mb-4 font-medium">
+</section>
+<section id="signature-mix" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+  <a href="Signature Mix Flavors.html" class="block no-underline text-inherit">
+    <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
+      Signature Mix Shisha
+    </h2>
+    <p class="text-center text-gray-700 mb-4 font-medium">
       AED 350
-     </p>
-     <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
-      <img alt="Large image of Arabic Style Shisha with yellow curtain background and hookah base" class="w-full object-cover" height="256" src="imag/reacter image.webp" width="256"/>
+    </p>
+
+    <!-- ✅ شارة Premium -->
+    <span class="absolute overflow-hidden w-[150px] h-[150px] top-[-10px] left-[-10px] flex items-center justify-center z-10">
+      <span class="absolute w-[150%] h-[40px] bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 rotate-[-45deg] -translate-y-5 flex items-center justify-center text-white font-bold uppercase shadow-lg">
+        Signature
+      </span>
+    </span>
+
+    <div class="rounded-md overflow-hidden shadow-md bg-white" style="min-width: 256px; margin: 0 auto;">
+      <img alt="Large image of Arabic Style Shisha with yellow curtain background and hookah base" class="w-full object-cover" height="256" src="imag/reacter image.webp" width="256" />
       <p class="text-center text-gray-800 py-3 font-medium">
-       Signature Mix Flavors
+        Signature Mix Flavors
       </p>
-     </div>
-    </a>
-   </section>
+    </div>
+  </a>
+</section>
    
    
   </div>
   <script src="menu.js"></script>
+
+
+  <!-- Footer -->
+<footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
+  &copy; 2025 Blume Rodina. All rights reserved.
+</footer>
+
+
  </body>
 </html>
