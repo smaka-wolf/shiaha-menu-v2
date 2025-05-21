@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v1";
+const CACHE_NAME = "blume-menu-cache-v3";  // Incremented version for path handling fixes
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [
   `${BASE_PATH}/`,
@@ -78,16 +78,22 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Extract the path and ensure proper BASE_PATH handling
+  const requestURL = new URL(event.request.url);
+  const path = requestURL.pathname.replace(/^\//, '');
+  const basePath = BASE_PATH.replace(/^\//, '');
+  const cachePath = path.startsWith(basePath) ? path : `${basePath}/${path}`;
+
   event.respondWith(
-    caches.match(event.request)
+    caches.match('/' + cachePath)
       .then((response) => {
         // Cache hit - return response
         if (response) {
           return response;
         }
 
-        // Clone the request because it's a one-time use stream
-        const fetchRequest = event.request.clone();
+        // Create new request with correct path
+        const fetchRequest = new Request('/' + cachePath);
 
         return fetch(fetchRequest)
           .then(response => {
@@ -101,7 +107,7 @@ self.addEventListener("fetch", (event) => {
 
             caches.open(CACHE_NAME)
               .then(cache => {
-                cache.put(event.request, responseToCache);
+                cache.put('/' + cachePath, responseToCache);
               });
 
             return response;
