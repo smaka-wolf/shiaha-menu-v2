@@ -88,8 +88,17 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Get the pathname from the request URL
+  const requestURL = new URL(event.request.url);
+  const requestPath = requestURL.pathname;
+
+  // Add BASE_PATH if it's not already included
+  const fetchURL = requestPath.startsWith(BASE_PATH) 
+    ? requestPath 
+    : `${BASE_PATH}${requestPath}`;
+
   event.respondWith(
-    caches.match(event.request)
+    caches.match(fetchURL)
       .then((response) => {
         // Cache hit - return response
         if (response) {
@@ -97,7 +106,7 @@ self.addEventListener("fetch", (event) => {
         }
 
         // Clone the request because it's a one-time use stream
-        const fetchRequest = event.request.clone();
+        const fetchRequest = new Request(fetchURL);
 
         return fetch(fetchRequest)
           .then(response => {
@@ -111,7 +120,7 @@ self.addEventListener("fetch", (event) => {
 
             caches.open(CACHE_NAME)
               .then(cache => {
-                cache.put(event.request, responseToCache);
+                cache.put(fetchURL, responseToCache);
               });
 
             return response;
