@@ -1,5 +1,5 @@
 const CACHE_NAME = "blume-menu-cache-v1";
-const BASE_PATH = "/shiaha-menu-v2";  // Repository path for GitHub Pages
+const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [
   `${BASE_PATH}/`,
   // HTML Files
@@ -13,14 +13,6 @@ const urlsToCache = [
 
   // JavaScript Files
   `${BASE_PATH}/menu.js`,
-
-  // CSS Files
-  `${BASE_PATH}/src/styles.css`,
-  `${BASE_PATH}/input.css`,
-
-  // Configuration Files
-  `${BASE_PATH}/tailwind.config.js`,
-  `${BASE_PATH}/package.json`,
 
   // PWA Files
   `${BASE_PATH}/manifest.json`,
@@ -38,16 +30,14 @@ const urlsToCache = [
   `${BASE_PATH}/imag/blume5 mix image.png`,
   `${BASE_PATH}/imag/hookah image.jpg`,
   `${BASE_PATH}/imag/hookah2 image.jpg`,
-  `${BASE_PATH}/imag/image menu blume.png`,
-  `${BASE_PATH}/imag/image menu blume3.png`,
+  `${BASE_PATH}/imag/blume55.png`,
   `${BASE_PATH}/imag/istanbul night image.webp`,
   `${BASE_PATH}/imag/lady killer image.png`,
   `${BASE_PATH}/imag/lime space peach image.png`,
   `${BASE_PATH}/imag/love66 image.png`,
   `${BASE_PATH}/imag/marbella image.png`,
   `${BASE_PATH}/imag/reacter image.webp`,
-  `${BASE_PATH}/imag/roket image.webp`,
-  `${BASE_PATH}/imag/blume55.png`
+  `${BASE_PATH}/imag/roket image.webp`
 ];
 
 // ✅ تنصيب الكاش أول مرة
@@ -88,17 +78,8 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Get the pathname from the request URL
-  const requestURL = new URL(event.request.url);
-  const requestPath = requestURL.pathname;
-
-  // Add BASE_PATH if it's not already included
-  const fetchURL = requestPath.startsWith(BASE_PATH) 
-    ? requestPath 
-    : `${BASE_PATH}${requestPath}`;
-
   event.respondWith(
-    caches.match(fetchURL)
+    caches.match(event.request)
       .then((response) => {
         // Cache hit - return response
         if (response) {
@@ -106,7 +87,7 @@ self.addEventListener("fetch", (event) => {
         }
 
         // Clone the request because it's a one-time use stream
-        const fetchRequest = new Request(fetchURL);
+        const fetchRequest = event.request.clone();
 
         return fetch(fetchRequest)
           .then(response => {
@@ -120,7 +101,7 @@ self.addEventListener("fetch", (event) => {
 
             caches.open(CACHE_NAME)
               .then(cache => {
-                cache.put(fetchURL, responseToCache);
+                cache.put(event.request, responseToCache);
               });
 
             return response;
