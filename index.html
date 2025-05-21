@@ -37,7 +37,7 @@
       body {
         margin: 0;
         padding: 0;
-        background-image: url('/imag/blume\ backg5.png');
+        background-image: url('');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -49,6 +49,14 @@
     </style>
   </head>
  <body class="bg-white min-h-screen p-4">
+
+  <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none">
+    <source src="/imag/smoke effect.mp4" type="video/webm">
+  </video>
+  <img src="/imag/blume3 back.png"
+  class="absolute top-0 left-0 w-full h-full object-cover z-10 pointer-events-none opacity-90" />
+
+
   <!-- Top left chat icon -->
   <button aria-label="Chat" class="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full p-2 shadow-md">
    <i class="far fa-comment-alt text-red-700 text-lg">
