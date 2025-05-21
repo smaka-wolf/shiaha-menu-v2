@@ -27,6 +27,29 @@
             left: 1rem;
             z-index: 10;
         }
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .card-content.open {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+        .card-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .card-header:hover {
+            background-color: #f7f7f7;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+      
     </style>
 </head>
 <body class="bg-white min-h-screen">
@@ -45,40 +68,111 @@
         </button>
     </div>
 
-    <div class="max-w-3xl w-full bg-white rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
+    <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
             <h1 class="text-gray-800 text-lg font-normal mb-8">Russian Flavors</h1>
-            <p class="text-gray-600 text-lg mb-12">AED 220</p>
+            <p class="text-red`-600 text-lg mb-12">AED 220</p>
             <div class="text-left text-gray-800 text-sm">
-                <h2 class="font-semibold mb-3">Russian Flavors</h2>
-                <ul class="divide-y divide-red-300">
-                    <li class="py-2 ">Ananas Shock</li>
-                    <li class="py-2 ">Blueberry Crumble</li>
-                    <li class="py-2 ">Belgium Waffles</li>
-                    <li class="py-2 ">Pinkman</li>
-                    <li class="py-2 ">Garnet</li>
-                    <li class="py-2 ">Cola</li>
-                    <li class="py-2 ">Supernova</li>
-                    <li class="py-2 ">Ice Cream</li>
-                    <li class="py-2 ">Falling Star</li>
-                    <li class="py-2 ">Kiwi Smoothie</li>
-                    <li class="py-2 ">Needls</li>
-                    <li class="py-2 ">Lemon Blast</li>
-                    <li class="py-2 ">Strawberry Mille-Feuille</li>
-                    <li class="py-2 ">Banana</li>
-                    <li class="py-2 ">Epic Yoghurt</li>
-                    <li class="py-2 ">Melonade</li>
-                    <li class="py-2 ">Vanilla</li>
-                    <li class="py-2 ">Coconut</li>
-                    <li class="py-2 ">Raspberry</li>
-                    <li class="py-2 ">Unicorn</li>
-                    <li class="py-2 ">Viva La Fiesta</li>
-                    <li class="py-2 ">Blue Mist</li>
-                    <li class="py-2 flex justify-between text-lg items-center">
+                <div class="space-y-4 px-4 pb-20" id="cardsContainer">
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-lg shadow-md relative">
+                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
+                            <div>
+                                <p class="font-semibold text-lg text-gray-700 mb-1">DARKSIDE</p>
+                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
+                                   
+                    Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.
+
+                                </p>
+                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <ul class="divide-y divide-red-300 px-4">
+                                <li class="py-2">Needeles</li>
+                                <li class="py-2">Lemon Blast</li>
+                                <li class="py-2">Cola</li>
+                                <li class="py-2">Supernova</li>
+                                <li class="py-2">Faling Star</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-lg shadow-md relative">
+                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
+                            <div>
+                                <p class="font-semibold text-lg text-gray-700 mb-1">STARLINE</p>
+                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
+                                    
+                    Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.
+
+                                </p>
+                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <ul class="divide-y divide-red-300 px-4">
+                                <li class="py-2">Blueberry Crumble</li>
+                                <li class="py-2">Belgium Waffles</li>
+                                <li class="py-2">Strawberry Millefeulie</li>
+                                <li class="py-2">Banana</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-lg shadow-md relative">
+                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
+                            <div>
+                                <p class="font-semibold text-lg text-gray-700 mb-1">MUSTHAVE</p>
+                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
+                                   
+                    Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.
+
+                                </p>
+                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <ul class="divide-y divide-red-300 px-4">
+                                <li class="py-2">Ananas Shock</li>
+                                <li class="py-2">Melonade</li>
+                                <li class="py-2">Kiwi Smoothie</li>
+                                <li class="py-2">Vanilla</li>
+                                <li class="py-2">GaRnet</li>
+                                <li class="py-2">Coconut</li>
+                                <li class="py-2">Raspberry</li>
+                                <li class="py-2">Epic Yaghurt</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-white rounded-lg shadow-md relative">
+                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
+                            <div>
+                                <p class="font-semibold text-lg text-gray-700 mb-1">HOLSTER</p>
+                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
+                                    
+                    Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.
+                                </p>
+                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <ul class="divide-y divide-red-300 px-4">
+                                <li class="py-2">VIVA La Fiesta</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="py-2 flex justify-between text-lg items-center border-t border-red-300">
                         <span>Extra Head</span>
                         <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -102,6 +196,33 @@
                 shishaImage.style.transform = `scale(${scale})`;
             });
         });
+
+        // Card toggle functionality
+        function toggleCard(header) {
+            const container = document.getElementById('cardsContainer');
+            const currentContent = header.nextElementSibling;
+            const currentIcon = header.querySelector('.toggle-icon');
+            
+            // Close all other open cards first
+            const allContents = container.getElementsByClassName('card-content');
+            const allIcons = container.getElementsByClassName('toggle-icon');
+            
+            for (let content of allContents) {
+                if (content !== currentContent && content.classList.contains('open')) {
+                    content.classList.remove('open');
+                }
+            }
+            
+            for (let icon of allIcons) {
+                if (icon !== currentIcon && icon.classList.contains('open')) {
+                    icon.classList.remove('open');
+                }
+            }
+            
+            // Toggle the clicked card
+            currentContent.classList.toggle('open');
+            currentIcon.classList.toggle('open');
+        }
     </script>
 </body>
 </html>
