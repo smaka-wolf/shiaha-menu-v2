@@ -32,6 +32,7 @@ const urlsToCache = [
   `${BASE_PATH}/imag/hookah2 image.jpg`,
   `${BASE_PATH}/imag/blume backg5.png`,
   `${BASE_PATH}/imag/smoke effect.mp4`,
+  `${BASE_PATH}/imag/smoke2 effect.mp4`,
   `${BASE_PATH}/imag/blume3 back.png`,
   `${BASE_PATH}/imag/istanbul night image.webp`,
   `${BASE_PATH}/imag/lady killer image.png`,
