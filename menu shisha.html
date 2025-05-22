@@ -131,7 +131,6 @@
 </section>
 
  <!--turkish style shisha -->
-</section>
 <section id="turkish-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
   <a href="Turkish Flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
@@ -158,8 +157,7 @@
 </section>
 
  <!--Russian style shisha -->
-   </section>
- <section id="russian-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+<section id="russian-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
   <a href="rusian flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
       Russian Style Shisha
@@ -186,7 +184,6 @@
 </section>
 
  <!--Signature mix shisha -->
-</section>
 <section id="signature-mix" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
   <a href="Signature Mix Flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
@@ -214,9 +211,25 @@
    
    
   </div>
+  <!-- Service Worker -->
+  <script defer>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js?v=5')
+          .then(function (registration) {
+            console.log('✅ ServiceWorker registered: ', registration.scope);
+          })
+          .catch(function (error) {
+            console.log('❌ ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>
+
   <!-- Libraries -->
-  <script src="js/language-manager.js"></script>
-  <script src="menu.js"></script>
+  <script src="js/app.js?v=5"></script>
+  <script src="js/language-manager.js?v=5"></script>
+  <script src="menu.js?v=5"></script>
 
   <!-- Footer -->
 <footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">

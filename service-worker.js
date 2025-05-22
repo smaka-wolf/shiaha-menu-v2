@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v3";  // Incremented version for path handling fixes
+const CACHE_NAME = "blume-menu-cache-v5";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
@@ -43,8 +43,9 @@ const urlsToCache = [
   `${BASE_PATH}/imag/roket image.webp`
 ];
 
-// ✅ تنصيب الكاش أول مرة
+// ✅ Installation with immediate activation
 self.addEventListener("install", (event) => {
+  self.skipWaiting(); // Force immediate service worker activation
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -58,67 +59,44 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// ✅ تفعيل الخدمة وتحديث الكاش إذا تغيّر
+// ✅ Activation with immediate client claim and cache cleanup
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('🗑️ Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    Promise.all([
+      // Clean up old caches
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              console.log('🗑️ Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      // Force clients to use this service worker
+      self.clients.claim()
+    ])
   );
 });
 
-// ✅ استرجاع البيانات من الكاش أو الشبكة
+// ✅ Simplified fetch handling
 self.addEventListener("fetch", (event) => {
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
 
-  // Extract the path and ensure proper BASE_PATH handling
-  const requestURL = new URL(event.request.url);
-  const path = requestURL.pathname.replace(/^\//, '');
-  const basePath = BASE_PATH.replace(/^\//, '');
-  const cachePath = path.startsWith(basePath) ? path : `${basePath}/${path}`;
-
   event.respondWith(
-    caches.match('/' + cachePath)
+    caches.match(event.request)
       .then((response) => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-
-        // Create new request with correct path
-        const fetchRequest = new Request('/' + cachePath);
-
-        return fetch(fetchRequest)
-          .then(response => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response because it's a one-time use stream
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put('/' + cachePath, responseToCache);
-              });
-
-            return response;
-          })
-          .catch(() => {
-            // If both cache and network fail, return offline page
-            return caches.match(`${BASE_PATH}/index.html`);
+        return response || fetch(event.request).then((fetchResponse) => {
+          return caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, fetchResponse.clone());
+            return fetchResponse;
           });
+        });
       })
+      .catch(() => caches.match(`${BASE_PATH}/index.html`))
   );
 });

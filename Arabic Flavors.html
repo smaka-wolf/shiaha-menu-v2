@@ -106,8 +106,24 @@
         </div>
     </div>
 
+    <!-- Service Worker -->
+    <script defer>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js?v=5')
+                    .then(function (registration) {
+                        console.log('✅ ServiceWorker registered: ', registration.scope);
+                    })
+                    .catch(function (error) {
+                        console.log('❌ ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+
     <!-- Libraries -->
-    <script src="js/language-manager.js"></script>
+    <script src="js/app.js?v=5"></script>
+    <script src="js/language-manager.js?v=5"></script>
     <script>
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', async () => {
