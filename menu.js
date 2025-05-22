@@ -29,38 +29,38 @@ const flavors = [
   { name: "Sweet Melon", section: "turkish-style", page: "Turkish Flavors.html" },
 
   // Russian Style - Darkside
-  { name: "Needles", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Lemon Blast", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Cola", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Supernova", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Falling Star", section: "russian-style", page: "rusianflavor.html" },
+  { name: "Needles", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Lemon Blast", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Cola", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Supernova", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Falling Star", section: "russian-style", page: "rusian flavors.html" },
   
   // Russian Style - Starline
-  { name: "Blueberry Crumble", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Belgium Waffles", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Strawberry Millefeuille", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Banana", section: "russian-style", page: "rusianflavor.html" },
+  { name: "Blueberry Crumble", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Belgium Waffles", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Strawberry Millefeuille", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Banana", section: "russian-style", page: "rusian flavors.html" },
   
   // Russian Style - Musthave
-  { name: "Ananas Shock", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Melonade", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Kiwi Smoothie", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Vanilla", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Garnet", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Coconut", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Raspberry", section: "russian-style", page: "rusianflavor.html" },
-  { name: "Epic Yoghurt", section: "russian-style", page: "rusianflavor.html" },
+  { name: "Ananas Shock", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Melonade", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Kiwi Smoothie", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Vanilla", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Garnet", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Coconut", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Raspberry", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Epic Yoghurt", section: "russian-style", page: "rusian flavors.html" },
 
   // Signature Mix
-  { name: "Blume", section: "signature-mix", page: "signature mix.html", description: "Lady killer 25%, Watermelon 25%, Blueberry 50%" },
-  { name: "Luxuria", section: "signature-mix", page: "signature mix.html", description: "Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml" },
-  { name: "Leonardo", section: "signature-mix", page: "signature mix.html", description: "Gum Mint 20%, Orange 30%, Vanilla 50%" },
-  { name: "Exotic Dreams", section: "signature-mix", page: "signature mix.html", description: "Melon 40%, Banana 40%, Coconut 20%" },
-  { name: "Moonlight", section: "signature-mix", page: "signature mix.html", description: "Falling Star 40%, Istanbul Night 50%, Supernova 10%" },
-  { name: "Love Berry", section: "signature-mix", page: "signature mix.html", description: "Alternative Cherry 40%, Needles 20%, Pomegranate 40%" },
-  { name: "Mr. AXA", section: "signature-mix", page: "signature mix.html", description: "Melon 50%, Melonade 45%, Supernova 5%" },
-  { name: "Grandmother Cake", section: "signature-mix", page: "signature mix.html", description: "Belgium Waffles 20%, Melonade 20%, Blueberry Crumble 60%" },
-  { name: "Olala", section: "signature-mix", page: "signature mix.html", description: "Cola 25%, Lemon Mint 75%" }
+  { name: "Blume", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Lady killer 25%, Watermelon 25%, Blueberry 50%" },
+  { name: "Luxuria", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml" },
+  { name: "Leonardo", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Gum Mint 20%, Orange 30%, Vanilla 50%" },
+  { name: "Exotic Dreams", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Melon 40%, Banana 40%, Coconut 20%" },
+  { name: "Moonlight", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Falling Star 40%, Istanbul Night 50%, Supernova 10%" },
+  { name: "Love Berry", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Alternative Cherry 40%, Needles 20%, Pomegranate 40%" },
+  { name: "Mr. AXA", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Melon 50%, Melonade 45%, Supernova 5%" },
+  { name: "Grandmother Cake", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Belgium Waffles 20%, Melonade 20%, Blueberry Crumble 60%" },
+  { name: "Olala", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Cola 25%, Lemon Mint 75%" }
 ];
 
 document.addEventListener('DOMContentLoaded', async () => {
