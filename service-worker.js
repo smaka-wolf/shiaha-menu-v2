@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v5";  // Incremented version as suggested
+const CACHE_NAME = "blume-menu-cache-v5.1";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
