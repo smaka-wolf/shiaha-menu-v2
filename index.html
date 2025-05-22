@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -8,7 +9,7 @@
 
     <!-- iOS PWA settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default"> <!-- جرب black بدل default -->
+    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="https://smaka-wolf.github.io/shiaha-menu-v2/manifest.json" />
@@ -41,70 +42,107 @@
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: #0B093F;
         height: 100vh;
         width: 100vw;
-        background-color: #0B093F; /* ← اللون ديال الأطراف */
-        background-attachment: fixed;
       }
     </style>
   </head>
- <body class="bg-white min-h-screen p-4">
 
-  <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none">
-    <source src="/imag/smoke2 effect.mp4" type="video/mp4">
-    <source src="/imag/smoke2 effect.webm" type="video/webm">
-  </video>
-  
-  <img src="/imag/blume3 back.png"
+  <body class="relative min-h-screen w-full">
+
+    <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none">
+      <source src="/imag/smoke2 effect.mp4" type="video/webm">
+    </video>
+    <img src="/imag/blume3 back.png"
     class="absolute top-0 left-0 w-full h-full object-cover z-10 pointer-events-none opacity-90" />
-  
 
-  <!-- Top left chat icon -->
-  <button aria-label="Chat" class="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full p-2 shadow-md">
-   <i class="far fa-comment-alt text-red-700 text-lg">
-   </i>
-  </button>
-  <!-- Top right font size and search -->
-  <div class="absolute top-4 right-4 bg-white bg-opacity-90 rounded-xl px-3 py-1 flex items-center space-x-3 text-xs font-semibold text-red-700 font-sans">
-   <span class="select-none">
-    aA
-   </span>
-   <div class="h-4 border-l border-red-400">
-   </div>
-   <button aria-label="Search" class="text-red-700">
-    <i class="fas fa-search">
-    </i>
-   </button>
-  </div>
-  <!-- Center menu button -->
-  <button id="menuButton" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-90 text-red-600 font-semibold text-sm rounded-full px-8 py-3 shadow-md" type="button">
-   Menu
-  </button>
-  <div id="menuOptions" class="hidden absolute top-1/3 left-1/2 -translate-x-1/2 bg-gray-200 bg-opacity-90 rounded-md w-64 text-center text-gray-800 shadow-md p-4 z-50">
-    <a href="" class="block w-full py-4 border-b border-red-400 text-base font-normal hover:bg-gray-300">Food Menu</a>
-    <a href="" class="block w-full py-4 border-b border-red-400 text-base font-normal hover:bg-gray-300">Beverage Menu</a>
-    <a href="menu shisha.html" class="block w-full py-4 text-base font-normal hover:bg-gray-300">Shisha Menu</a>
-  </div>
-  <!-- Bottom center logo -->
-  <script defer>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('https://smaka-wolf.github.io/shiaha-menu-v2/service-worker.js')
-          .then(function (registration) {
-            console.log('✅ ServiceWorker registered: ', registration.scope);
-          })
-          .catch(function (error) {
-            console.log('❌ ServiceWorker registration failed: ', error);
-          });
-      });
-    }
-  </script>  
- </body>
- <script src="menu.js"></script>
+    <!-- ✅ صورة PNG فوق الخلفية GIF 
+    <img src="image/blume bck.png" alt="Logo"
+       class="absolute top-0 left-0 w-full h-full object-contain z-40" />
+    -->
+
+    <!-- Top left chat icon -->
+    <button aria-label="Chat" class="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full p-2 shadow-md">
+      <i class="far fa-comment-alt text-red-700 text-lg"></i>
+    </button>
+
+    <!-- Top right font size and search -->
+    <div class="absolute top-4 right-4 bg-white bg-opacity-90 rounded-xl px-3 py-1 flex items-center space-x-3 text-xs font-semibold text-red-700">
+      <div class="relative inline-block">
+        <button 
+          id="languageButton" 
+          aria-label="Change language" 
+          class="px-2 py-1 text-red-600 text-sm font-semibold flex items-center"
+        >
+          <span id="currentLang">EN</span>
+          <i class="fas fa-chevron-down text-xs ml-1"></i>
+        </button>
+        <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
+          <button 
+            class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+            onclick="switchLanguage('en')"
+          >
+            <span>🇬🇧</span>
+            <span>English</span>
+          </button>
+          <button 
+            class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+            onclick="switchLanguage('ar')"
+          >
+            <span>🇸🇦</span>
+            <span>العربية</span>
+          </button>
+        </div>
+      </div>
+      <div class="h-4 border-l border-red-400"></div>
+      <div class="relative">
+        <div class="flex items-center">
+          <input type="text" id="searchInput" placeholder="Search flavors..." class="p-1 rounded-md w-48 text-sm focus:outline-none hidden" autocomplete="off">
+          <button aria-label="Search" class="text-red-700" id="searchButton">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div id="searchResults" class="absolute mt-1 w-64 -right-2 bg-white rounded-md shadow-lg hidden">
+          <!-- Search results will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Center menu button -->
+    <button id="menuButton" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-90 text-red-600 font-semibold text-sm rounded-full px-8 py-3 shadow-md" type="button">
+      Menu
+    </button>
+
+    <!-- Menu Options -->
+    <div id="menuOptions" class="hidden absolute top-1/3 left-1/2 -translate-x-1/2 bg-gray-200 bg-opacity-90 rounded-md w-64 text-center text-gray-800 shadow-md p-4 z-50">
+      <a href="" class="block w-full py-4 border-b border-red-400 text-base font-normal hover:bg-gray-300">Food Menu</a>
+      <a href="" class="block w-full py-4 border-b border-red-400 text-base font-normal hover:bg-gray-300">Beverage Menu</a>
+      <a href="menu shisha.html" class="block w-full py-4 text-base font-normal hover:bg-gray-300">Shisha Menu</a>
+    </div>
+
+    <!-- Service Worker -->
+    <script defer>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('https://smaka-wolf.github.io/shiaha-menu-v2/service-worker.js')
+            .then(function (registration) {
+              console.log('✅ ServiceWorker registered: ', registration.scope);
+            })
+            .catch(function (error) {
+              console.log('❌ ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+    <!-- JS Files -->
+    <script src="js/language-manager.js"></script>
+    <script src="index.js"></script>
+
+  </body>
 </html>
-
-
-
-
-
-

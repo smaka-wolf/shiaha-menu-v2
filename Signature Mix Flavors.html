@@ -4,7 +4,20 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Signature Mix Flavors</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            direction: {
+              'rtl': 'rtl',
+              'ltr': 'ltr'
+            }
+          }
+        }
+      }
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
         .shisha-image-wrapper {
@@ -21,54 +34,85 @@
             opacity: 0.5;
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .back-button {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 10;
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
-    </style>
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
+        .card-content.open {
+            max-height: 800px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            margin: 0.5rem auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 1rem;
+            overflow: hidden;
+            
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .chart-container {
+                height: 180px;
+            }
+        }
+
+        .chart-image {
+            position: absolute;
+            top: 47%;
+            left: 50%;
+            width: 65%;
+            height: auto;
+            transform: translate(-50%, -50%);
+            opacity: 0.9;
+            z-index: 2;
+            object-fit: contain;
+            pointer-events: none;
+           
+        }
+
+        .chart-wrapper {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(252, 155, 155, 0.5);
-            z-index: 50;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .modal.show {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-content {
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-        .close-button {
-            position: absolute;
-            right: -10px;
-            top: -10px;
-            background-color: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            cursor: pointer;
-            z-index: 60;
+            z-index: 1;
+            padding: 1rem;
         }
-        .close-button:hover {
-            background-color: #f8f8f8;
+
+        .chart-wrapper canvas {
+            width: 100% !important;
+            max-width: 180px;
+            height: auto !important;
+            max-height: 180px;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .card-header:hover {
+            background-color: #f7f7f7;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .toggle-icon.open {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -79,124 +123,124 @@
             alt="Decorative image of a shisha pipe with golden background"
             class="shisha-image"
         />
-        <button 
-            aria-label="Back" 
-            onclick="window.location.href='menu shisha.html'" 
-            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
-        >
-            <i class="fas fa-chevron-left text-red-600"></i>
-        </button>
+        <div class="flex justify-between items-start w-full absolute top-4 px-4">
+            <button 
+                aria-label="Back" 
+                onclick="window.location.href='menu shisha.html'" 
+                class="bg-white rounded-md p-2 shadow-sm border border-gray-200"
+            >
+                <i class="fas fa-chevron-left text-red-600"></i>
+            </button>
+            
+            <!-- Language Switcher -->
+            <div class="relative">
+                <button 
+                    id="languageButton" 
+                    aria-label="Change language" 
+                    class="bg-white px-3 py-2 rounded-md shadow-sm border border-gray-200 text-red-600 text-sm font-semibold flex items-center"
+                >
+                    <span id="currentLang">EN</span>
+                    <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </button>
+                <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
+                    <button 
+                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        onclick="switchLanguage('en')"
+                    >
+                        <span>🇬🇧</span>
+                        <span>English</span>
+                    </button>
+                    <button 
+                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        onclick="switchLanguage('ar')"
+                    >
+                        <span>🇸🇦</span>
+                        <span>العربية</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
             <h1 class="text-gray-800 text-lg font-normal mb-8">Signature Mix</h1>
-            <p class="text-gray-600 text-lg mb-12">AED 350</p>
+            <p class="text-red-600 text-lg mb-12">AED 350</p>
             <div class="text-left text-gray-800 text-sm">
-                <h2 class="font-semibold mb-3">Signature Mix Flavors</h2>
-                <ul class="divide-y divide-red-300">
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('blume')">Blume</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('luxuria')">Luxuria</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('leonardo')">Leonardo</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('exotic')">Exotic Dreams</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('moonlight')">Moonlight</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('loveberry')">Love Berry</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('axa')">Mr. AXA</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('grandmother')">Grandmother Cake</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('olala')">Olala</li>
-                    <li class="py-2 flex justify-between text-lg items-center">
-                        <span>Extra Head</span>
-                        <span class="text-red-600 text-lg font-normal">+AED 100.00</span>
-                    </li>
-                </ul>
+                <div class="space-y-4 px-4 pb-20" id="cardsContainer">
+                    <!-- Cards will be populated here -->
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="flavorModal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content bg-white w-11/12 max-w-lg mx-auto my-auto rounded-xl shadow-xl p-6">
-            <div class="relative">
-                <button class="close-button" onclick="closeModal(event, true)">
-                    <i class="fas fa-times text-red-600"></i>
-                </button>
-                <img id="flavorImage" src="" alt="" class="w-full h-60 object-cover rounded-lg mb-4">
-                <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
-                <p id="flavorDescription" class="text-gray-700 text-lg"></p>
-            </div>
-        </div>
-    </div>
-
+    <!-- Libraries -->
+    <script src="js/language-manager.js"></script>
     <script>
-        // Flavor details
-        const flavorDetails = {
-            blume: {
-                title: 'Blume Mix Flavor',
-                image: 'imag/blume1 mix image.png',
-                description: 'Lady killer 25%, Watermelon 25%, Blueberry 50%.'
+        // Signature mix data
+        const signatureMixes = [
+            {
+                id: 'blume',
+                title: 'Blume',
+                description: 'Lady killer 25%, Watermelon 25%, Blueberry 50%.',
+                image: '/image/blume55.jpg'
             },
-            luxuria: {
-                title: 'Luxuria Mix Flavor',
-                image: 'imag/blume2 mix image.png',
-                description: 'Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml.'
+            {
+                id: 'luxuria',
+                title: 'Luxuria',
+                description: 'Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml.',
+                image: '/image/blume55.jpg'
             },
-            leonardo: {
-                title: 'Leonardo Mix Flavor',
-                image: 'imag/blume3 mix image.png',
-                description: 'Gum Mint 20%, Orange 30%, Vanilla 50%.'
+            {
+                id: 'leonardo',
+                title: 'Leonardo',
+                description: 'Gum Mint 20%, Orange 30%, Vanilla 50%.',
+                image: '/image/blume55.jpg'
             },
-            exotic: {
-                title: 'Exotic Dreams Mix Flavor',
-                image: 'imag/blume4 mix image.png',
-                description: 'Melon 40%, Banana 40%, Coconut 20%.'
+            {
+                id: 'exotic',
+                title: 'Exotic Dreams',
+                description: 'Melon 40%, Banana 40%, Coconut 20%.',
+                image: '/image/blume55.jpg'
             },
-            moonlight: {
-                title: 'Moonlight Mix Flavor',
-                image: 'imag/blume5 mix image.png',
-                description: 'Faling Star 40%, Istanbul Night 50%, SuperNova 10%.'
+            {
+                id: 'moonlight',
+                title: 'Moonlight',
+                description: 'Falling Star 40%, Istanbul Night 50%, SuperNova 10%.',
+                image: '/image/blume55.jpg'
             },
-            loveberry: {
-                title: 'Love Berry Mix Flavor',
-                image: 'imag/blume mix image.png',
-                description: 'Alternative Cherry 40%, Neebles 20%, Pomegranate 40%.'
+            {
+                id: 'loveberry',
+                title: 'Love Berry',
+                description: 'Alternative Cherry 40%, Needles 20%, Pomegranate 40%.',
+                image: '/image/blume55.jpg'
             },
-            axa: {
-                title: 'Mr. AXA Mix Flavor',
-                image: 'imag/blume mix image.png',
-                description: 'Melon 50%, Melonade 45%, SuperNova 5%.'
+            {
+                id: 'axa',
+                title: 'Mr. AXA',
+                description: 'Melon 50%, Melonade 45%, SuperNova 5%.',
+                image: '/image/blume55.jpg'
             },
-            grandmother: {
-                title: 'Grandmother Cake Mix Flavor',
-                image: 'imag/blume mix image.png',
-                description: 'Belgium Waffles 20%, Melonade 20%, Buleberry Crumble 60%.'
+            {
+                id: 'grandmother',
+                title: 'Grandmother Cake',
+                description: 'Belgium Waffles 20%, Melonade 20%, Blueberry Crumble 60%.',
+                image: '/image/blume55.jpg'
             },
-            olala: {
-                title: 'Olala Mix Flavor',
-                image: 'imag/blume mix image.png',
-                description: 'Cola 25%, limn mint 75%.'
+            {
+                id: 'olala',
+                title: 'Olala',
+                description: 'Cola 25%, Lemon Mint 75%.',
+                image: '/image/blume55.jpg'
             }
-        };
+        ];
 
-        function showFlavorDetails(flavor) {
-            const modal = document.getElementById('flavorModal');
-            const details = flavorDetails[flavor];
-            
-            document.getElementById('flavorTitle').textContent = details.title;
-            document.getElementById('flavorDescription').textContent = details.description;
-            document.getElementById('flavorImage').src = details.image;
-            document.getElementById('flavorImage').alt = details.title;
-            
-            modal.classList.add('show');
-        }
-
-        function closeModal(event, fromButton = false) {
-            if (fromButton) {
-                event.stopPropagation();
-                document.getElementById('flavorModal').classList.remove('show');
-            } else if (event.target === event.currentTarget) {
-                document.getElementById('flavorModal').classList.remove('show');
-            }
-        }
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await LanguageManager.initializeLanguage();
+            populateCards(signatureMixes);
+            await updatePageContent(LanguageManager.getStoredLanguage());
+        });
 
         // Scroll animation
         document.addEventListener('DOMContentLoaded', () => {
@@ -216,12 +260,501 @@
                 shishaImage.style.transform = `scale(${scale})`;
             });
         });
+
+        // Language switcher functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageButton = document.getElementById('languageButton');
+            const languageMenu = document.getElementById('languageMenu');
+
+            // Toggle language menu
+            languageButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageMenu.classList.toggle('hidden');
+            });
+
+            // Close language menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageButton.contains(e.target) && !languageMenu.contains(e.target)) {
+                    languageMenu.classList.add('hidden');
+                }
+            });
+
+            // Prevent menu from closing when clicking inside it
+            languageMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        // Populate cards with mix data
+        function populateCards(mixes) {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = mixes.map(mix => `
+                <div class="bg-white rounded-lg shadow-md relative">
+                    <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
+                        <div>
+                            <h3 class="text-lg font-semibold">${mix.title}</h3>
+                            <p class="text-gray-700 text-sm mb-2 leading-relaxed">
+                                ${mix.description}
+                            </p>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="p-4">
+                            <img src="${mix.image}" alt="${mix.title} Mix" class="w-full h-48 object-cover rounded-lg mb-4">
+                            <div class="chart-container">
+                                <img src="" alt="" class="chart-image" />
+                                <div class="chart-wrapper">
+                                    <canvas id="chart_${mix.id}"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('') + `
+                <div class="py-2 flex justify-between text-lg items-center border-t border-red-300">
+                    <span>Extra Head</span>
+                    <span class="text-red-600 text-lg font-normal">+AED 100.00</span>
+                </div>
+            `;
+        }
+
+        // Update page content based on selected language
+        async function updatePageContent(lang) {
+            try {
+                const translations = await LanguageManager.loadTranslations(lang);
+                
+                if (translations) {
+                    // Update page title and price
+                    document.querySelector('h1').textContent = translations?.sections?.signature?.title || 'Signature Mix';
+                    document.querySelector('p.text-red-600').textContent = translations?.sections?.signature?.price || 'AED 350';
+
+                    if (translations.flavors && translations.flavors['signature-mix']) {
+                        // Create a copy of signatureMixes with translated content
+                        const updatedMixes = signatureMixes.map(mix => {
+                            const translation = translations.flavors['signature-mix'][mix.title];
+                            if (translation) {
+                                return {
+                                    ...mix,
+                                    title: translation.name || mix.title,
+                                    description: translation.description || mix.description
+                                };
+                            }
+                            return mix;
+                        });
+
+                        // Repopulate cards with translated content
+                        populateCards(updatedMixes);
+                    } else {
+                        // Reset to English
+                        populateCards(signatureMixes);
+                    }
+
+                    // Update extra head text
+                    const extraHead = document.querySelector('div.py-2.flex.justify-between span:first-child');
+                    extraHead.textContent = translations?.common?.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
+
+                    // Update footer text
+                    const footer = document.querySelector('footer');
+                    footer.textContent = translations?.common?.copyright || '© 2025 Blume Rodina. All rights reserved.';
+
+                    // Update back button text
+                    const backButton = document.querySelector('button[aria-label="Back"]');
+                    backButton.setAttribute('aria-label', translations.common.back || 'Back');
+                }
+            } catch (error) {
+                console.error('Error updating content:', error);
+            }
+        }
+
+        // Handle language switching
+        window.switchLanguage = async (lang) => {
+            await LanguageManager.switchLanguage(lang);
+            await updatePageContent(lang);
+            
+            // Update UI
+            const currentLang = document.getElementById('currentLang');
+            currentLang.textContent = lang.toUpperCase();
+            document.getElementById('languageMenu').classList.add('hidden');
+        };
+
+        // Card toggle functionality
+        function toggleCard(header) {
+            const container = document.getElementById('cardsContainer');
+            const currentContent = header.nextElementSibling;
+            const currentIcon = header.querySelector('.toggle-icon');
+            
+            // Close all other open cards first
+            const allContents = container.getElementsByClassName('card-content');
+            const allIcons = container.getElementsByClassName('toggle-icon');
+            
+            for (let content of allContents) {
+                if (content !== currentContent && content.classList.contains('open')) {
+                    content.classList.remove('open');
+                }
+            }
+            
+            for (let icon of allIcons) {
+                if (icon !== currentIcon && icon.classList.contains('open')) {
+                    icon.classList.remove('open');
+                }
+            }
+            
+            // Toggle the clicked card
+            currentContent.classList.toggle('open');
+            currentIcon.classList.toggle('open');
+
+            // Create chart if card is opened
+            if (currentContent.classList.contains('open')) {
+                const cardHeader = header.querySelector('p').textContent;
+                const matches = cardHeader.match(/(\d+)%/g);
+                if (matches) {
+                    const percentages = matches.map(p => parseInt(p));
+                    const components = cardHeader.split(',').map(part => 
+                        part.replace(/\d+%/g, '').replace(/[,.]/g, '').trim()
+                    );
+                    
+                    const chartId = `chart_${header.closest('.bg-white').querySelector('.card-content canvas').id.split('_')[1]}`;
+                    createFlavorChart(chartId, components, percentages);
+                }
+            }
+        }
+
+        // Create flavor chart
+        function createFlavorChart(canvasId, components, percentages) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Destroy existing chart if it exists
+            const existingChart = Chart.getChart(canvasId);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+
+            let startAngle = -45;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+            let isAutoRotating = true;
+            let autoRotationSpeed = 0.5; // degrees per frame
+            let autoRotationFrame;
+            
+            function autoRotate() {
+                if (!isAutoRotating) return;
+                
+                chart.options.rotation = (chart.options.rotation + autoRotationSpeed) % 360;
+                chart.update('none');
+                autoRotationFrame = requestAnimationFrame(autoRotate);
+            }
+
+            function pauseAutoRotation() {
+                isAutoRotating = false;
+                if (autoRotationFrame) {
+                    cancelAnimationFrame(autoRotationFrame);
+                }
+            }
+
+            function resumeAutoRotation() {
+                if (!isDragging) {
+                    isAutoRotating = true;
+                    autoRotate();
+                }
+            }
+
+            // Touch and mouse event handlers
+            function handleStart(e) {
+                pauseAutoRotation();
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+                const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+                
+                // Check if click is within chart area
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                
+                if (distance <= Math.min(canvas.width, canvas.height) / 2) {
+                    isDragging = true;
+                    startX = x;
+                    startY = y;
+                }
+            }
+
+            function handleMove(e) {
+                if (!isDragging) return;
+                
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+                const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+                
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                const startAngle = Math.atan2(startY - centerY, startX - centerX);
+                const currentAngle = Math.atan2(y - centerY, x - centerX);
+                const rotation = ((currentAngle - startAngle) * 180 / Math.PI);
+                
+                chart.options.rotation = (chart.options.rotation + rotation) % 360;
+                chart.update('none');
+                
+                startX = x;
+                startY = y;
+            }
+
+            function handleEnd() {
+                isDragging = false;
+                // Resume auto-rotation after a short delay
+                setTimeout(resumeAutoRotation, 1000);
+            }
+
+            // Add event listeners
+            canvas.addEventListener('mousedown', handleStart);
+            canvas.addEventListener('touchstart', handleStart);
+            canvas.addEventListener('mousemove', handleMove);
+            canvas.addEventListener('touchmove', handleMove, { passive: false });
+            canvas.addEventListener('mouseup', handleEnd);
+            canvas.addEventListener('touchend', handleEnd);
+            canvas.addEventListener('mouseleave', handleEnd);
+
+            // Start auto-rotation
+            const chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: components,
+                    datasets: [{
+                        data: percentages,
+                        backgroundColor: [
+                            'rgba(255, 0, 0, 0.9)',      // Red for fruits like Cherry, Pomegranate
+                            'rgba(0, 191, 255, 0.9)',    // Deep Sky Blue for Ice, Cool flavors
+                            'rgba(255, 165, 0, 0.9)',    // Orange for citrus
+                            'rgba(128, 0, 128, 0.9)',    // Purple for Grape, Berry
+                            'rgba(50, 205, 50, 0.9)',    // Lime Green for Mint, Kiwi
+                            'rgba(255, 215, 0, 0.9)',    // Gold for special flavors
+                            'rgba(238, 130, 238, 0.9)',  // Violet for floral flavors
+                            'rgba(210, 105, 30, 0.9)',   // Chocolate Brown for dessert flavors
+                            'rgba(0, 128, 0, 0.9)'       // Green for herbal flavors
+                        ].map(color => {
+                            const ctx = document.createElement('canvas').getContext('2d');
+                            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                            gradient.addColorStop(0, color);
+                            gradient.addColorStop(1, color.replace('0.9', '0.7'));
+                            return gradient;
+                        }),
+                        borderColor: [
+                            'rgba(255, 0, 0, 1)',      // Red
+                            'rgba(0, 191, 255, 1)',    // Deep Sky Blue
+                            'rgba(255, 165, 0, 1)',    // Orange
+                            'rgba(128, 0, 128, 1)',    // Purple
+                            'rgba(50, 205, 50, 1)',    // Lime Green
+                            'rgba(255, 215, 0, 1)',    // Gold
+                            'rgba(238, 130, 238, 1)',  // Violet
+                            'rgba(210, 105, 30, 1)',   // Chocolate Brown
+                            'rgba(0, 128, 0, 1)'       // Green
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 30,
+                        hoverBorderWidth: 3,
+                        shadowOffsetX: 3,
+                        shadowOffsetY: 3,
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    cutout: '65%',
+                    rotation: startAngle,
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 1000,
+                        easing: 'easeInOutQuart',
+                        onProgress: function(animation) {
+                            const chart = animation.chart;
+                            const ctx = chart.ctx;
+                            const width = chart.width;
+                            const height = chart.height;
+                            
+                            // Add 3D shadow effect during animation
+                            ctx.save();
+                            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                            ctx.shadowBlur = 15;
+                            ctx.shadowOffsetX = 10;
+                            ctx.shadowOffsetY = 10;
+                            ctx.restore();
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            padding: 15,
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    },
+                    elements: {
+                        arc: {
+                            borderWidth: 2,
+                            borderColor: '#000',
+                            hoverBorderWidth: 3,
+                            hoverOffset: 15,
+                            shadowOffsetX: 5,
+                            shadowOffsetY: 5,
+                            shadowBlur: 15,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true,
+                        animationDuration: 400,
+                        onHover: function(event, elements) {
+                            const chartArea = event.chart.chartArea;
+                            const centerX = (chartArea.left + chartArea.right) / 2;
+                            const centerY = (chartArea.top + chartArea.bottom) / 2;
+                            
+                            // Calculate distance from center
+                            const distance = Math.sqrt(
+                                Math.pow(event.x - centerX, 2) + 
+                                Math.pow(event.y - centerY, 2)
+                            );
+                            
+                            // Check if cursor is within chart area
+                            const radius = Math.min(chartArea.right - chartArea.left, chartArea.bottom - chartArea.top) / 2;
+                            canvas.style.cursor = distance <= radius ? 'pointer' : 'default';
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements && elements.length > 0) {
+                            pauseAutoRotation();
+                            
+                            // Highlight selected segment
+                            const index = elements[0].index;
+                            const dataset = chart.data.datasets[0];
+                            
+                            // Reset all segments to original opacity
+                            dataset.backgroundColor.forEach((color, i) => {
+                                chart.getDatasetMeta(0).data[i].options.backgroundColor = color;
+                            });
+                            
+                            // Highlight selected segment
+                            chart.getDatasetMeta(0).data[index].options.backgroundColor = 
+                                dataset.backgroundColor[index].replace('0.9', '1');
+                            
+                            chart.update();
+                        } else {
+                            // Click outside segments - reset highlights and resume rotation
+                            const dataset = chart.data.datasets[0];
+                            dataset.backgroundColor.forEach((color, i) => {
+                                chart.getDatasetMeta(0).data[i].options.backgroundColor = color;
+                            });
+                            chart.update();
+                            resumeAutoRotation();
+                        }
+                    }
+                }
+            });
+        }
+
+        // Custom plugin to render legend with icons
+        Chart.register({
+            id: 'customLegendWithIcons',
+            afterDraw: function(chart) {
+                const iconMap = {
+                    'Lady Killer': 'fas fa-heart',
+                    'Watermelon': 'fas fa-apple-alt',
+                    'Blueberry': 'fas fa-circle',
+                    'Kiwi': 'fas fa-leaf',
+                    'Grape': 'fas fa-wine-glass-alt',
+                    'Mint': 'fas fa-leaf',
+                    'Orange': 'fas fa-circle',
+                    'Vanilla': 'fas fa-star',
+                    'Melon': 'fas fa-apple-alt',
+                    'Banana': 'fas fa-moon',
+                    'Coconut': 'fas fa-circle',
+                    'Cherry': 'fas fa-heart',
+                    'Pomegranate': 'fas fa-apple-alt',
+                    'Cola': 'fas fa-glass-martini',
+                    'Lemon': 'fas fa-lemon',
+                    'Falling Star': 'fas fa-star',
+                    'Istanbul Night': 'fas fa-moon',
+                    'SuperNova': 'fas fa-sun',
+                    'Alternative': 'fas fa-heart',
+                    'Needles': 'fas fa-leaf',
+                    'Gum': 'fas fa-candy-cane',
+                    'Belgium Waffles': 'fas fa-cookie',
+                    'Melonade': 'fas fa-glass-whiskey',
+                    'Crumble': 'fas fa-cookie-bite',
+                    'Ice': 'fas fa-snowflake',
+                    'Juice': 'fas fa-glass-whiskey',
+                    'Smoothie': 'fas fa-blender'
+                };
+
+                const chartContainer = chart.canvas.parentNode;
+                let legendContainer = chartContainer.querySelector('.custom-legend');
+                if (legendContainer) {
+                    legendContainer.remove();
+                }
+
+                legendContainer = document.createElement('div');
+                legendContainer.className = 'custom-legend';
+                legendContainer.style.marginTop = '20px';
+                legendContainer.style.display = 'flex';
+                legendContainer.style.flexWrap = 'wrap';
+                legendContainer.style.justifyContent = 'center';
+                legendContainer.style.gap = '10px';
+
+                chart.data.labels.forEach((label, index) => {
+                    const item = document.createElement('div');
+                    item.style.display = 'flex';
+                    item.style.alignItems = 'center';
+                    item.style.margin = '5px';
+                    item.style.color = '#fff';
+                    item.style.cursor = 'pointer';
+
+                    let icon = 'fas fa-circle';
+                    Object.keys(iconMap).forEach(key => {
+                        if (label.toLowerCase().includes(key.toLowerCase())) {
+                            icon = iconMap[key];
+                        }
+                    });
+
+                    const color = chart.data.datasets[0].backgroundColor[index];
+
+                    item.innerHTML = `
+                        <i class="${icon}" style="color: ${color}; margin-right: 8px; font-size: 18px;"></i>
+                        <span style="font-size: 14px; font-weight: bold;">${label}</span>
+                    `;
+
+                    item.onclick = () => {
+                        const meta = chart.getDatasetMeta(0);
+                        meta.data[index].hidden = !meta.data[index].hidden;
+                        chart.update();
+                    };
+
+                    legendContainer.appendChild(item);
+                });
+
+                chartContainer.appendChild(legendContainer);
+            }
+        });
     </script>
-    
-  <!-- Footer -->
-<footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
-    &copy; 2025 Blume Rodina. All rights reserved.
-  </footer>
-  
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
+        &copy; 2025 Blume Rodina. All rights reserved.
+    </footer>
 </body>
 </html>

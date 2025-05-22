@@ -5,6 +5,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Turkish Flavors</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            direction: {
+              'rtl': 'rtl',
+              'ltr': 'ltr'
+            }
+          }
+        }
+      }
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
         .shisha-image-wrapper {
@@ -20,12 +32,6 @@
             transform: translateY(-30%);
             opacity: 0.5;
             transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .back-button {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 10;
         }
         .modal {
             display: none;
@@ -77,19 +83,49 @@
             alt="Decorative image of a shisha pipe with golden background"
             class="shisha-image"
         />
-        <button 
-            aria-label="Back" 
-            onclick="window.location.href='menu shisha.html'" 
-            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
-        >
-            <i class="fas fa-chevron-left text-red-600"></i>
-        </button>
+        <div class="flex justify-between items-start w-full absolute top-4 px-4">
+            <button 
+                aria-label="Back" 
+                onclick="window.location.href='menu shisha.html'" 
+                class="bg-white rounded-md p-2 shadow-sm border border-gray-200"
+            >
+                <i class="fas fa-chevron-left text-red-600"></i>
+            </button>
+            
+            <!-- Language Switcher -->
+            <div class="relative">
+                <button 
+                    id="languageButton" 
+                    aria-label="Change language" 
+                    class="bg-white px-3 py-2 rounded-md shadow-sm border border-gray-200 text-red-600 text-sm font-semibold flex items-center"
+                >
+                    <span id="currentLang">EN</span>
+                    <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </button>
+                <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
+                    <button 
+                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        onclick="switchLanguage('en')"
+                    >
+                        <span>🇬🇧</span>
+                        <span>English</span>
+                    </button>
+                    <button 
+                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        onclick="switchLanguage('ar')"
+                    >
+                        <span>🇸🇦</span>
+                        <span>العربية</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
             <h1 class="text-gray-800 text-lg font-normal mb-8">Turkish Flavors</h1>
-            <p class="text-gray-600 text-lg mb-12">AED 180</p>
+            <p class="text-red-600 text-lg mb-12">AED 180</p>
             <div class="text-left text-gray-800 text-sm">
                 <h2 class="font-semibold mb-3">Turkish Delight Flavors</h2>
                 <ul class="divide-y divide-red-300">
@@ -126,7 +162,15 @@
         </div>
     </div>
 
+    <!-- Libraries -->
+    <script src="js/language-manager.js"></script>
     <script>
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await LanguageManager.initializeLanguage();
+            await updatePageContent(LanguageManager.getStoredLanguage());
+        });
+
         // Scroll animation
         document.addEventListener('DOMContentLoaded', () => {
             const shishaImage = document.querySelector('.shisha-image');
@@ -146,22 +190,46 @@
             });
         });
 
-        // Flavor details modal
-        const flavorDetails = {
+        // Language switcher functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageButton = document.getElementById('languageButton');
+            const languageMenu = document.getElementById('languageMenu');
+
+            // Toggle language menu
+            languageButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageMenu.classList.toggle('hidden');
+            });
+
+            // Close language menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageButton.contains(e.target) && !languageMenu.contains(e.target)) {
+                    languageMenu.classList.add('hidden');
+                }
+            });
+
+            // Prevent menu from closing when clicking inside it
+            languageMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        // Flavor details data
+        let flavorDetails = {
             istanbul: {
-                title: 'Istanbul Night Mix flavor ',
+                title: 'Istanbul Night Mix flavor',
                 image: 'imag/istanbul night image.webp',
                 description: 'Blueberry, Red berry, Blackcurrant, A touch of balanced acidity with soft sweetness.'
             },
             marbella: {
-                title: 'Marbella Mix Flavor ',
+                title: 'Marbella Mix Flavor',
                 image: 'imag/marbella image.png',
                 description: 'Cherry, Caramel, Chocolate, The flavors resemble those of European sweets or chocolate desserts with fruits.'
             },
             lime: {
                 title: 'Lime Spice Peach Mix flavor',
                 image: 'imag/lime space peach image.png',
-                description: 'Grilled Peaches,Lemon(Lime) A tangy and refreshing touch, Spices.'
+                description: 'Grilled Peaches, Lemon(Lime) A tangy and refreshing touch, Spices.'
             },
             love66: {
                 title: 'Love 66 Mix flavor',
@@ -172,8 +240,76 @@
                 title: 'Lady Killer Mix flavor',
                 image: 'imag/lady killer image.png',
                 description: 'Honeydew melon, Mango, Berries, Light Mint, Smooth sweetness balanced with a light coolness.'
-            },
+            }
+        };
 
+        // Update page content based on selected language
+        async function updatePageContent(lang) {
+            try {
+                const translations = await LanguageManager.loadTranslations(lang);
+                
+                if (translations) {
+                    // Update page title and price
+                    document.querySelector('h1').textContent = translations.sections.turkish.title;
+                    document.querySelector('p.text-red-600').textContent = translations.sections.turkish.price;
+                    
+                    // Update flavor categories title
+                    document.querySelector('h2').textContent = lang === 'ar' && translations.flavors ? 
+                        translations.flavors['turkish-style'].title : 'Turkish Delight Flavors';
+                    
+                    // Update extra head text
+                    const extraHead = document.querySelector('li.py-2.flex.justify-between span:first-child');
+                    extraHead.textContent = translations.common.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
+
+                    // Update flavor names and details if Arabic
+                    if (lang === 'ar' && translations.flavors && translations.flavors['turkish-style']) {
+                        const arabicFlavors = translations.flavors['turkish-style'].flavors;
+                        document.querySelectorAll('ul.divide-y > li:not(:last-child)').forEach(li => {
+                            const originalText = li.textContent.trim();
+                            const translation = arabicFlavors[originalText];
+                            
+                            if (translation) {
+                                // Handle both simple string translations and object translations
+                                if (typeof translation === 'string') {
+                                    li.textContent = translation;
+                                } else if (translation.name) {
+                                    li.textContent = translation.name;
+                                    // Update flavor details for modal
+                                    const flavorKey = li.getAttribute('onclick')?.match(/'(.+?)'/)?.[1];
+                                    if (flavorKey && flavorDetails[flavorKey]) {
+                                        flavorDetails[flavorKey] = {
+                                            ...flavorDetails[flavorKey],
+                                            title: translation.name,
+                                            description: translation.description || flavorDetails[flavorKey].description
+                                        };
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // Update footer text
+                    const footer = document.querySelector('footer');
+                    footer.textContent = translations.common.copyright || '© 2025 Blume Rodina. All rights reserved.';
+
+                    // Update back button text
+                    const backButton = document.querySelector('button[aria-label="Back"]');
+                    backButton.setAttribute('aria-label', translations.common.back || 'Back');
+                }
+            } catch (error) {
+                console.error('Error updating content:', error);
+            }
+        }
+
+        // Handle language switching
+        window.switchLanguage = async (lang) => {
+            await LanguageManager.switchLanguage(lang);
+            await updatePageContent(lang);
+            
+            // Update UI
+            const currentLang = document.getElementById('currentLang');
+            currentLang.textContent = lang.toUpperCase();
+            document.getElementById('languageMenu').classList.add('hidden');
         };
 
         function showFlavorDetails(flavor) {
@@ -197,11 +333,10 @@
             }
         }
     </script>
-    
-  <!-- Footer -->
-<footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
-    &copy; 2025 Blume Rodina. All rights reserved.
-  </footer>
-  
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
+        &copy; 2025 Blume Rodina. All rights reserved.
+    </footer>
 </body>
 </html>

@@ -5,6 +5,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Russian Flavors</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            direction: {
+              'rtl': 'rtl',
+              'ltr': 'ltr'
+            }
+          }
+        }
+      }
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
         .shisha-image-wrapper {
@@ -20,12 +32,6 @@
             transform: translateY(-30%);
             opacity: 0.5;
             transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .back-button {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 10;
         }
         .card-content {
             max-height: 0;
@@ -49,7 +55,6 @@
         .toggle-icon.open {
             transform: rotate(180deg);
         }
-      
     </style>
 </head>
 <body class="bg-white min-h-screen">
@@ -59,125 +64,94 @@
             alt="Decorative image of a shisha pipe with golden background"
             class="shisha-image"
         />
-        <button 
-            aria-label="Back" 
-            onclick="window.location.href='menu shisha.html'" 
-            class="back-button bg-white rounded-md p-1 shadow-sm border border-gray-200"
-        >
-            <i class="fas fa-chevron-left text-red-600"></i>
-        </button>
-    </div>
-
-    <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
-        <div class="pt-8 pb-8 px-8 text-center">
-            <h1 class="text-gray-800 text-lg font-normal mb-8">Russian Flavors</h1>
-            <p class="text-red`-600 text-lg mb-12">AED 220</p>
-            <div class="text-left text-gray-800 text-sm">
-                <div class="space-y-4 px-4 pb-20" id="cardsContainer">
-                    <!-- Card 1 -->
-                    <div class="bg-white rounded-lg shadow-md relative">
-                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
-                            <div>
-                                <p class="font-semibold text-lg text-gray-700 mb-1">DARKSIDE</p>
-                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
-                                   
-                    Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.
-
-                                </p>
-                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
-                        </div>
-                        <div class="card-content">
-                            <ul class="divide-y divide-red-300 px-4">
-                                <li class="py-2">Needeles</li>
-                                <li class="py-2">Lemon Blast</li>
-                                <li class="py-2">Cola</li>
-                                <li class="py-2">Supernova</li>
-                                <li class="py-2">Faling Star</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="bg-white rounded-lg shadow-md relative">
-                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
-                            <div>
-                                <p class="font-semibold text-lg text-gray-700 mb-1">STARLINE</p>
-                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
-                                    
-                    Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.
-
-                                </p>
-                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
-                        </div>
-                        <div class="card-content">
-                            <ul class="divide-y divide-red-300 px-4">
-                                <li class="py-2">Blueberry Crumble</li>
-                                <li class="py-2">Belgium Waffles</li>
-                                <li class="py-2">Strawberry Millefeulie</li>
-                                <li class="py-2">Banana</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="bg-white rounded-lg shadow-md relative">
-                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
-                            <div>
-                                <p class="font-semibold text-lg text-gray-700 mb-1">MUSTHAVE</p>
-                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
-                                   
-                    Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.
-
-                                </p>
-                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
-                        </div>
-                        <div class="card-content">
-                            <ul class="divide-y divide-red-300 px-4">
-                                <li class="py-2">Ananas Shock</li>
-                                <li class="py-2">Melonade</li>
-                                <li class="py-2">Kiwi Smoothie</li>
-                                <li class="py-2">Vanilla</li>
-                                <li class="py-2">GaRnet</li>
-                                <li class="py-2">Coconut</li>
-                                <li class="py-2">Raspberry</li>
-                                <li class="py-2">Epic Yaghurt</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="bg-white rounded-lg shadow-md relative">
-                        <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
-                            <div>
-                                <p class="font-semibold text-lg text-gray-700 mb-1">HOLSTER</p>
-                                <p class="text-gray-700 text-sm mb-2 leading-relaxed">
-                                    
-                    Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.
-                                </p>
-                                <p class="text-[#d4143f] font-semibold text-sm">AED 220.00</p>
-                            </div>
-                            <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
-                        </div>
-                        <div class="card-content">
-                            <ul class="divide-y divide-red-300 px-4">
-                                <li class="py-2">VIVA La Fiesta</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="py-2 flex justify-between text-lg items-center border-t border-red-300">
-                        <span>Extra Head</span>
-                        <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
-                    </div>
+        <div class="flex justify-between items-start w-full absolute top-4 px-4">
+            <button 
+                aria-label="Back" 
+                onclick="window.location.href='menu shisha.html'" 
+                class="bg-white rounded-md p-2 shadow-sm border border-gray-200"
+            >
+                <i class="fas fa-chevron-left text-red-600"></i>
+            </button>
+            <!-- Language Switcher -->
+            <div class="relative">
+                <button 
+                    id="languageButton" 
+                    aria-label="Change language" 
+                    class="bg-white px-3 py-2 rounded-md shadow-sm border border-gray-200 text-red-600 text-sm font-semibold flex items-center"
+                >
+                    <span id="currentLang">EN</span>
+                    <i class="fas fa-chevron-down text-xs ml-1"></i>
+                </button>
+                <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
+                    <button 
+                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        onclick="switchLanguage('en')"
+                    >
+                        <span>🇬🇧</span>
+                        <span>English</span>
+                    </button>
+                    <button 
+                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        onclick="switchLanguage('ar')"
+                    >
+                        <span>🇸🇦</span>
+                        <span>العربية</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
+        <div class="pt-8 pb-8 px-8 text-center">
+            <h1 class="text-gray-800 text-lg font-normal mb-8">Russian Flavors</h1>
+            <p class="text-red-600 text-lg mb-12">AED 220</p>
+            <div class="text-left text-gray-800 text-sm">
+                <div class="space-y-4 px-4 pb-20" id="cardsContainer">
+                    <!-- Cards will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="js/language-manager.js"></script>
     <script>
+        // Russian brands data
+        const russianBrands = {
+            darkside: {
+                title: 'DARKSIDE',
+                description: 'Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.',
+                price: 'AED 220.00',
+                flavors: ['Needles', 'Lemon Blast', 'Cola', 'Supernova', 'Falling Star']
+            },
+            starline: {
+                title: 'STARLINE',
+                description: 'Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.',
+                price: 'AED 220.00',
+                flavors: ['Blueberry Crumble', 'Belgium Waffles', 'Strawberry Millefeuille', 'Banana']
+            },
+            musthave: {
+                title: 'MUSTHAVE',
+                description: 'Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.',
+                price: 'AED 220.00',
+                flavors: ['Ananas Shock', 'Melonade', 'Kiwi Smoothie', 'Vanilla', 'Garnet', 'Coconut', 'Raspberry', 'Epic Yoghurt']
+            },
+            holster: {
+                title: 'HOLSTER',
+                description: 'Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.',
+                price: 'AED 220.00',
+                flavors: ['VIVA La Fiesta']
+            }
+        };
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await LanguageManager.initializeLanguage();
+            populateCards(russianBrands);
+            await updatePageContent(LanguageManager.getStoredLanguage());
+        });
+
         // Scroll animation
         document.addEventListener('DOMContentLoaded', () => {
             const shishaImage = document.querySelector('.shisha-image');
@@ -196,6 +170,125 @@
                 shishaImage.style.transform = `scale(${scale})`;
             });
         });
+
+        // Language switcher functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageButton = document.getElementById('languageButton');
+            const languageMenu = document.getElementById('languageMenu');
+
+            // Toggle language menu
+            languageButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageMenu.classList.toggle('hidden');
+            });
+
+            // Close language menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageButton.contains(e.target) && !languageMenu.contains(e.target)) {
+                    languageMenu.classList.add('hidden');
+                }
+            });
+
+            // Prevent menu from closing when clicking inside it
+            languageMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        // Populate cards with brand data
+        function populateCards(brands) {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = Object.entries(brands).map(([key, brand]) => `
+                <div class="bg-white rounded-lg shadow-md relative">
+                    <div class="card-header p-4 flex justify-between items-start" onclick="toggleCard(this)">
+                        <div>
+                            <p class="font-semibold text-lg text-gray-700 mb-1">${brand.title}</p>
+                            <p class="text-gray-700 text-sm mb-2 leading-relaxed">
+                                ${brand.description}
+                            </p>
+                            <p class="text-[#d4143f] font-semibold text-sm">${brand.price}</p>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-icon text-gray-400 mt-1"></i>
+                    </div>
+                    <div class="card-content">
+                        <ul class="divide-y divide-red-300 px-4">
+                            ${brand.flavors.map(flavor => `<li class="py-2">${flavor}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('') + `
+                <div class="py-2 flex justify-between text-lg items-center border-t border-red-300">
+                    <span>Extra Head</span>
+                    <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
+                </div>
+            `;
+        }
+
+        // Update page content based on selected language
+        async function updatePageContent(lang) {
+            try {
+                const translations = await LanguageManager.loadTranslations(lang);
+                
+                if (translations) {
+                    // Update page title and price
+                    document.querySelector('h1').textContent = translations.sections.russian.title;
+                    document.querySelector('p.text-red-600').textContent = translations.sections.russian.price;
+
+                    if (lang === 'ar' && translations.flavors) {
+                        // Update brand information
+                        Object.keys(russianBrands).forEach(brandKey => {
+                            if (translations.russian?.brands[brandKey]) {
+                                russianBrands[brandKey].title = translations.russian.brands[brandKey].title;
+                                russianBrands[brandKey].description = translations.russian.brands[brandKey].description;
+                            }
+                        });
+
+                        // Update flavor names
+                        if (translations.flavors['russian-style']) {
+                            Object.keys(russianBrands).forEach(brandKey => {
+                                const brandFlavors = translations.flavors['russian-style'].brands[brandKey]?.flavors;
+                                if (brandFlavors) {
+                                    russianBrands[brandKey].flavors = russianBrands[brandKey].flavors.map(flavor => 
+                                        brandFlavors[flavor] || flavor
+                                    );
+                                }
+                            });
+                        }
+
+                        // Repopulate cards with updated translations
+                        populateCards(russianBrands);
+                    } else {
+                        // Reset to English
+                        populateCards(russianBrands);
+                    }
+
+                    // Update extra head text
+                    const extraHead = document.querySelector('div.py-2.flex.justify-between span:first-child');
+                    extraHead.textContent = translations.common.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
+
+                    // Update footer text
+                    const footer = document.querySelector('footer');
+                    footer.textContent = translations.common.copyright || '© 2025 Blume Rodina. All rights reserved.';
+
+                    // Update back button text
+                    const backButton = document.querySelector('button[aria-label="Back"]');
+                    backButton.setAttribute('aria-label', translations.common.back || 'Back');
+                }
+            } catch (error) {
+                console.error('Error updating content:', error);
+            }
+        }
+
+        // Handle language switching
+        window.switchLanguage = async (lang) => {
+            await LanguageManager.switchLanguage(lang);
+            await updatePageContent(lang);
+            
+            // Update UI
+            const currentLang = document.getElementById('currentLang');
+            currentLang.textContent = lang.toUpperCase();
+            document.getElementById('languageMenu').classList.add('hidden');
+        };
 
         // Card toggle functionality
         function toggleCard(header) {
@@ -224,11 +317,10 @@
             currentIcon.classList.toggle('open');
         }
     </script>
-    
-  <!-- Footer -->
-<footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
-    &copy; 2025 Blume Rodina. All rights reserved.
-  </footer>
-  
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
+        &copy; 2025 Blume Rodina. All rights reserved.
+    </footer>
 </body>
 </html>

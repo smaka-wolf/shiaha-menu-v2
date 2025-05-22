@@ -1,0 +1,129 @@
+{
+    "arabic-style": {
+      "title": "النكهات العربية",
+      "description": "نكهات عربية تقليدية",
+      "flavors": {
+        "Grape Mint": "عنب بالنعناع",
+        "Grape": "عنب",
+        "Double Apple": "تفاحتين",
+        "Gum": "علكة",
+        "Gum Mint": "علكة بالنعناع",
+        "Mint": "نعناع",
+        "Gum Cinnamon": "علكة بالقرفة",
+        "Orange": "برتقال",
+        "Lemon Mint": "ليمون بالنعناع"
+      }
+    },
+    "turkish-style": {
+      "title": "النكهات التركية",
+      "description": "نكهات تركية فاخرة",
+      "flavors": {
+        "Istanbul Night": {
+          "name": "ليلة اسطنبول",
+          "description": "توت أزرق، توت أحمر، كشمش أسود، لمسة من الحموضة المتوازنة مع الحلاوة الناعمة"
+        },
+        "Marbella": {
+          "name": "ماربيلا",
+          "description": "كرز، كراميل، شوكولاتة، نكهات تشبه الحلويات الأوروبية أو حلويات الشوكولاتة مع الفواكه"
+        },
+        "Lime Spice Peach": {
+          "name": "خوخ بالليمون والتوابل",
+          "description": "خوخ مشوي، ليمون، لمسة منعشة، توابل"
+        },
+        "Love 66": {
+          "name": "لوف ٦٦",
+          "description": "باشن فروت، بطيخ، شمام، نعناع، حلاوة فواكه صافية مع برودة خفيفة"
+        },
+        "Lady Killer": {
+          "name": "ليدي كيلر",
+          "description": "شمام، مانجو، توت، نعناع خفيف، حلاوة متوازنة مع برودة خفيفة"
+        },
+        "Watermelon": "بطيخ",
+        "Melon": "شمام",
+        "Peach": "خوخ",
+        "Blueberry": "توت أزرق",
+        "Sweet Melon": "شمام حلو"
+      }
+    },
+    "russian-style": {
+      "brands": {
+        "darkside": {
+          "name": "داركسايد",
+          "flavors": {
+            "Needles": "نيدلز",
+            "Lemon Blast": "ليمون بلاست",
+            "Cola": "كولا",
+            "Supernova": "سوبرنوفا",
+            "Falling Star": "النجم الساقط"
+          }
+        },
+        "starline": {
+          "name": "ستارلاين",
+          "flavors": {
+            "Blueberry Crumble": "فتات التوت الأزرق",
+            "Belgium Waffles": "وافل بلجيكي",
+            "Strawberry Millefeuille": "ميلفاي الفراولة",
+            "Banana": "موز"
+          }
+        },
+        "musthave": {
+          "name": "مست هاف",
+          "flavors": {
+            "Ananas Shock": "صدمة الأناناس",
+            "Melonade": "ميلونيد",
+            "Kiwi Smoothie": "سموذي الكيوي",
+            "Vanilla": "فانيليا",
+            "Garnet": "رمان",
+            "Coconut": "جوز الهند",
+            "Raspberry": "توت العليق",
+            "Epic Yoghurt": "لبن رائع"
+          }
+        },
+        "holster": {
+          "name": "هولستر",
+          "flavors": {
+            "VIVA La Fiesta": "فيفا لا فييستا"
+          }
+        }
+      }
+    },
+    "signature-mix": {
+      "Blume": {
+        "name": "بلوم",
+        "description": "ليدي كيلر ٢٥٪، بطيخ ٢٥٪، توت أزرق ٥٠٪"
+      },
+      "Luxuria": {
+        "name": "لوكسوريا",
+        "description": "سموذي الكيوي ٤٠٪، عنب بالنعناع ٦٠٪، عصير كيوي ٢٥٠ مل"
+      },
+      "Leonardo": {
+        "name": "ليوناردو",
+        "description": "علكة بالنعناع ٢٠٪، برتقال ٣٠٪، فانيليا ٥٠٪"
+      },
+      "Exotic Dreams": {
+        "name": "أحلام غريبة",
+        "description": "شمام ٤٠٪، موز ٤٠٪، جوز الهند ٢٠٪"
+      },
+      "Moonlight": {
+        "name": "ضوء القمر",
+        "description": "النجم الساقط ٤٠٪، ليلة اسطنبول ٥٠٪، سوبرنوفا ١٠٪"
+      },
+      "Love Berry": {
+        "name": "لوف بيري",
+        "description": "كرز بديل ٤٠٪، نيدلز ٢٠٪، رمان ٤٠٪"
+      },
+      "Mr. AXA": {
+        "name": "مستر أكسا",
+        "description": "شمام ٥٠٪، ميلونيد ٤٥٪، سوبرنوفا ٥٪"
+      },
+      "Grandmother Cake": {
+        "name": "كعكة الجدة",
+        "description": "وافل بلجيكي ٢٠٪، ميلونيد ٢٠٪، فتات التوت الأزرق ٦٠٪"
+      },
+      "Olala": {
+        "name": "أولالا",
+        "description": "كولا ٢٥٪، ليمون بالنعناع ٧٥٪"
+      }
+    }
+  }
+  

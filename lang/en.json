@@ -1,0 +1,117 @@
+{
+    "direction": "ltr",
+    "menu": {
+      "title": "Shisha Menu",
+      "food": "Food Menu",
+      "beverage": "Beverage Menu",
+      "shisha": "Shisha Menu",
+      "button": "Menu"
+    },
+    "styles": {
+      "arabic": "Arabic Style",
+      "turkish": "Turkish Style",
+      "russian": "Russian Style",
+      "signature": "Signature Mix"
+    },
+    "sections": {
+      "arabic": {
+        "title": "Arabic Style Shisha",
+        "badge": "Classic",
+        "price": "AED 140",
+        "link": "Arabic Flavors",
+        "subtitle": "Arabic Nights Flavors"
+      },
+      "turkish": {
+        "title": "Turkish Style Shisha",
+        "badge": "Premium",
+        "price": "AED 180",
+        "link": "Turkish Flavors"
+      },
+      "russian": {
+        "title": "Russian Style Shisha",
+        "badge": "Luxury",
+        "price": "AED 220",
+        "link": "Russian Flavors"
+      },
+      "signature": {
+        "title": "Signature Mix Shisha",
+        "badge": "Signature",
+        "price": "AED 350",
+        "link": "Signature Mix Flavors"
+      }
+    },
+    "search": {
+      "placeholder": "Search flavors...",
+      "button": "Search"
+    },
+    "language": {
+      "en": "English",
+      "ar": "العربية"
+    },
+    "common": {
+      "back": "Back",
+      "extra_head": "Extra Head",
+      "price_prefix": "AED",
+      "copyright": "© 2025 Blume Rodina. All rights reserved."
+    },
+    "flavors": {
+      "grape_mint": "Grape Mint",
+      "grape": "Grape",
+      "double_apple": "Double Apple",
+      "gum": "Gum",
+      "gum_mint": "Gum Mint",
+      "mint": "Mint",
+      "gum_cinnamon": "Gum Cinnamon",
+      "orange": "Orange",
+      "lemon_mint": "Lemon Mint"
+    },
+    "russian": {
+      "title": "Russian Flavors",
+      "price": "AED 220",
+      "brands": {
+        "darkside": {
+          "title": "DARKSIDE",
+          "description": "Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.",
+          "flavors": {
+            "needeles": "Needeles",
+            "lemon_blast": "Lemon Blast",
+            "cola": "Cola",
+            "supernova": "Supernova",
+            "faling_star": "Faling Star"
+          }
+        },
+        "starline": {
+          "title": "STARLINE",
+          "description": "Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.",
+          "flavors": {
+            "blueberry_crumble": "Blueberry Crumble",
+            "belgium_waffles": "Belgium Waffles",
+            "strawberry_millefeulie": "Strawberry Millefeulie",
+            "banana": "Banana"
+          }
+        },
+        "musthave": {
+          "title": "MUSTHAVE",
+          "description": "Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.",
+          "flavors": {
+            "ananas_shock": "Ananas Shock",
+            "melonade": "Melonade",
+            "kiwi_smoothie": "Kiwi Smoothie",
+            "vanilla": "Vanilla",
+            "garnet": "GaRnet",
+            "coconut": "Coconut",
+            "raspberry": "Raspberry",
+            "epic_yaghurt": "Epic Yaghurt"
+          }
+        },
+        "holster": {
+          "title": "HOLSTER",
+          "description": "Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.",
+          "flavors": {
+            "viva_la_fiesta": "VIVA La Fiesta"
+          }
+        }
+      }
+    }
+}
+  
