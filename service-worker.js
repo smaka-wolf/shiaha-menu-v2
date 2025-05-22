@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v5.1";  // Incremented version as suggested
+const CACHE_NAME = "blume-menu-cache-v5.3";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
@@ -11,8 +11,18 @@ const urlsToCache = [
   `${BASE_PATH}/Signature Mix Flavors.html`,
   `${BASE_PATH}/test .html`,
 
-  // JavaScript Files
+  // JavaScript Filesi
   `${BASE_PATH}/menu.js`,
+  `${BASE_PATH}/index.js`,
+  `${BASE_PATH}/app.js`,
+  `${BASE_PATH}/language-manager.js`,
+
+ // json filesi
+  `${BASE_PATH}/ar.json`,
+  `${BASE_PATH}/en.json`,
+  `${BASE_PATH}/flavors-ar.json`,
+  `${BASE_PATH}/flavors-en.json`,
+
 
   // PWA Files
   `${BASE_PATH}/manifest.json`,
@@ -34,6 +44,11 @@ const urlsToCache = [
   `${BASE_PATH}/imag/smoke effect.mp4`,
   `${BASE_PATH}/imag/smoke2 effect.mp4`,
   `${BASE_PATH}/imag/blume3 back.png`,
+  `${BASE_PATH}/imag/blueberry.jpg`,
+  `${BASE_PATH}/imag/melon.jpg`,
+  `${BASE_PATH}/imag/peash.avif`,
+  `${BASE_PATH}/imag/sweetmelon.jpg`,
+  `${BASE_PATH}/imag/watermelon.jpg`,
   `${BASE_PATH}/imag/istanbul night image.webp`,
   `${BASE_PATH}/imag/lady killer image.png`,
   `${BASE_PATH}/imag/lime space peach image.png`,
