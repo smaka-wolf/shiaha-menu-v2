@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v6.3";  // Incremented version as suggested
+const CACHE_NAME = "blume-menu-cache-v6.4";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
@@ -85,7 +85,7 @@ self.addEventListener("install", (event) => {
             await cache.add(url);
           } catch (error) {
             console.error('❌ Failed to cache:', url, error);
-            throw error;
+            // Do not throw error to prevent install failure
           }
         }
       })

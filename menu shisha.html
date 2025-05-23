@@ -13,6 +13,14 @@
    body {
       font-family: "Roboto", sans-serif;
     }
+    /* خاص بـ Safari على iOS لتصليح scroll horizontal */
+   .scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+   }
   </style>
  </head>
  <body class="bg-white min-h-screen p-4">
@@ -69,8 +77,8 @@
    </h1>
 
    <!--head image -->
-   <div class="flex overflow-x-auto space-x-4 mb-8 px-4 py-2 scrollbar-hide">
-  <!-- Arabic -->
+   <div class="scroll-touch space-x-4 mb-8 px-4 py-2 scrollbar-hide">
+    <!-- Arabic -->
   <a href="#arabic-style" class="min-w-[150px] bg-white rounded-lg shadow-md flex-shrink-0 p-2 relative">
     <div class="w-full h-24 overflow-hidden rounded-md">
       <img src="imag/hookah image.jpg" alt="Arabic Style" class="w-full h-full object-cover block">
