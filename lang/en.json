@@ -45,5 +45,13 @@
   "language": {
     "en": "English",
     "ar": "العربية"
+  },
+  "updatePage": {
+    "welcome": "Welcome!",
+    "loading": "Loading update information...",
+    "changelogTitle": "Changelog",
+    "backToMain": "Back to Main Site",
+    "noUpdates": "No updates available currently.",
+    "failedLoad": "Failed to load update log."
   }
 }

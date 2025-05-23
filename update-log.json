@@ -1,0 +1,17 @@
+[
+  {
+    "version": "1.2.0",
+    "date": "2024-08-30",
+    "description": "Fixed bugs and enhanced UI responsiveness."
+  },
+  {
+    "version": "1.1.0",
+    "date": "2024-07-15",
+    "description": "Added new flavor options and improved performance."
+  },
+  {
+    "version": "1.0.0",
+    "date": "2024-06-01",
+    "description": "Initial release with core features."
+  }
+]

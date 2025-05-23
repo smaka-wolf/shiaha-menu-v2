@@ -93,6 +93,20 @@ const LanguageManager = {
     }
   };
   
+  // Apply translations to page elements by replacing text content only
+  LanguageManager.applyTranslations = function(translations) {
+    if (!translations) return;
+    // For each key in translations, find elements with data-i18n attribute matching the key and replace text content
+    Object.keys(translations).forEach(key => {
+      const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
+      elements.forEach(el => {
+        if (typeof translations[key] === 'string') {
+          el.textContent = translations[key];
+        }
+      });
+    });
+  };
+
   // Export for use in other files
   window.LanguageManager = LanguageManager;
   

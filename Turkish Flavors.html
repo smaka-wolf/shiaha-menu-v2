@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <title>Turkish Flavors</title>
+    <title data-i18n="title">Turkish Flavors</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -76,7 +76,7 @@
         }
     </style>
 </head>
-<body class="bg-white min-h-screen">
+<body class="bg-white min-h-screen" data-i18n-dir="ltr">
     <div class="shisha-image-wrapper">
         <img 
             src="imag/hookah image.jpg"
@@ -88,6 +88,7 @@
                 aria-label="Back" 
                 onclick="window.location.href='menu shisha.html'" 
                 class="bg-white rounded-md p-2 shadow-sm border border-gray-200"
+                data-i18n="common.back"
             >
                 <i class="fas fa-chevron-left text-red-600"></i>
             </button>
@@ -108,14 +109,14 @@
                         onclick="switchLanguage('en')"
                     >
                         <span>🇬🇧</span>
-                        <span>English</span>
+                        <span data-i18n="language.en">English</span>
                     </button>
                     <button 
                         class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('ar')"
                     >
                         <span>🇸🇦</span>
-                        <span>العربية</span>
+                        <span data-i18n="language.ar">العربية</span>
                     </button>
                 </div>
             </div>
@@ -124,23 +125,23 @@
 
     <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
-            <h1 class="text-gray-800 text-lg font-normal mb-8">Turkish Flavors</h1>
-            <p class="text-red-600 text-lg mb-12">AED 180</p>
+            <h1 data-i18n="sections.turkish.title" class="text-gray-800 text-lg font-normal mb-8">Turkish Flavors</h1>
+            <p data-i18n="sections.turkish.price" class="text-red-600 text-lg mb-12">AED 180</p>
             <div class="text-left text-gray-800 text-sm">
-                <h2 class="font-semibold mb-3">Turkish Delight Flavors</h2>
+                <h2 data-i18n="flavors.turkishStyleTitle" class="font-semibold mb-3">Turkish Delight Flavors</h2>
                 <ul class="divide-y divide-red-300">
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('istanbul')"><i class="fas fa-eye mr-2"></i>Istanbul Night</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('marbella')"><i class="fas fa-eye mr-2"></i>Marbella</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('lime')"><i class="fas fa-eye mr-2"></i>Lime spice Peach</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('love66')"><i class="fas fa-eye mr-2"></i>Love 66</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('lady')"><i class="fas fa-eye mr-2"></i>Lady killer</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('watermelon')"><i class="fas fa-eye mr-2"></i>Watermelon</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('melon')"><i class="fas fa-eye mr-2"></i>Melon</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('peach')"><i class="fas fa-eye mr-2"></i>Peach</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('blueberry')"><i class="fas fa-eye mr-2"></i>Blueberry</li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('sweetmelon')"><i class="fas fa-eye mr-2"></i>Sweet Melon</li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Istanbul Night')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Istanbul Night">Istanbul Night</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Marbella')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Marbella">Marbella</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Lime Spice Peach')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Lime Spice Peach">Lime spice Peach</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Love 66')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Love 66">Love 66</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Lady Killer')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Lady Killer">Lady killer</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Watermelon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Watermelon">Watermelon</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Melon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Melon">Melon</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Peach')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Peach">Peach</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Blueberry')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Blueberry">Blueberry</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('Sweet Melon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Sweet Melon">Sweet Melon</span></li>
                     <li class="py-2 flex justify-between text-lg items-center">
-                        <span>Extra Head</span>
+                        <span data-i18n="common.extra_head">Extra Head</span>
                         <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
                     </li>
                 </ul>
