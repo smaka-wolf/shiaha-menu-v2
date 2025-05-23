@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v5.5";  // Incremented version as suggested
+const CACHE_NAME = "blume-menu-cache-v5.6";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
@@ -23,6 +23,9 @@ const urlsToCache = [
   `${BASE_PATH}/flavors-ar.json`,
   `${BASE_PATH}/flavors-en.json`,
 
+  // CSS Files
+  `${BASE_PATH}/input.css`,
+  `${BASE_PATH}/src/styles.css`,
 
   // PWA Files
   `${BASE_PATH}/manifest.json`,
