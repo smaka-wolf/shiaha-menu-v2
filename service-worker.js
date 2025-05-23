@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v5.6";  // Incremented version as suggested
+const CACHE_NAME = "blume-menu-cache-v6.1";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
@@ -75,12 +75,20 @@ self.addEventListener("install", (event) => {
   self.skipWaiting(); // Force immediate service worker activation
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
+      .then(async (cache) => {
         console.log('✅ Opening cache');
-        return cache.addAll(urlsToCache);
+        for (const url of urlsToCache) {
+          try {
+            console.log('Caching:', url);
+            await cache.add(url);
+          } catch (error) {
+            console.error('❌ Failed to cache:', url, error);
+            throw error;
+          }
+        }
       })
       .catch(error => {
-        console.error('❌ Error in cache.addAll:', error);
+        console.error('❌ Error in cache.add:', error);
         return Promise.reject(error);
       })
   );
