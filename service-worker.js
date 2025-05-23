@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v5.3";  // Incremented version as suggested
+const CACHE_NAME = "blume-menu-cache-v5.5";  // Incremented version as suggested
 const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `${BASE_PATH}/`,
@@ -48,6 +48,15 @@ const urlsToCache = [
   `${BASE_PATH}/imag/melon.jpg`,
   `${BASE_PATH}/imag/peash.avif`,
   `${BASE_PATH}/imag/sweetmelon.jpg`,
+  `${BASE_PATH}/imag/cinnamongum.webp`,
+  `${BASE_PATH}/imag/doubelAppel.jpg`,
+  `${BASE_PATH}/imag/grape.jpg`,
+  `${BASE_PATH}/imag/grapemint.jpg`,
+  `${BASE_PATH}/imag/gum.webp`,
+  `${BASE_PATH}/imag/gumMint.png`,
+  `${BASE_PATH}/imag/lemonmint.jpg`,
+  `${BASE_PATH}/imag/mint.jpg`,
+  `${BASE_PATH}/imag/orange.jpg`,
   `${BASE_PATH}/imag/watermelon.jpg`,
   `${BASE_PATH}/imag/istanbul night image.webp`,
   `${BASE_PATH}/imag/lady killer image.png`,

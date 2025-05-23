@@ -33,6 +33,47 @@
             opacity: 0.5;
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(252, 155, 155, 0.5);
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .close-button {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 60;
+        }
+        .close-button:hover {
+            background-color: #f8f8f8;
+        }
     </style>
 </head>
 <body class="bg-white min-h-screen">
@@ -80,7 +121,6 @@
             </div>
         </div>
     </div>
-
     <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
             <h1 class="text-gray-800 text-lg font-normal mb-8">Arabic Flavors</h1>
@@ -102,6 +142,20 @@
                         <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="flavorModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content bg-white w-11/12 max-w-lg mx-auto my-auto rounded-xl shadow-xl p-6">
+            <div class="relative">
+                <button class="close-button" onclick="closeModal(event, true)">
+                    <i class="fas fa-times text-red-600"></i>
+                </button>
+                <img id="flavorImage" src="" alt="" class="w-full h-80 object-cover rounded-lg mb-4">
+                <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
+                <p id="flavorDescription" class="text-gray-700 text-lg"></p>
             </div>
         </div>
     </div>
@@ -142,11 +196,11 @@
                 let progress = 1 - (rect.top / windowHeight);
                 progress = Math.min(Math.max(progress, 0), 1);
                 
-                const opacity = 0.5 + (progress * 0.5);
-                const translateY = -30 + (progress * 30);
+                const opacity = 1 - progress;
+                const scale = 0.8 + (progress * 0.2);
                 
                 shishaImage.style.opacity = opacity;
-                shishaImage.style.transform = `translateY(${translateY}%)`;
+                shishaImage.style.transform = `scale(${scale})`;
             });
         });
 
@@ -174,6 +228,55 @@
             });
         });
 
+        // Flavor details data
+        const flavorDetails = {
+            grapeMint: {
+                title: 'Grape Mint Mix flavor',
+                image: 'imag/grapemint.jpg',
+                description: 'Refreshing grape flavor with a cool minty finish.'
+            },
+            grape: {
+                title: 'Grape flavor',
+                image: 'imag/grape.jpg',
+                description: 'Sweet and juicy grape flavor with a rich aroma.'
+            },
+            doubleApple: {
+                title: 'Double Apple flavor',
+                image: 'imag/doubleApple.jpg',
+                description: 'Classic double apple flavor with a perfect balance of sweetness and tartness.'
+            },
+            gum: {
+                title: 'Gum flavor',
+                image: 'imag/gum.webp',
+                description: 'Sweet and fresh bubblegum flavor with a smooth finish.'
+            },
+            gumMint: {
+                title: 'Gum Mint Mix flavor',
+                image: 'imag/gumMint.png',
+                description: 'Bubblegum flavor with a refreshing mint twist.'
+            },
+            mint: {
+                title: 'Mint flavor',
+                image: 'imag/mint.jpg',
+                description: 'Cool and invigorating mint flavor for a refreshing experience.'
+            },
+            gumCinnamon: {
+                title: 'Gum Cinnamon Mix flavor',
+                image: 'imag/Cinnamongum.webp',
+                description: 'Sweet bubblegum flavor with a hint of warm cinnamon spice.'
+            },
+            orange: {
+                title: 'Orange flavor',
+                image: 'imag/orange.jpg',
+                description: 'Zesty and sweet orange flavor with a citrus punch.'
+            },
+            lemonMint: {
+                title: 'Lemon Mint Mix flavor',
+                image: 'imag/lemonmint.jpg',
+                description: 'Tangy lemon flavor combined with cool mint for a refreshing blend.'
+            }
+        };
+
         // Update page content based on selected language
         async function updatePageContent(lang) {
             try {
@@ -181,24 +284,40 @@
                 
                 if (translations) {
                     // Update page title and price
-                    document.querySelector('h1').textContent = translations.sections.arabic.title;
-                    document.querySelector('p.text-red-600').textContent = translations.sections.arabic.price;
+                    document.querySelector('h1').textContent = translations.sections.turkish.title;
+                    document.querySelector('p.text-red-600').textContent = translations.sections.turkish.price;
                     
                     // Update flavor categories title
                     document.querySelector('h2').textContent = lang === 'ar' && translations.flavors ? 
-                        translations.flavors['arabic-style'].title : 'Arabic Nights Flavors';
+                        translations.flavors['turkish-style'].title : 'Turkish Delight Flavors';
                     
                     // Update extra head text
                     const extraHead = document.querySelector('li.py-2.flex.justify-between span:first-child');
                     extraHead.textContent = translations.common.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
 
-                    // Update flavor names if Arabic
-                    if (lang === 'ar' && translations.flavors && translations.flavors['arabic-style']) {
-                        const arabicFlavors = translations.flavors['arabic-style'].flavors;
+                    // Update flavor names and details if Arabic
+                    if (lang === 'ar' && translations.flavors && translations.flavors['turkish-style']) {
+                        const arabicFlavors = translations.flavors['turkish-style'].flavors;
                         document.querySelectorAll('ul.divide-y > li:not(:last-child)').forEach(li => {
-                            const englishText = li.textContent.trim();
-                            if (arabicFlavors[englishText]) {
-                                li.textContent = arabicFlavors[englishText];
+                            const originalText = li.textContent.trim();
+                            const translation = arabicFlavors[originalText];
+                            
+                            if (translation) {
+                                // Handle both simple string translations and object translations
+                                if (typeof translation === 'string') {
+                                    li.textContent = translation;
+                                } else if (translation.name) {
+                                    li.textContent = translation.name;
+                                    // Update flavor details for modal
+                                    const flavorKey = li.getAttribute('onclick')?.match(/'(.+?)'/)?.[1];
+                                    if (flavorKey && flavorDetails[flavorKey]) {
+                                        flavorDetails[flavorKey] = {
+                                            ...flavorDetails[flavorKey],
+                                            title: translation.name,
+                                            description: translation.description || flavorDetails[flavorKey].description
+                                        };
+                                    }
+                                }
                             }
                         });
                     }
@@ -226,57 +345,6 @@
             currentLang.textContent = lang.toUpperCase();
             document.getElementById('languageMenu').classList.add('hidden');
         };
-    </script>
-
-    <script>
-        // Flavor details data
-        const flavorDetails = {
-            grapeMint: {
-                title: 'Grape Mint Mix flavor',
-                image: 'imag/grapeMint.jpg',
-                description: 'Refreshing grape flavor with a cool minty finish.'
-            },
-            grape: {
-                title: 'Grape Mix flavor',
-                image: 'imag/grape.jpg',
-                description: 'Sweet and juicy grape flavor with a rich aroma.'
-            },
-            doubleApple: {
-                title: 'Double Apple Mix flavor',
-                image: 'imag/doubleApple.jpg',
-                description: 'Classic double apple flavor with a perfect balance of sweetness and tartness.'
-            },
-            gum: {
-                title: 'Gum Mix flavor',
-                image: 'imag/gum.jpg',
-                description: 'Sweet and fresh bubblegum flavor with a smooth finish.'
-            },
-            gumMint: {
-                title: 'Gum Mint Mix flavor',
-                image: 'imag/gumMint.jpg',
-                description: 'Bubblegum flavor with a refreshing mint twist.'
-            },
-            mint: {
-                title: 'Mint Mix flavor',
-                image: 'imag/mint.jpg',
-                description: 'Cool and invigorating mint flavor for a refreshing experience.'
-            },
-            gumCinnamon: {
-                title: 'Gum Cinnamon Mix flavor',
-                image: 'imag/gumCinnamon.jpg',
-                description: 'Sweet bubblegum flavor with a hint of warm cinnamon spice.'
-            },
-            orange: {
-                title: 'Orange Mix flavor',
-                image: 'imag/orange.jpg',
-                description: 'Zesty and sweet orange flavor with a citrus punch.'
-            },
-            lemonMint: {
-                title: 'Lemon Mint Mix flavor',
-                image: 'imag/lemonMint.jpg',
-                description: 'Tangy lemon flavor combined with cool mint for a refreshing blend.'
-            }
-        };
 
         function showFlavorDetails(flavor) {
             const modal = document.getElementById('flavorModal');
@@ -299,6 +367,8 @@
             }
         }
     </script>
+
+
 
     <!-- Footer -->
     <footer class="border-t border-gray-300 text-center text-sm text-gray-500 py-6 mt-auto">
