@@ -1,5 +1,5 @@
 const CACHE_NAME = "blume-menu-cache-v6.5";  // Incremented version to force update
-const BASE_PATH = "/shiaha-menu-v2";
+const BASE_PATH = "";
 const urlsToCache = [ 
   `./`,
   // HTML Files
