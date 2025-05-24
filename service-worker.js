@@ -1,5 +1,5 @@
-const CACHE_NAME = "blume-menu-cache-v6.4";  // Incremented version as suggested
-const BASE_PATH = "";
+const CACHE_NAME = "blume-menu-cache-v6.5";  // Incremented version to force update
+const BASE_PATH = "/shiaha-menu-v2";
 const urlsToCache = [ 
   `./`,
   // HTML Files
@@ -81,8 +81,9 @@ self.addEventListener("install", (event) => {
         console.log('✅ Opening cache');
         for (const url of urlsToCache) {
           try {
-            console.log('Caching:', url);
-            await cache.add(url);
+            const fullUrl = BASE_PATH + url.substring(1); // remove leading '.' and prepend BASE_PATH
+            console.log('Caching:', fullUrl);
+            await cache.add(fullUrl);
           } catch (error) {
             console.error('❌ Failed to cache:', url, error);
             // Do not throw error to prevent install failure
@@ -136,4 +137,5 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(() => caches.match(`${BASE_PATH}/index.html`))
   );
+
 });
