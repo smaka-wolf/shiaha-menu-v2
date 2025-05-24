@@ -96,7 +96,7 @@
 
     async function loadUpdateLog(lang = 'en') {
       try {
-        const response = await fetch('update-log.json');
+      const response = await fetch('./update-log.json');
         const updates = await response.json();
 
         if (updates.length === 0) {
