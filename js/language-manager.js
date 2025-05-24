@@ -56,8 +56,8 @@ const LanguageManager = {
         
         // Load both translation files
         const [baseTranslations, flavorTranslations] = await Promise.all([
-          fetch(`/lang/${lang}.json`).then(res => res.json()),
-          fetch(`/lang/flavors-${lang}.json`).then(res => res.json()).catch(() => ({}))
+          fetch(`./lang/${lang}.json`).then(res => res.json()),
+          fetch(`./lang/flavors-${lang}.json`).then(res => res.json()).catch(() => ({}))
         ]);
   
         // Merge translations
