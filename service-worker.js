@@ -20,10 +20,10 @@ const urlsToCache = [
   `./language-manager.js`,
 
  // json filesi
-  `./ar.json`,
-  `./en.json`,
-  `./flavors-ar.json`,
-  `./flavors-en.json`,
+  `./lang/ar.json`,
+  `./lang/en.json`,
+  `./lang/flavors-ar.json`,
+  `./lang/flavors-en.json`,
 
   // CSS Files
   `./input.css`,
@@ -46,14 +46,13 @@ const urlsToCache = [
   `./imag/hookah%20image.jpg`,
   `./imag/hookah2%20image.jpg`,
   `./imag/blume%20backg5.png`,
-  `./imag/smoke%20effect.mp4`,
   `./imag/smoke2%20effect.mp4`,
   `./imag/blume3%20back.png`,
   `./imag/blueberry.jpg`,
   `./imag/melon.jpg`,
   `./imag/peash.avif`,
   `./imag/sweetmelon.jpg`,
-  `./imag/cinnamon.webp`,
+  `./imag/Cinnamon.webp`,
   `./imag/doubleApple.jpg`,
   `./imag/grape.jpg`,
   `./imag/grapemint.jpg`,
@@ -68,8 +67,8 @@ const urlsToCache = [
   `./imag/lime%20space%20peach%20image.png`,
   `./imag/love66%20image.png`,
   `./imag/marbella%20image.png`,
-  `./imag/reactor%20image.webp`,
-  `./imag/rocket%20image.webp`
+  `./imag/reacter%20image.webp`,
+  `./imag/roket%20image.webp`
 ];
 
 // ✅ Installation with immediate activation
