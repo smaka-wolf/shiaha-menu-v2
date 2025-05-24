@@ -16,8 +16,8 @@ const urlsToCache = [
   // JavaScript Filesi
   `./menu.js`,
   `./index.js`,
-  `./app.js`,
-  `./language-manager.js`,
+  `./js/app.js`,
+  `./js/language-manager.js`,
 
  // json filesi
   `./lang/ar.json`,
