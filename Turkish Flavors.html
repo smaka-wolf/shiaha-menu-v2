@@ -355,9 +355,27 @@
             document.getElementById('languageMenu').classList.add('hidden');
         };
 
+        const flavorKeyMap = {
+            'Istanbul Night': 'istanbul',
+            'Marbella': 'marbella',
+            'Lime Spice Peach': 'lime',
+            'Love 66': 'love66',
+            'Lady Killer': 'lady',
+            'Watermelon': 'watermelon',
+            'Melon': 'melon',
+            'Peach': 'peach',
+            'Blueberry': 'blueberry',
+            'Sweet Melon': 'sweetmelon'
+        };
+
         function showFlavorDetails(flavor) {
             const modal = document.getElementById('flavorModal');
-            const details = flavorDetails[flavor];
+            const key = flavorKeyMap[flavor];
+            if (!key) {
+                console.error('Flavor key not found for:', flavor);
+                return;
+            }
+            const details = flavorDetails[key];
             
             document.getElementById('flavorTitle').textContent = details.title;
             document.getElementById('flavorDescription').textContent = details.description;

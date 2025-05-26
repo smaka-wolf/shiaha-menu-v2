@@ -1,129 +1,73 @@
-const CACHE_NAME = "blume-menu-cache-v6.5";  // Incremented version to force update
+const CACHE_NAME = "blume-menu-cache-v6.5";
 const BASE_PATH = "";
 const urlsToCache = [ 
   `./`,
-  // HTML Files
   `./index.html`,
-  `./menu%20shisha.html`,
-  `./rusian%20flavors.html`,
-  `./Arabic%20Flavors.html`,
-  `./Turkish%20Flavors.html`,
-  `./Signature%20Mix%20Flavors.html`,
-  `./test%20.html`,
+  `./menu shisha.html`,
+  `./rusian flavors.html`,
+  `./Arabic Flavors.html`,
+  `./Turkish Flavors.html`,
+  `./Signature Mix Flavors.html`,
+  `./test .html`,
   `./update-vercion.html`,
   `./update-log.json`,
-
-  // JavaScript Filesi
   `./menu.js`,
   `./index.js`,
   `./js/app.js`,
   `./js/language-manager.js`,
-
- // json filesi
   `./lang/ar.json`,
   `./lang/en.json`,
   `./lang/flavors-ar.json`,
   `./lang/flavors-en.json`,
-
-  // CSS Files
   `./input.css`,
   `./src/styles.css`,
-
-  // PWA Files
   `./manifest.json`,
   `./service-worker.js`,
-
-  // Icons
   `./icons/icon-192.png`,
-  `./icons/icon-512.png`,
-
-  // Images
-  `./imag/blume1%20mix%20image.png`,
-  `./imag/blume2%20mix%20image.png`,
-  `./imag/blume3%20mix%20image.png`,
-  `./imag/blume4%20mix%20image.png`,
-  `./imag/blume5%20mix%20image.png`,
-  `./imag/hookah%20image.jpg`,
-  `./imag/hookah2%20image.jpg`,
-  `./imag/blume%20backg5.png`,
-  `./imag/smoke2%20effect.mp4`,
-  `./imag/blume3%20back.png`,
-  `./imag/blueberry.jpg`,
-  `./imag/melon.jpg`,
-  `./imag/peash.avif`,
-  `./imag/sweetmelon.jpg`,
-  `./imag/Cinnamon.webp`,
-  `./imag/doubleApple.jpg`,
-  `./imag/grape.jpg`,
-  `./imag/grapemint.jpg`,
-  `./imag/gum.webp`,
-  `./imag/gumMint.png`,
-  `./imag/lemonmint.jpg`,
-  `./imag/mint.jpg`,
-  `./imag/orange.jpg`,
-  `./imag/watermelon.jpg`,
-  `./imag/istanbul%20night%20image.webp`,
-  `./imag/lady%20killer%20image.png`,
-  `./imag/lime%20space%20peach%20image.png`,
-  `./imag/love66%20image.png`,
-  `./imag/marbella%20image.png`,
-  `./imag/reacter%20image.webp`,
-  `./imag/roket%20image.webp`
+  `./icons/icon-512.png`
 ];
 
-// ✅ Installation with immediate activation
+// Installation with immediate activation
 self.addEventListener("install", (event) => {
-  self.skipWaiting(); // Force immediate service worker activation
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(async (cache) => {
-        console.log('✅ Opening cache');
         for (const url of urlsToCache) {
           try {
-            const fullUrl = BASE_PATH + url.substring(1); // remove leading '.' and prepend BASE_PATH
-            console.log('Caching:', fullUrl);
+            const fullUrl = BASE_PATH + url;
             await cache.add(fullUrl);
           } catch (error) {
-            console.error('❌ Failed to cache:', url, error);
-            // Do not throw error to prevent install failure
+            console.error('Failed to cache:', url, error);
           }
         }
-      })
-      .catch(error => {
-        console.error('❌ Error in cache.add:', error);
-        return Promise.reject(error);
       })
   );
 });
 
-// ✅ Activation with immediate client claim and cache cleanup
+// Activation with immediate client claim and cache cleanup
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     Promise.all([
-      // Clean up old caches
       caches.keys().then((cacheNames) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME) {
-              console.log('🗑️ Deleting old cache:', cacheName);
               return caches.delete(cacheName);
             }
           })
         );
       }),
-      // Force clients to use this service worker
       self.clients.claim()
     ])
   );
 });
 
-// ✅ Simplified fetch handling
+// Fetch handling
 self.addEventListener("fetch", (event) => {
-  // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
-
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -136,5 +80,4 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(() => caches.match(`${BASE_PATH}/index.html`))
   );
-
 });
