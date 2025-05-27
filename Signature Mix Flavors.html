@@ -376,7 +376,7 @@
 
                     // Update back button text
                     const backButton = document.querySelector('button[aria-label="Back"]');
-                    backButton.setAttribute('aria-label', translations.common.back || 'Back');
+                    backButton.setAttribute('aria-label', (translations.common && translations.common.back) ? translations.common.back : 'Back');
                 }
             } catch (error) {
                 console.error('Error updating content:', error);
@@ -501,6 +501,22 @@
                 return;
             }
 
+            // Remove auto-rotation to keep chart fixed
+            isAutoRotating = false;
+            if (autoRotationFrame) {
+                cancelAnimationFrame(autoRotationFrame);
+            }
+
+            // Remove all event listeners that might cause rotation
+            canvas.removeEventListener('mousedown', handleStart);
+            canvas.removeEventListener('mousemove', handleMove);
+            canvas.removeEventListener('mouseup', handleEnd);
+            canvas.removeEventListener('mouseleave', handleEnd);
+            // Also remove touch event listeners if any
+            canvas.removeEventListener('touchstart', handleStart);
+            canvas.removeEventListener('touchmove', handleMove);
+            canvas.removeEventListener('touchend', handleEnd);
+
             function handleEnd() {
                 isDragging = false;
                 // Resume auto-rotation after a short delay
@@ -567,7 +583,7 @@
                     cutout: '65%',
                     rotation: startAngle,
                     animation: {
-                        animateRotate: true,
+                        animateRotate: false,
                         animateScale: true,
                         duration: 1000,
                         easing: 'easeInOutQuart',
@@ -643,22 +659,32 @@
                             // Highlight selected segment
                             const index = elements[0].index;
                             const dataset = chart.data.datasets[0];
+                            const meta = chart.getDatasetMeta(0);
                             
                             // Reset all segments to original opacity
                             dataset.backgroundColor.forEach((color, i) => {
-                                chart.getDatasetMeta(0).data[i].options.backgroundColor = color;
+                                if (meta.data[i] && meta.data[i].options) {
+                                    meta.data[i].options.backgroundColor = color;
+                                }
                             });
                             
                             // Highlight selected segment
-                            chart.getDatasetMeta(0).data[index].options.backgroundColor = 
-                                dataset.backgroundColor[index].replace('0.9', '1');
+                            if (meta.data[index] && meta.data[index].options) {
+                                // Instead of replace, set a highlight color or opacity
+                                // For simplicity, set a semi-transparent white overlay or increase brightness
+                                // Here, we set a fixed highlight color
+                                meta.data[index].options.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                            }
                             
                             chart.update();
                         } else {
                             // Click outside segments - reset highlights and resume rotation
                             const dataset = chart.data.datasets[0];
+                            const meta = chart.getDatasetMeta(0);
                             dataset.backgroundColor.forEach((color, i) => {
-                                chart.getDatasetMeta(0).data[i].options.backgroundColor = color;
+                                if (meta.data[i] && meta.data[i].options) {
+                                    meta.data[i].options.backgroundColor = color;
+                                }
                             });
                             chart.update();
                             resumeAutoRotation();

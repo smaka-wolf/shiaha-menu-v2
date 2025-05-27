@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v6.5";
+const CACHE_NAME = "blume-menu-cache-v6.6";
 const BASE_PATH = "";
 const urlsToCache = [ 
   `./`,
