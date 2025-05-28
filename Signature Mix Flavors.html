@@ -20,7 +20,7 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
-        .shisha-image-wrapper {
+         .shisha-image-wrapper {
             position: relative;
             width: 100%;
             height: 60vh;
@@ -28,12 +28,14 @@
         }
         .shisha-image {
             width: 100%;
-            height: 120vh;
+            height: 100%;
             object-fit: cover;
-            transform: translateY(-30%);
-            opacity: 0.5;
+            transform: translateY(0); /* نبدل من -30% لـ 0 */
             transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+        }   
+        .max-w-3xl {
+            transition: transform 0.5s ease;
+        }      
         .card-content {
             max-height: 0;
             overflow: hidden;
@@ -144,14 +146,14 @@
                 </button>
                 <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
                     <button 
-                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('en')"
                     >
                         <span>🇬🇧</span>
                         <span>English</span>
                     </button>
                     <button 
-                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('ar')"
                     >
                         <span>🇸🇦</span>
@@ -259,21 +261,28 @@
         });
 
         // Scroll animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const shishaImage = document.querySelector('.shisha-image');
-            const flavorsContainer = document.querySelector('.max-w-3xl');
-            
-            window.addEventListener('scroll', () => {
-                const rect = flavorsContainer.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                let progress = 1 - (rect.top / windowHeight);
-                progress = Math.min(Math.max(progress, 0), 1);
-                
-                const opacity = 1 - progress;
-                const scale = 0.8 + (progress * 0.2);
-                
-                shishaImage.style.opacity = opacity;
-                shishaImage.style.transform = `scale(${scale})`;
+       document.addEventListener('DOMContentLoaded', () => {
+  const shishaImage = document.querySelector('.shisha-image');
+  const flavorsContainer = document.querySelector('.max-w-3xl');
+
+  if (!shishaImage || !flavorsContainer) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const imageHeight = shishaImage.offsetHeight;
+
+    // ✅ من 0 حتى imageHeight: تأثير تدريجي
+    let progress = Math.min(scrollY / imageHeight, 1);
+
+    // 🔁 عكس التأثير:
+    const opacity = 1 - progress;         // الصورة تختفي تدريجيا
+    const translateY = progress * 30;     // الصورة تهبط شوية (لجمالية الحركة)
+
+    shishaImage.style.opacity = opacity;
+    shishaImage.style.transform = `translateY(${translateY}%)`;
+
+    // container يطلع بشوية
+    flavorsContainer.style.transform = `translateY(-${progress * 40}px)`;
             });
         });
 
@@ -376,7 +385,9 @@
 
                     // Update back button text
                     const backButton = document.querySelector('button[aria-label="Back"]');
-                    backButton.setAttribute('aria-label', (translations.common && translations.common.back) ? translations.common.back : 'Back');
+                    if (backButton) {
+                        backButton.setAttribute('aria-label', (translations.common && translations.common.back) ? translations.common.back : 'Back');
+                    }
                 }
             } catch (error) {
                 console.error('Error updating content:', error);
@@ -451,16 +462,20 @@
             let isDragging = false;
             let startX = 0;
             let startY = 0;
-            let isAutoRotating = true;
+            let isAutoRotating = false;
             let autoRotationSpeed = 0.5; // degrees per frame
             let autoRotationFrame;
+            // Removed outer scope chart declaration to avoid redeclaration error
             
             function autoRotate() {
                 if (!isAutoRotating) return;
                 
-                chart.options.rotation = (chart.options.rotation + autoRotationSpeed) % 360;
-                chart.update('none');
-                autoRotationFrame = requestAnimationFrame(autoRotate);
+                // Guard against chart being undefined or null
+                if (typeof chart !== 'undefined' && chart !== null) {
+                    chart.options.rotation = (chart.options.rotation + autoRotationSpeed) % 360;
+                    chart.update('none');
+                    autoRotationFrame = requestAnimationFrame(autoRotate);
+                }
             }
 
             function pauseAutoRotation() {
@@ -766,8 +781,10 @@
 
                     item.onclick = () => {
                         const meta = chart.getDatasetMeta(0);
-                        meta.data[index].hidden = !meta.data[index].hidden;
-                        chart.update();
+                        if (meta.data && meta.data[index]) {
+                            meta.data[index].hidden = !meta.data[index].hidden;
+                            chart.update();
+                        }
                     };
 
                     legendContainer.appendChild(item);

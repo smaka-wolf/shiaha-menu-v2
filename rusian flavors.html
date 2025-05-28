@@ -27,12 +27,14 @@
         }
         .shisha-image {
             width: 100%;
-            height: 120vh;
+            height: 100%;
             object-fit: cover;
-            transform: translateY(-30%);
-            opacity: 0.5;
+            transform: translateY(0); /* نبدل من -30% لـ 0 */
             transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+        }   
+        .max-w-3xl {
+            transition: transform 0.5s ease;
+        }      
         .card-content {
             max-height: 0;
             overflow: hidden;
@@ -84,14 +86,14 @@
                 </button>
                 <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
                     <button 
-                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('en')"
                     >
                         <span>🇬🇧</span>
                         <span>English</span>
                     </button>
                     <button 
-                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('ar')"
                     >
                         <span>🇸🇦</span>
@@ -139,7 +141,7 @@
                 title: 'DARKSIDE',
                 description: 'Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.',
                 price: 'AED 220.00',
-                flavors: ['Needles', 'Lemon Blast', 'Cola', 'Supernova', 'Falling Star']
+                flavors: ['Needles', 'Lemon Blast', 'Cola', 'Supernova', 'Falling Star','Cream Soda']
             },
             starline: {
                 title: 'STARLINE',
@@ -157,9 +159,11 @@
                 title: 'HOLSTER',
                 description: 'Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.',
                 price: 'AED 220.00',
-                flavors: ['VIVA La Fiesta']
+                flavors: ['VIVA La Fiesta','Rocketman']
             }
         };
+        // Keep a deep copy of original data for resetting
+        const originalRussianBrands = JSON.parse(JSON.stringify(russianBrands));
 
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', async () => {
@@ -170,20 +174,27 @@
 
         // Scroll animation
         document.addEventListener('DOMContentLoaded', () => {
-            const shishaImage = document.querySelector('.shisha-image');
-            const flavorsContainer = document.querySelector('.max-w-3xl');
-            
-            window.addEventListener('scroll', () => {
-                const rect = flavorsContainer.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                let progress = 1 - (rect.top / windowHeight);
-                progress = Math.min(Math.max(progress, 0), 1);
-                
-                const opacity = 1 - progress;
-                const scale = 0.8 + (progress * 0.2);
-                
-                shishaImage.style.opacity = opacity;
-                shishaImage.style.transform = `scale(${scale})`;
+  const shishaImage = document.querySelector('.shisha-image');
+  const flavorsContainer = document.querySelector('.max-w-3xl');
+
+  if (!shishaImage || !flavorsContainer) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const imageHeight = shishaImage.offsetHeight;
+
+    // ✅ من 0 حتى imageHeight: تأثير تدريجي
+    let progress = Math.min(scrollY / imageHeight, 1);
+
+    // 🔁 عكس التأثير:
+    const opacity = 1 - progress;         // الصورة تختفي تدريجيا
+    const translateY = progress * 30;     // الصورة تهبط شوية (لجمالية الحركة)
+
+    shishaImage.style.opacity = opacity;
+    shishaImage.style.transform = `translateY(${translateY}%)`;
+
+    // container يطلع بشوية
+    flavorsContainer.style.transform = `translateY(-${progress * 40}px)`;
             });
         });
 
@@ -251,44 +262,45 @@
                     document.querySelector('p.text-red-600').textContent = translations.sections.russian.price;
 
                     if (lang === 'ar' && translations.flavors) {
-                        // Update brand information
+                    // Update brand information
+                    Object.keys(russianBrands).forEach(brandKey => {
+                        if (translations.russian?.brands[brandKey]) {
+                            russianBrands[brandKey].title = translations.russian.brands[brandKey].title;
+                            russianBrands[brandKey].description = translations.russian.brands[brandKey].description;
+                        }
+                    });
+
+                    // Update flavor names
+                    if (translations.flavors['russian-style']) {
                         Object.keys(russianBrands).forEach(brandKey => {
-                            if (translations.russian?.brands[brandKey]) {
-                                russianBrands[brandKey].title = translations.russian.brands[brandKey].title;
-                                russianBrands[brandKey].description = translations.russian.brands[brandKey].description;
+                            const brandFlavors = translations.flavors['russian-style'].brands[brandKey]?.flavors;
+                            if (brandFlavors) {
+                                russianBrands[brandKey].flavors = russianBrands[brandKey].flavors.map(flavor => 
+                                    brandFlavors[flavor] || flavor
+                                );
                             }
                         });
-
-                        // Update flavor names
-                        if (translations.flavors['russian-style']) {
-                            Object.keys(russianBrands).forEach(brandKey => {
-                                const brandFlavors = translations.flavors['russian-style'].brands[brandKey]?.flavors;
-                                if (brandFlavors) {
-                                    russianBrands[brandKey].flavors = russianBrands[brandKey].flavors.map(flavor => 
-                                        brandFlavors[flavor] || flavor
-                                    );
-                                }
-                            });
-                        }
-
-                        // Repopulate cards with updated translations
-                        populateCards(russianBrands);
-                    } else {
-                        // Reset to English
-                        populateCards(russianBrands);
                     }
+
+                    // Repopulate cards with updated translations
+                    populateCards(russianBrands);
+                } else {
+                    // Reset to English - restore original data
+                    Object.assign(russianBrands, JSON.parse(JSON.stringify(originalRussianBrands)));
+                    populateCards(russianBrands);
+                }
 
                     // Update extra head text
                     const extraHead = document.querySelector('div.py-2.flex.justify-between span:first-child');
-                    extraHead.textContent = translations.common.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
+                    extraHead.textContent = (translations.common && translations.common.extra_head) ? translations.common.extra_head : (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
 
                     // Update footer text
                     const footer = document.querySelector('footer');
-                    footer.textContent = translations.common.copyright || '© 2025 Blume Rodina. All rights reserved.';
+                    footer.textContent = (translations.common && translations.common.copyright) ? translations.common.copyright : '© 2025 Blume Rodina. All rights reserved.';
 
                     // Update back button text
                     const backButton = document.querySelector('button[aria-label="Back"]');
-                    backButton.setAttribute('aria-label', translations.common.back || 'Back');
+                    backButton.setAttribute('aria-label', (translations.common && translations.common.back) ? translations.common.back : 'Back');
                 }
             } catch (error) {
                 console.error('Error updating content:', error);

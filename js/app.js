@@ -45,7 +45,7 @@ function showUpdateNotice() {
   `;
   document.body.appendChild(notice);
 
-  let countdown = 5;
+  let countdown = ;
   const interval = setInterval(() => {
     countdown--;
     document.getElementById('update-timer').textContent = countdown;

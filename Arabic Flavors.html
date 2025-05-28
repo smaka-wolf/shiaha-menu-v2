@@ -27,12 +27,14 @@
         }
         .shisha-image {
             width: 100%;
-            height: 120vh;
+            height: 100%;
             object-fit: cover;
-            transform: translateY(-30%);
-            opacity: 0.5;
+            transform: translateY(0); /* نبدل من -30% لـ 0 */
             transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+        }   
+        .max-w-3xl {
+            transition: transform 0.5s ease;
+        }      
         .modal {
             display: none;
             position: fixed;
@@ -88,14 +90,13 @@
                 aria-label="Back" 
                 onclick="window.location.href='menu shisha.html'" 
                 class="bg-white rounded-md p-2 shadow-sm border border-gray-200"
-                data-i18n="common.back"
             >
                 <i class="fas fa-chevron-left text-red-600"></i>
             </button>
             
             <!-- Language Switcher -->
             <div class="relative">
-                <button 
+                <button     
                     id="languageButton" 
                     aria-label="Change language" 
                     class="bg-white px-3 py-2 rounded-md shadow-sm border border-gray-200 text-red-600 text-sm font-semibold flex items-center"
@@ -105,18 +106,18 @@
                 </button>
                 <div id="languageMenu" class="absolute top-full mt-1 right-0 bg-white rounded-md shadow-lg hidden w-32 z-50">
                     <button 
-                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('en')"
                     >
                         <span>🇬🇧</span>
-                        <span data-i18n="language.en">English</span>
+                        <span>English</span>
                     </button>
                     <button 
-                        class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 flex items-center space-x-2"
+                        class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('ar')"
                     >
                         <span>🇸🇦</span>
-                        <span data-i18n="language.ar">العربية</span>
+                        <span>العربية</span>
                     </button>
                 </div>
             </div>
@@ -125,19 +126,19 @@
     <div class="max-w-3xl w-full bg-gray-200 rounded-t-3xl shadow-lg relative font-sans mx-auto -mt-8">
         <div class="pt-8 pb-8 px-8 text-center">
             <h1 data-i18n="sections.arabic.title" class="text-gray-800 text-lg font-normal mb-8">Arabic Flavors</h1>
-            <p data-i18n="sections.arabic.price" class="text-red-600 text-lg mb-12">AED 140</p>
+            <p class="text-red-600 text-lg mb-12">AED 140</p>
             <div class="text-left text-gray-800 text-sm">
                 <h2 data-i18n="flavors.arabicStyleTitle" class="font-semibold mb-3">Arabic Nights Flavors</h2>
                 <ul class="divide-y divide-red-300">
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('grapeMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.grapeMint">Grape Mint</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('grape')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.grape">Grape</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('doubleApple')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.doubleApple">Double Apple</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('gum')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gum">Gum</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('gumMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gumMint">Gum Mint</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('mint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.mint">Mint</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('gumCinnamon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gumCinnamon">Gum Cinnamon</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('orange')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.orange">Orange</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('lemonMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.lemonMint">Lemon Mint</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="grapeMint" onclick="showFlavorDetails('grapeMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.grapeMint">Grape Mint</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="grape" onclick="showFlavorDetails('grape')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.grape">Grape</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="doubleApple" onclick="showFlavorDetails('doubleApple')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.doubleApple">Double Apple</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="gum" onclick="showFlavorDetails('gum')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gum">Gum</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="gumMint" onclick="showFlavorDetails('gumMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gumMint">Gum Mint</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="mint" onclick="showFlavorDetails('mint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.mint">Mint</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="gumCinnamon" onclick="showFlavorDetails('gumCinnamon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gumCinnamon">Gum Cinnamon</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="orange" onclick="showFlavorDetails('orange')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.orange">Orange</span></li>
+                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="lemonMint" onclick="showFlavorDetails('lemonMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.lemonMint">Lemon Mint</span></li>
                     <li class="py-2 flex justify-between text-lg items-center">
                         <span data-i18n="common.extra_head">Extra Head</span>
                         <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
@@ -183,25 +184,34 @@
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', async () => {
             await LanguageManager.initializeLanguage();
+            // Keep a deep copy of original flavor details for resetting
+            window.originalFlavorDetails = JSON.parse(JSON.stringify(flavorDetails));
             await updatePageContent(LanguageManager.getStoredLanguage());
         });
 
         // Scroll animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const shishaImage = document.querySelector('.shisha-image');
-            const flavorsContainer = document.querySelector('.max-w-3xl');
-            
-            window.addEventListener('scroll', () => {
-                const rect = flavorsContainer.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                let progress = 1 - (rect.top / windowHeight);
-                progress = Math.min(Math.max(progress, 0), 1);
-                
-                const opacity = 1 - progress;
-                const scale = 0.8 + (progress * 0.2);
-                
-                shishaImage.style.opacity = opacity;
-                shishaImage.style.transform = `scale(${scale})`;
+       document.addEventListener('DOMContentLoaded', () => {
+  const shishaImage = document.querySelector('.shisha-image');
+  const flavorsContainer = document.querySelector('.max-w-3xl');
+
+  if (!shishaImage || !flavorsContainer) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const imageHeight = shishaImage.offsetHeight;
+
+    // ✅ من 0 حتى imageHeight: تأثير تدريجي
+    let progress = Math.min(scrollY / imageHeight, 1);
+
+    // 🔁 عكس التأثير:
+    const opacity = 1 - progress;         // الصورة تختفي تدريجيا
+    const translateY = progress * 30;     // الصورة تهبط شوية (لجمالية الحركة)
+
+    shishaImage.style.opacity = opacity;
+    shishaImage.style.transform = `translateY(${translateY}%)`;
+
+    // container يطلع بشوية
+    flavorsContainer.style.transform = `translateY(-${progress * 40}px)`;
             });
         });
 
@@ -284,58 +294,67 @@
                 const translations = await LanguageManager.loadTranslations(lang);
                 
                 if (translations) {
-                    // Update page title and price
-                    document.querySelector('h1').textContent = translations.sections.arabic.title;
-                    document.querySelector('p.text-red-600').textContent = translations.sections.arabic.price;
-                    
-                    // Update flavor categories title
-                    document.querySelector('h2').textContent = lang === 'ar' && translations.flavors ? 
-                        translations.flavors['arabic-style'].title : 'Arabic Nights Flavors';
-                    
-                    // Update extra head text
-                    const extraHead = document.querySelector('li.py-2.flex.justify-between span:first-child');
-                    extraHead.textContent = (translations.common && translations.common.extra_head) ? translations.common.extra_head : (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
+                    // Apply translations to static elements
+                    LanguageManager.applyTranslations(translations);
 
-                    // Update flavor names and details if Arabic
-                    if (lang === 'ar' && translations.flavors && translations.flavors['arabic-style']) {
-                        const arabicFlavors = translations.flavors['arabic-style'].flavors;
-                        document.querySelectorAll('ul.divide-y > li:not(:last-child)').forEach(li => {
-                            const originalText = li.textContent.trim();
-                            const translation = arabicFlavors[originalText];
-                            
-                            if (translation) {
-                                // Handle both simple string translations and object translations
-                                if (typeof translation === 'string') {
-                                    li.textContent = translation;
-                                } else if (translation.name) {
-                                    li.textContent = translation.name;
-                                    // Update flavor details for modal
-                                    const flavorKey = li.getAttribute('onclick')?.match(/'(.+?)'/)?.[1];
-                                    if (flavorKey && flavorDetails[flavorKey]) {
-                                        flavorDetails[flavorKey] = {
-                                            ...flavorDetails[flavorKey],
-                                            title: translation.name,
-                                            description: translation.description || flavorDetails[flavorKey].description
-                                        };
-                                    }
-                                }
-                            }
-                        });
-                    }
+                    // Update flavor details dynamically
+                    updateFlavorDetails(translations, lang);
 
                     // Update footer text
                     const footer = document.querySelector('footer');
                     footer.textContent = (translations.common && translations.common.copyright) ? translations.common.copyright : '© 2025 Blume Rodina. All rights reserved.';
 
-                    // Update back button text
-                    const backButton = document.querySelector('button[aria-label="Back"]');
-                    if (backButton) {
-                        backButton.setAttribute('aria-label', translations.common.back || 'Back');
-                    }
+                    // Update back button aria-label
+                    // Removed translation of back button aria-label to keep consistent with working pages
+                    // const backButton = document.querySelector('button[aria-label="Back"]');
+                    // if (backButton) {
+                    //     backButton.setAttribute('aria-label', translations.common.back || 'Back');
+                    // }
                 }
             } catch (error) {
                 console.error('Error updating content:', error);
             }
+        }
+
+        // Helper to update flavor details dynamically
+        function updateFlavorDetails(translations, lang) {
+            const flavorTranslations = translations.flavors && translations.flavors['arabic-style'] ? translations.flavors['arabic-style'].flavors : null;
+            // Map camelCase keys to translation keys with spaces and capitalization
+            const keyMap = {
+                grapeMint: 'Grape Mint',
+                grape: 'Grape',
+                doubleApple: 'Double Apple',
+                gum: 'Gum',
+                gumMint: 'Gum Mint',
+                mint: 'Mint',
+                gumCinnamon: 'Gum Cinnamon',
+                orange: 'Orange',
+                lemonMint: 'Lemon Mint'
+            };
+            document.querySelectorAll('ul.divide-y > li[data-flavor-key]').forEach(li => {
+                const key = li.getAttribute('data-flavor-key');
+                if (!key) return;
+                const translationKey = keyMap[key] || key;
+
+                if (lang === 'ar' && flavorTranslations && flavorTranslations[translationKey]) {
+                    const translation = flavorTranslations[translationKey];
+                    if (typeof translation === 'string') {
+                        li.querySelector('span[data-i18n]').textContent = translation;
+                    } else if (translation.name) {
+                        li.querySelector('span[data-i18n]').textContent = translation.name;
+                        if (flavorDetails[key]) {
+                            flavorDetails[key] = {
+                                ...flavorDetails[key],
+                                title: translation.name,
+                                description: translation.description || flavorDetails[key].description
+                            };
+                        }
+                    }
+                } else if (window.originalFlavorDetails && window.originalFlavorDetails[key]) {
+                    li.querySelector('span[data-i18n]').textContent = window.originalFlavorDetails[key].title;
+                    flavorDetails[key] = {...window.originalFlavorDetails[key]};
+                }
+            });
         }
 
         // Handle language switching

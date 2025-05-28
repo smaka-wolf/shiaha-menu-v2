@@ -22,8 +22,8 @@ const LanguageManager = {
         currentLang.textContent = storedLang.toUpperCase();
       }
       
-      // Set initial direction
-      document.documentElement.dir = storedLang === 'ar' ? 'rtl' : 'ltr';
+      // Set initial direction - always keep LTR to maintain layout
+      document.documentElement.dir = 'ltr';
       document.documentElement.lang = storedLang;
   
       // Load initial translations if needed
@@ -37,7 +37,8 @@ const LanguageManager = {
     // Handle language switch
     async switchLanguage(lang) {
       this.setStoredLanguage(lang);
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      // Always keep direction LTR to maintain layout
+      document.documentElement.dir = 'ltr';
       document.documentElement.lang = lang;
       
       // Load translations
@@ -93,17 +94,21 @@ const LanguageManager = {
     }
   };
   
+  // Helper to get nested value by dot notation key from object
+  function getNestedValue(obj, key) {
+    return key.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : null, obj);
+  }
+
   // Apply translations to page elements by replacing text content only
   LanguageManager.applyTranslations = function(translations) {
     if (!translations) return;
-    // For each key in translations, find elements with data-i18n attribute matching the key and replace text content
-    Object.keys(translations).forEach(key => {
-      const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
-      elements.forEach(el => {
-        if (typeof translations[key] === 'string') {
-          el.textContent = translations[key];
-        }
-      });
+    // For each element with data-i18n attribute, get nested translation value and replace text content
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const translation = getNestedValue(translations, key);
+      if (typeof translation === 'string') {
+        el.textContent = translation;
+      }
     });
   };
 

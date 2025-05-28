@@ -2,9 +2,10 @@
   "direction": "ltr",
   "menu": {
     "title": "Shisha Menu",
-    "food": "Food Menu",
-    "beverage": "Beverage Menu",
-    "shisha": "Shisha Menu"
+    "food": "Food Menu❌",
+    "beverage": "Beverage Menu❌",
+    "shisha": "Shisha Menu",
+    "button": "Menu"
   },
   "styles": {
     "arabic": "Arabic Style",
