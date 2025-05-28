@@ -308,7 +308,7 @@
 
                     // Update footer text
                     const footer = document.querySelector('footer');
-                    footer.textContent = translations.common.copyright || '© 2025 Blume Rodina. All rights reserved.';
+                    footer.textContent = (translations.common && translations.common.copyright) ? translations.common.copyright : '© 2025 Blume Rodina. All rights reserved.';
 
                     // Update back button aria-label
                     // Removed translation of back button aria-label to keep consistent with working pages
