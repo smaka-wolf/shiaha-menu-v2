@@ -1,6 +1,6 @@
 // تسجيل Service Worker
 if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('./service-worker.js')
+navigator.serviceWorker.register('/shiaha-menu-v2/service-worker.js?v=5')
     .then(registration => {
       console.log('✅ Service Worker تسجل بنجاح');
 
