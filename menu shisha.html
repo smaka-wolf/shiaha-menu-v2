@@ -9,6 +9,9 @@
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <!-- Lightbox CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <style>
    body {
       font-family: "Roboto", sans-serif;
@@ -21,6 +24,37 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
    }
+   /* الوضع العادي */
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+/* الوضع الليلي */
+body.dark-mode {
+  background-color: #3a3232dc;
+  color: #eee;
+}
+
+/* مثال لتغيير ألوان بعض العناصر */
+.rounded-md {
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .rounded-md {
+  background-color: #977f7f;
+}
+ #carousel-track {
+    animation: slideX 15s linear infinite;
+  }
+
+  @keyframes slideX {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-33.333%); }
+    66% { transform: translateX(-66.666%); }
+    100% { transform: translateX(0); }
+  }
   </style>
  </head>
  <body class="bg-white min-h-screen p-4">
@@ -29,6 +63,8 @@
     <button aria-label="Back" onclick="window.location.href='index.html'" class="p-2 rounded-md bg-white shadow-md text-red-600 hover:text-red-700 transition">
      <i class="fas fa-chevron-left">
      </i>
+     <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+
     </button>
      <div class="flex space-x-2">
      <div class="relative inline-block">
@@ -120,7 +156,7 @@
 </div>
 
  <!-- arabic style shisha  -->
- <section id="arabic-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+ <section id="arabic-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative" data-aos="fade-left" data-aos-duration="2000">
   <a href="Arabic Flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
       Arabic Style Shisha
@@ -147,7 +183,7 @@
 </section>
 
  <!--turkish style shisha -->
-<section id="turkish-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+<section id="turkish-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative" data-aos="fade-right" data-aos-duration="800">
   <a href="Turkish Flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
       Turkish Style Shisha
@@ -173,7 +209,7 @@
 </section>
 
  <!--Russian style shisha -->
-<section id="russian-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+<section id="russian-style" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative" data-aos="fade-left" data-aos-duration="800">
   <a href="rusian flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
       Russian Style Shisha
@@ -200,7 +236,7 @@
 </section>
 
  <!--Signature mix shisha -->
-<section id="signature-mix" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative">
+<section id="signature-mix" class="mb-12 max-w-md mx-auto rounded-lg shadow-lg p-6 bg-gray-200 relative" data-aos="fade-right" data-aos-duration="800">
   <a href="Signature Mix Flavors.html" class="block no-underline text-inherit">
     <h2 class="text-center text-gray-800 text-lg mb-1 font-semibold">
       Signature Mix Shisha
@@ -224,7 +260,20 @@
     </div>
   </a>
 </section>
-   
+<!--image scroll downe-->
+<!--<div class="relative overflow-hidden w-full max-w-4xl mx-auto">
+  <div id="carousel-track" class="flex transition-transform duration-1000 ease-in-out">
+    <img src="imag/shisha-veio1.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+    <img src="imag/shisha-veio2.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+    <img src="imag/shisha-veio3.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+    <img src="imag/shisha-veio4.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+    <img src="imag/shisha-veio5.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+    <img src="imag/shisha-veio6.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+    <img src="imag/shisha-veio7.jpg" class="w-64 h-64 object-cover flex-shrink-0 mx-2 rounded shadow" />
+-->
+    <!-- زيد عدد الصور هنا -->
+  </div>
+</div>
    
   </div>
   <!-- Service Worker -->
@@ -240,7 +289,51 @@
           });
       });
     }
+
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+toggleBtn.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+
+  // ممكن تخزن تفضيل المستخدم في localStorage
+  if(body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark');
+    toggleBtn.textContent = '☀️'; // تغيير أيقونة للتبديل
+  } else {
+    localStorage.setItem('theme', 'light');
+    toggleBtn.textContent = '🌙';
+  }
+});
+
+// استعادة تفضيل المستخدم عند تحميل الصفحة
+window.addEventListener('load', () => {
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    toggleBtn.textContent = '☀️';
+  }
+});
+
   </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<!-- Lightbox JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<!-- /// js dyal imge sgcroll downe
+<script>
+  const track = document.getElementById('carousel-track');
+  let index = 0;
+  const slides = track.children.length;
+  const slideWidth = track.children[0].offsetWidth + 16; // include margin
+
+  setInterval(() => {
+    index = (index + 1) % slides;
+    track.style.transform = `translateX(-${index * slideWidth}px)`;
+  }, 3000);
+</script>    -->
 
   <!-- Libraries -->
   <script src="js/app.js?v=5"></script>
