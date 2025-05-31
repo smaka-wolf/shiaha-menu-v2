@@ -22,7 +22,7 @@ const LanguageManager = {
         currentLang.textContent = storedLang.toUpperCase();
       }
       
-      // Set initial direction - always keep LTR to maintain layout
+      // Set initial direction - always keep LTR to maintain layout (reverting per user request)
       document.documentElement.dir = 'ltr';
       document.documentElement.lang = storedLang;
   
@@ -37,14 +37,12 @@ const LanguageManager = {
     // Handle language switch
     async switchLanguage(lang) {
       this.setStoredLanguage(lang);
-      // Always keep direction LTR to maintain layout
+      // Always keep direction LTR to maintain layout (reverting per user request)
       document.documentElement.dir = 'ltr';
       document.documentElement.lang = lang;
       
-      // Load translations
-      if (lang === 'ar') {
-        await this.loadTranslations(lang);
-      }
+      // Load translations for all languages
+      await this.loadTranslations(lang);
   
       return lang;
     },

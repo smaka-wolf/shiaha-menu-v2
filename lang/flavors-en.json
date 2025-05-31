@@ -54,7 +54,10 @@
             "Lemon Blast": "Lemon Blast",
             "Cola": "Cola",
             "Supernova": "Supernova",
-            "Falling Star": "Falling Star"
+            "Falling Star": "Falling Star",
+            "Cream Soda": "Cream Soda",
+            "Ice crame": "Ice crame",
+            "Greyfrut": "Greyfrut"
           }
         },
         "starline": {
@@ -76,13 +79,26 @@
             "Garnet": "Garnet",
             "Coconut": "Coconut",
             "Raspberry": "Raspberry",
-            "Epic Yoghurt": "Epic Yoghurt"
+            "PineApple Rings": "PineApple Rings",
+            "Estragon": "Estragon",
+            "Pinacolada": "Pinacolada"
           }
         },
         "holster": {
           "name": "Holster",
           "flavors": {
-            "VIVA La Fiesta": "VIVA La Fiesta"
+            "VIVA La Fiesta": "VIVA La Fiesta",
+            "Rocketman": "Rocketman",
+            "Watermelon Punsh": "Watermelon Punsh",
+            "Lemon Punsh": "lemon Punsh",
+            "Unicorn": "Unicorn"
+          }
+        },
+        "blackburn": {
+          "name": "Blackburn",
+          "flavors": {
+            "Epic Yogurt": "Epic Yogurt"
+
           }
         }
       }

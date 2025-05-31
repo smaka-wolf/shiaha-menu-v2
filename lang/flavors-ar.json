@@ -94,7 +94,10 @@
             "Lemon Blast": "ليمون بلاست",
             "Cola": "كولا",
             "Supernova": "سوبرنوفا",
-            "Falling Star": "النجم الساقط"
+            "Falling Star": "النجم الساقط",
+            "Cream Soda": "كريمة صودا",
+            "Ice crame": "آيس كريم",
+            "Greyfrut": "غريب فروت"
           }
         },
         "starline": {
@@ -116,14 +119,25 @@
             "Garnet": "رمان",
             "Coconut": "جوز الهند",
             "Raspberry": "توت العليق",
-            "Epic Yoghurt": "لبن رائع"
+            "PineApple Rings": "شرائح الأناناس",
+            "Estragon": "إيستراجون",
+            "Pinacolada": "بيناكولادا"
           }
         },
         "holster": {
           "name": "هولستر",
           "flavors": {
-            "VIVA La Fiesta": "فيفا لا فييستا"
-            
+            "VIVA La Fiesta": "فيفا لا فييستا",
+            "Rocketman": "صاروخ الرجل",
+            "Watermelon Punsh": "عصير البطيخ",
+            "Lemon Punsh": "عصير الليمون",
+            "Unicorn": "وحيد القرن"
+          }
+        },
+        "blackburn": {
+          "name": "بلاكبورن",
+          "flavors":{
+          "Epic Yogurt": "لبن رائع"
           }
         }
       }

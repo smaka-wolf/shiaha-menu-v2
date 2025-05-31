@@ -30,10 +30,10 @@
             height: 100%;
             object-fit: cover;
             transform: translateY(0); /* نبدل من -30% لـ 0 */
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.1s ease, transform 0.1s ease;
         }   
         .max-w-3xl {
-            transition: transform 0.5s ease;
+            transition: transform 0.1s ease;
         }      
         .card-content {
             max-height: 0;
@@ -88,14 +88,12 @@
                         class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('en')"
                     >
-                        <span>🇬🇧</span>
                         <span>English</span>
                     </button>
                     <button 
                         class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('ar')"
                     >
-                        <span>🇸🇦</span>
                         <span>العربية</span>
                     </button>
                 </div>
@@ -140,7 +138,7 @@
                 title: 'DARKSIDE',
                 description: 'Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.',
                 price: 'AED 220.00',
-                flavors: ['Needles', 'Lemon Blast', 'Cola', 'Supernova', 'Falling Star','Cream Soda']
+                flavors: ['Needles', 'Lemon Blast', 'Cola', 'Supernova', 'Falling Star','Cream Soda', 'Ice crame', 'Greyfrut']
             },
             starline: {
                 title: 'STARLINE',
@@ -152,13 +150,19 @@
                 title: 'MUSTHAVE',
                 description: 'Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.',
                 price: 'AED 220.00',
-                flavors: ['Ananas Shock', 'Melonade', 'Kiwi Smoothie', 'Vanilla', 'Garnet', 'Coconut', 'Raspberry', 'Epic Yoghurt']
+                flavors: ['Ananas Shock', 'Melonade', 'Kiwi Smoothie', 'Vanilla', 'Garnet', 'Coconut', 'Raspberry', 'PineApple Rings', 'Estragon', 'Pinacolada']
             },
             holster: {
                 title: 'HOLSTER',
                 description: 'Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.',
                 price: 'AED 220.00',
-                flavors: ['VIVA La Fiesta','Rocketman']
+                flavors: ['VIVA La Fiesta','Rocketman', 'Watermelon Punsh', 'Lemon Punsh', 'Unicorn']
+            },
+            blackburn: {
+                title: 'BLACKBURN',
+                description: 'Blackburn is a bold and innovative Russian shisha brand known for its intense flavors and dark leaf tobacco. Perfect for experienced smokers seeking rich, powerful, and long-lasting sessions',
+                price: 'AED 220.00',
+                flavors: ['Epic Yogurt','']
             }
         };
         // Keep a deep copy of original data for resetting

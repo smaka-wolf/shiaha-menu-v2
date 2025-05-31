@@ -149,14 +149,12 @@
                         class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('en')"
                     >
-                        <span>🇬🇧</span>
                         <span>English</span>
                     </button>
                     <button 
                         class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
                         onclick="switchLanguage('ar')"
                     >
-                        <span>🇸🇦</span>
                         <span>العربية</span>
                     </button>
                 </div>
@@ -350,44 +348,51 @@
                 const translations = await LanguageManager.loadTranslations(lang);
                 
                 if (translations) {
-                    // Update page title and price
-                    document.querySelector('h1').textContent = translations?.sections?.signature?.title || 'Signature Mix';
-                    document.querySelector('p.text-red-600').textContent = translations?.sections?.signature?.price || 'AED 350';
+        // Update page title and price
+        document.querySelector('h1').textContent = translations?.sections?.signature?.title || 'Signature Mix';
+        document.querySelector('p.text-red-600').textContent = translations?.sections?.signature?.price || 'AED 350';
 
-                    if (translations.flavors && translations.flavors['signature-mix']) {
-                        // Create a copy of signatureMixes with translated content
-                        const updatedMixes = signatureMixes.map(mix => {
-                            const translation = translations.flavors['signature-mix'][mix.title];
-                            if (translation) {
-                                return {
-                                    ...mix,
-                                    title: translation.name || mix.title,
-                                    description: translation.description || mix.description
-                                };
-                            }
-                            return mix;
-                        });
+        if (translations.flavors && translations.flavors['signature-mix']) {
+            // Create a copy of signatureMixes with translated content
+            const updatedMixes = signatureMixes.map(mix => {
+                const translation = translations.flavors['signature-mix'][mix.title];
+                if (translation) {
+                    return {
+                        ...mix,
+                        title: translation.name || mix.title,
+                        description: translation.description || mix.description
+                    };
+                }
+                return mix;
+            });
 
-                        // Repopulate cards with translated content
-                        populateCards(updatedMixes);
-                    } else {
-                        // Reset to English
-                        populateCards(signatureMixes);
-                    }
+            // Repopulate cards with translated content
+            populateCards(updatedMixes);
+        } else {
+            // Reset to English
+            populateCards(signatureMixes);
+        }
 
-                    // Update extra head text
-                    const extraHead = document.querySelector('div.py-2.flex.justify-between span:first-child');
-                    extraHead.textContent = translations?.common?.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
+        // Apply translations to elements with data-i18n attributes
+        LanguageManager.applyTranslations(translations);
 
-                    // Update footer text
-                    const footer = document.querySelector('footer');
-                    footer.textContent = translations?.common?.copyright || '© 2025 Blume Rodina. All rights reserved.';
+        // Update extra head text
+        const extraHead = document.querySelector('div.py-2.flex.justify-between span:first-child');
+        extraHead.textContent = translations?.common?.extra_head || (lang === 'ar' ? 'رأس إضافي' : 'Extra Head');
 
-                    // Update back button text
-                    const backButton = document.querySelector('button[aria-label="Back"]');
-                    if (backButton) {
-                        backButton.setAttribute('aria-label', (translations.common && translations.common.back) ? translations.common.back : 'Back');
-                    }
+        // Update footer text
+        const footer = document.querySelector('footer');
+        footer.textContent = translations?.common?.copyright || '© 2025 Blume Rodina. All rights reserved.';
+
+        // Update back button text and language button text
+        const backButton = document.querySelector('button[aria-label="Back"]');
+        if (backButton) {
+            backButton.setAttribute('aria-label', (translations.common && translations.common.back) ? translations.common.back : 'Back');
+        }
+        const currentLang = document.getElementById('currentLang');
+        if (currentLang) {
+            currentLang.textContent = lang.toUpperCase();
+        }
                 }
             } catch (error) {
                 console.error('Error updating content:', error);
