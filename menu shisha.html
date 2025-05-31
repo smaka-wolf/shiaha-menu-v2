@@ -2,6 +2,7 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>
    Shisha Menu
   </title>
@@ -13,17 +14,17 @@
   <!-- Lightbox CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <style>
+
    body {
       font-family: "Roboto", sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto; /* يمنع التمرير العمودي والأفقي */
+      height: 100%;
+
     }
-    /* خاص بـ Safari على iOS لتصليح scroll horizontal */
-   .scroll-touch {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto;
-  display: flex;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-   }
+   
    /* الوضع العادي */
 body {
   background-color: #fff;
@@ -81,7 +82,7 @@ body.dark-mode .rounded-md {
     <button aria-label="Back" onclick="window.location.href='index.html'" class="p-2 rounded-md bg-white shadow-md text-red-600 hover:text-red-700 transition">
      <i class="fas fa-chevron-left">
      </i>
-     <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+     <button id="dark-mode-toggle"  aria-label="Toggle Dark Mode">🌙</button>
 
     </button>
      <div class="flex space-x-2">
@@ -129,8 +130,7 @@ body.dark-mode .rounded-md {
    </h1>
 
 
-   <div class="scroll-container">
-  <div class="scroll-track">
+ <div class="scroll-track">
    <!--head image -->
    <div class="flex flex-nowrap gap-4 mb-8 px-4 py-2 justify-center overflow-x-hidden">
     <!-- Arabic -->
