@@ -55,6 +55,24 @@ body.dark-mode .rounded-md {
     66% { transform: translateX(-66.666%); }
     100% { transform: translateX(0); }
   }
+  a:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+.scroll-container {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  display: flex;
+  gap: 1rem;
+
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
+}
+
   </style>
  </head>
  <body class="bg-white min-h-screen p-4">
@@ -110,6 +128,9 @@ body.dark-mode .rounded-md {
     Shisha Menu
    </h1>
 
+
+   <div class="scroll-container">
+  <div class="scroll-track">
    <!--head image -->
    <div class="flex flex-nowrap gap-4 mb-8 px-4 py-2 justify-center overflow-x-hidden">
     <!-- Arabic -->
@@ -151,6 +172,8 @@ body.dark-mode .rounded-md {
       Signature Mix
     </span>
   </a>
+</div>
+ </div>
 </div>
 
  <!-- arabic style shisha  -->
