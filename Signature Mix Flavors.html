@@ -31,10 +31,10 @@
             height: 100%;
             object-fit: cover;
             transform: translateY(0); /* نبدل من -30% لـ 0 */
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.1s ease, transform 0.1s ease;
         }   
         .max-w-3xl {
-            transition: transform 0.5s ease;
+            transition: transform 0.1s ease;
         }      
         .card-content {
             max-height: 0;
@@ -540,7 +540,7 @@
             function handleEnd() {
                 isDragging = false;
                 // Resume auto-rotation after a short delay
-                setTimeout(resumeAutoRotation, 1000);
+                setTimeout();
             }
 
             // Add event listeners
@@ -552,7 +552,7 @@
             canvas.addEventListener('mouseup', handleEnd);
             // canvas.addEventListener('touchend', handleEnd);
             canvas.addEventListener('mouseleave', handleEnd);
-
+            
             // Start auto-rotation
             const chart = new Chart(ctx, {
                 type: 'doughnut',

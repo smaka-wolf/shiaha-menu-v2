@@ -11,7 +11,12 @@
         "Mint": "Mint",
         "Gum Cinnamon": "Gum Cinnamon",
         "Orange": "Orange",
-        "Lemon Mint": "Lemon Mint"
+        "Lemon Mint": "Lemon Mint",
+        "Watermelon": "Watermelon",
+        "Melon": "Melon",
+        "Peach": "Peach",
+        "Blueberry": "Blueberry"
+       
       }
     },
     "turkish-style": {
@@ -38,11 +43,7 @@
           "name": "Lady Killer",
           "description": "Melon, mango, berries, light mint, balanced sweetness with light coolness"
         },
-        "Watermelon": "Watermelon",
-        "Melon": "Melon",
-        "Peach": "Peach",
-        "Blueberry": "Blueberry",
-        "Sweet Melon": "Sweet Melon"
+        "Watermelon": "Watermelon"
       }
     },
     "russian-style": {
@@ -65,32 +66,31 @@
           "flavors": {
             "Blueberry Crumble": "Blueberry Crumble",
             "Belgium Waffles": "Belgium Waffles",
+            "Raspberry": "Raspberry",
             "Strawberry Millefeuille": "Strawberry Millefeuille",
-            "Banana": "Banana"
+            "Banana": "Banana",
+           "Pinacolada": "Pinacolada"
+
           }
         },
         "musthave": {
           "name": "Must Have",
           "flavors": {
-            "Ananas Shock": "Ananas Shock",
             "Melonade": "Melonade",
             "Kiwi Smoothie": "Kiwi Smoothie",
             "Vanilla": "Vanilla",
             "Garnet": "Garnet",
             "Coconut": "Coconut",
-            "Raspberry": "Raspberry",
             "PineApple Rings": "PineApple Rings",
-            "Estragon": "Estragon",
-            "Pinacolada": "Pinacolada"
-          }
+            "Rocketman": "Rocketman",
+            "Estragon": "Estragon"          }
         },
         "holster": {
           "name": "Holster",
           "flavors": {
             "VIVA La Fiesta": "VIVA La Fiesta",
-            "Rocketman": "Rocketman",
-            "Watermelon Punsh": "Watermelon Punsh",
-            "Lemon Punsh": "lemon Punsh",
+            "Watermelon Punch": "Watermelon Punch",
+            "Lemon Punch": "lemon Punch",
             "Unicorn": "Unicorn"
           }
         },

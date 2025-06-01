@@ -30,10 +30,10 @@
             height: 100%;
             object-fit: cover;
             transform: translateY(0); /* نبدل من -30% لـ 0 */
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.1s ease, transform 0.1s ease;
         }   
         .max-w-3xl {
-            transition: transform 0.5s ease;
+            transition: transform 0.1s ease;
         }      
         .modal {
             display: none;
@@ -135,10 +135,6 @@
                     <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="love66" onclick="showFlavorDetails('Love 66')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Love 66">Love 66</span></li>
                     <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="lady" onclick="showFlavorDetails('Lady Killer')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Lady Killer">Lady killer</span></li>
                     <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="watermelon" onclick="showFlavorDetails('Watermelon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Watermelon">Watermelon</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="melon" onclick="showFlavorDetails('Melon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Melon">Melon</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="peach" onclick="showFlavorDetails('Peach')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Peach">Peach</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="blueberry" onclick="showFlavorDetails('Blueberry')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Blueberry">Blueberry</span></li>
-                    <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="sweetmelon" onclick="showFlavorDetails('Sweet Melon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Sweet Melon">Sweet Melon</span></li>
                     <li class="py-2 flex justify-between text-lg items-center">
                         <span data-i18n="common.extra_head">Extra Head</span>
                         <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
@@ -184,6 +180,7 @@
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', async () => {
             await LanguageManager.initializeLanguage();
+            window.originalFlavorDetails = JSON.parse(JSON.stringify(flavorDetails));
             await updatePageContent(LanguageManager.getStoredLanguage());
         });
 
@@ -240,54 +237,34 @@
         // Flavor details data
         let flavorDetails = {
             istanbul: {
-                title: 'Istanbul Night Mix flavor',
+                title: 'Istanbul Night Mix ',
                 image: 'imag/istanbul night image.webp',
                 description: 'Blueberry, Red berry, Blackcurrant, A touch of balanced acidity with soft sweetness.'
             },
             marbella: {
-                title: 'Marbella Mix Flavor',
+                title: 'Marbella Mix ',
                 image: 'imag/marbella image.png',
                 description: 'Cherry, Caramel, Chocolate, The flavors resemble those of European sweets or chocolate desserts with fruits.'
             },
             lime: {
-                title: 'Lime Spice Peach Mix flavor',
+                title: 'Lime Spice Peach Mix ',
                 image: 'imag/lime space peach image.png',
                 description: 'Grilled Peaches, Lemon(Lime) A tangy and refreshing touch, Spices.'
             },
             love66: {
-                title: 'Love 66 Mix flavor',
+                title: 'Love 66 Mix ',
                 image: 'imag/love66 image.png',
                 description: 'Passion fruit, Honeydew Watermelon, Melon, Mint, Clear fruit sweetness with a slight chill.'
             },
             lady: {
-                title: 'Lady Killer Mix flavor',
+                title: 'Lady Killer Mix ',
                 image: 'imag/lady killer image.png',
                 description: 'Honeydew melon, Mango, Berries, Light Mint, Smooth sweetness balanced with a light coolness.'
             },
             watermelon: {
-                title: 'Watermelon flavor',
+                title: 'Watermelon ',
                 image: 'imag/watermelon.jpg',
-                description: 'Fresh watermelon with a perfect balance of sweetness, creating a refreshing and authentic taste experience.'
-            },
-            melon: {
-                title: 'Melon flavor',
-                image: 'imag/melon.jpg',
-                description: 'Sweet and aromatic melon blend, delivering a smooth and satisfying flavor profile.'
-            },
-            peach: {
-                title: 'Peach flavor',
-                image: 'imag/peash.avif',
-                description: 'Juicy peach essence with subtle sweetness, offering a true-to-fruit taste experience.'
-            },
-            blueberry: {
-                title: 'Blueberry flavor',
-                image: 'imag/blueberry.jpg',
-                description: 'Rich blueberry blend with a perfect balance of sweet and tart notes.'
-            },
-            sweetmelon: {
-                title: 'Sweet Melon flavor',
-                image: 'imag/sweetmelon.jpg',
-                description: 'Extra sweet honeydew melon flavor with enhanced sweetness and smooth finish.'
+                description: 'Fresh Serbetli watermelon with a smooth and balanced flavor, combining natural sweetness and fruity freshness.'
             }
            
         };
@@ -330,11 +307,7 @@
                 lime: 'Lime Spice Peach',
                 love66: 'Love 66',
                 lady: 'Lady Killer',
-                watermelon: 'Watermelon',
-                melon: 'Melon',
-                peach: 'Peach',
-                blueberry: 'Blueberry',
-                sweetmelon: 'Sweet Melon'
+                watermelon: 'Watermelon'
             };
             document.querySelectorAll('ul.divide-y > li[data-flavor-key]').forEach(li => {
                 const key = li.getAttribute('data-flavor-key');

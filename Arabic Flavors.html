@@ -30,10 +30,10 @@
                 height: 100%;
                 object-fit: cover;
                 transform: translateY(0); /* نبدل من -30% لـ 0 */
-                transition: opacity 0.5s ease, transform 0.5s ease;
+                transition: opacity 0.1s ease, transform 0.1s ease;
             }   
             .max-w-3xl {
-                transition: transform 0.5s ease;
+                transition: transform 0.1s ease;
             }      
             .modal {
                 display: none;
@@ -128,15 +128,17 @@
                 <div class="text-left text-gray-800 text-sm">
                     <h2 data-i18n="flavors.arabicStyleTitle" class="font-semibold mb-3">Arabic Nights Flavors</h2>
                     <ul class="divide-y divide-red-300">
-                        <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="grapeMint" onclick="showFlavorDetails('grapeMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.grapeMint">Grape Mint</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="grape" onclick="showFlavorDetails('grape')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.grape">Grape</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="doubleApple" onclick="showFlavorDetails('doubleApple')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.doubleApple">Double Apple</span></li>
-                        <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="gum" onclick="showFlavorDetails('gum')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gum">Gum</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="gumMint" onclick="showFlavorDetails('gumMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gumMint">Gum Mint</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="mint" onclick="showFlavorDetails('mint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.mint">Mint</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="gumCinnamon" onclick="showFlavorDetails('gumCinnamon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.gumCinnamon">Gum Cinnamon</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="orange" onclick="showFlavorDetails('orange')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.orange">Orange</span></li>
                         <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="lemonMint" onclick="showFlavorDetails('lemonMint')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.lemonMint">Lemon Mint</span></li>
+                        <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="watermelon" onclick="showFlavorDetails('watermelon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Watermelon">Watermelon</span></li>
+                        <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="melon" onclick="showFlavorDetails('melon')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Melon">Melon</span></li>
+                        <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="peach" onclick="showFlavorDetails('peach')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Peach">Peach</span></li>
+                        <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" data-flavor-key="blueberry" onclick="showFlavorDetails('blueberry')"><i class="fas fa-eye mr-2"></i><span data-i18n="flavors.Blueberry">Blueberry</span></li>
                         <li class="py-2 flex justify-between text-lg items-center">
                             <span data-i18n="common.extra_head">Extra Head</span>
                             <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
@@ -239,52 +241,62 @@
 
             // Flavor details data
             const flavorDetails = {
-                grapeMint: {
-                    title: 'Grape Mint Mix flavor',
-                    image: 'imag/grapemint.jpg',
-                    description: 'Refreshing grape flavor with a cool minty finish.'
-                },
                 grape: {
-                    title: 'Grape flavor',
+                    title: 'Grape ',
                     image: 'imag/grape.jpg',
                     description: 'Sweet and juicy grape flavor with a rich aroma.'
                 },
                 doubleApple: {
-                    title: 'Double Apple flavor',
+                    title: 'Double Apple ',
                     image: 'imag/doubleApple.jpg',
                     description: 'Classic double apple flavor with a perfect balance of sweetness and tartness.'
                 },
-                gum: {
-                    title: 'Gum flavor',
-                    image: 'imag/gum.webp',
-                    description: 'Sweet and fresh bubblegum flavor with a smooth finish.'
-                },
                 gumMint: {
-                    title: 'Gum Mint Mix flavor',
+                    title: 'Gum Mint Mix ',
                     image: 'imag/gumMint.png',
                     description: 'Bubblegum flavor with a refreshing mint twist.'
                 },
                 mint: {
-                    title: 'Mint flavor',
+                    title: 'Mint ',
                     image: 'imag/mint.jpg',
                     description: 'Cool and invigorating mint flavor for a refreshing experience.'
                 },
                 gumCinnamon: {
-                    title: 'Gum Cinnamon Mix flavor',
+                    title: 'Gum Cinnamon Mix ',
                     image: 'imag/Cinnamon.webp',
                     description: 'Sweet bubblegum flavor with a hint of warm cinnamon spice.'
                 },
                 orange: {
-                    title: 'Orange flavor',
+                    title: 'Orange ',
                     image: 'imag/orange.jpg',
                     description: 'Zesty and sweet orange flavor with a citrus punch.'
                 },
                 lemonMint: {
-                    title: 'Lemon Mint Mix flavor',
+                    title: 'Lemon Mint Mix ',
                     image: 'imag/lemonmint.jpg',
                     description: 'Tangy lemon flavor combined with cool mint for a refreshing blend.'
+                },
+                 watermelon: {
+                    title: 'Watermelon ',
+                    image: 'imag/watermelon.jpg',
+                    description: 'The flavor of al fakhir watermelon offers a natural and refreshing taste, with a perfect balance between sweetness and coolness.'
+                },
+                 melon: {
+                    title: 'Melon ',
+                    image: 'imag/melon.jpg',
+                    description: 'Sweet and aromatic melon blend, delivering a smooth and satisfying flavor profile.'
+                },
+                 peach: {
+                    title: 'Peach ',
+                    image: 'imag/peash.avif',
+                    description: 'Juicy peach essence with subtle sweetness, offering a true-to-fruit taste experience.'
+                },
+                 blueberry: {
+                    title: 'Blueberry ',
+                    image: 'imag/blueberry.jpg',
+                    description: 'Rich blueberry blend with a perfect balance of sweet and tart notes.'
                 }
-            };
+              };
 
             // Update page content based on selected language
             async function updatePageContent(lang) {
@@ -319,7 +331,6 @@
                 const flavorTranslations = translations.flavors && translations.flavors['arabic-style'] ? translations.flavors['arabic-style'].flavors : null;
                 // Map camelCase keys to translation keys with spaces and capitalization
                 const keyMap = {
-                    grapeMint: 'Grape Mint',
                     grape: 'Grape',
                     doubleApple: 'Double Apple',
                     gum: 'Gum',
@@ -327,7 +338,11 @@
                     mint: 'Mint',
                     gumCinnamon: 'Gum Cinnamon',
                     orange: 'Orange',
-                    lemonMint: 'Lemon Mint'
+                    lemonMint: 'Lemon Mint',
+                    watermelon: 'Watermelon',
+                    melon: 'Melon',
+                    peach: 'Peach',
+                    blueberry: 'Blueberry'
                 };
                 document.querySelectorAll('ul.divide-y > li[data-flavor-key]').forEach(li => {
                     const key = li.getAttribute('data-flavor-key');
@@ -393,4 +408,4 @@
             &copy; 2025 Blume Rodina. All rights reserved.
         </footer>
     </body>
-    </html>
+    </html> 

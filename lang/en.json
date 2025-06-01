@@ -39,6 +39,12 @@
       "link": "Signature Mix Flavors"
     }
   },
+   "common": {
+    "back": "Back",
+    "extra_head": "Extra head",
+    "price_prefix": "AED",
+    "copyright": "2025 Blume Rodina. All rights reserved."
+  },
   "search": {
     "placeholder": "Search flavors...",
     "button": "Search"
@@ -49,7 +55,6 @@
   },
   "updatePage": {
     "welcome": "Welcome!",
-    "loading": "Loading update information...",
     "changelogTitle": "Changelog",
     "backToMain": "Back to Main Site",
     "noUpdates": "No updates available currently.",
