@@ -8,7 +8,6 @@ const urlsToCache = [
   `./Arabic Flavors.html`,
   `./Turkish Flavors.html`,
   `./Signature Mix Flavors.html`,
-  `./test .html`,
   `./update-vercion.html`,
   `./update-log.json`,
   `./menu.js`,
