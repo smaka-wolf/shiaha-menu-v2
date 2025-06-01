@@ -104,6 +104,9 @@ self.addEventListener("fetch", (event) => {
     caches.match(event.request)
       .then((response) => {
         return response || fetch(event.request).then((fetchResponse) => {
+          if (!fetchResponse || !fetchResponse.ok) {
+            return fetchResponse;
+          }
           return caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, fetchResponse.clone());
             return fetchResponse;
