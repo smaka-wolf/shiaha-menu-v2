@@ -1,5 +1,10 @@
 [
    {
+    "version": "6.9.2",
+    "date": "2024-06-03",
+    "description": "Fixed bugs and enhanced UI responsiveness."
+  },
+   {
     "version": "6.9.1",
     "date": "2024-06-01",
     "description": "New flavors have been successfully added to the Russian Flavors section. Enjoy exploring the latest additions!."
