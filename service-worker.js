@@ -1,10 +1,10 @@
-const CACHE_NAME = "blume-menu-cache-v6.9.2";
+const CACHE_NAME = "blume-menu-cache-v6.9.3";
 const BASE_PATH = "";
 const urlsToCache = [ 
   `./`,
   `./index.html`,
   `./menu shisha.html`,
-  `./rusian flavors.html`,
+  `./russian-flavors.html`,
   `./Arabic Flavors.html`,
   `./Turkish Flavors.html`,
   `./Signature Mix Flavors.html`,
