@@ -3,7 +3,6 @@
       "title": "Arabic Style",
       "description": "Traditional Arabic Flavors",
       "flavors": {
-        "Grape Mint": "Grape Mint",
         "Grape": "Grape",
         "Double Apple": "Double Apple",
         "Gum": "Gum",
@@ -43,7 +42,7 @@
           "name": "Lady Killer",
           "description": "Melon, mango, berries, light mint, balanced sweetness with light coolness"
         },
-        "Watermelon": "Watermelon"
+        "Watermelon": "Watermelon tk"
       }
     },
     "russian-style": {
@@ -83,7 +82,8 @@
             "Coconut": "Coconut",
             "PineApple Rings": "PineApple Rings",
             "Rocketman": "Rocketman",
-            "Estragon": "Estragon"          }
+            "Estragon": "Estragon",
+            "Pinkman": "Pinkman"        }
         },
         "holster": {
           "name": "Holster",

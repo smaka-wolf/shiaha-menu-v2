@@ -6,7 +6,6 @@ let currentLanguage = 'en';
 // Flavor data with sections
 const flavors = [
   // Arabic Style
-  { name: "Grape Mint", section: "arabic-style", page: "Arabic Flavors.html" },
   { name: "Grape", section: "arabic-style", page: "Arabic Flavors.html" },
   { name: "Double Apple", section: "arabic-style", page: "Arabic Flavors.html" },
   { name: "Gum", section: "arabic-style", page: "Arabic Flavors.html" },
@@ -15,6 +14,11 @@ const flavors = [
   { name: "Gum Cinnamon", section: "arabic-style", page: "Arabic Flavors.html" },
   { name: "Orange", section: "arabic-style", page: "Arabic Flavors.html" },
   { name: "Lemon Mint", section: "arabic-style", page: "Arabic Flavors.html" },
+  { name: "Watermelon", section: "arabic-style", page: "Arabic Flavors.html" },
+  { name: "Melon", section: "arabic-style", page: "Arabic Flavors.html" },
+  { name: "Peach", section: "arabic-style", page: "Arabic Flavors.html" },
+  { name: "Blueberry", section: "arabic-style", page: "Arabic Flavors.html" },
+  
 
   // Turkish Style
   { name: "Istanbul Night", section: "turkish-style", page: "Turkish Flavors.html" },
@@ -22,34 +26,43 @@ const flavors = [
   { name: "Lime Spice Peach", section: "turkish-style", page: "Turkish Flavors.html" },
   { name: "Love 66", section: "turkish-style", page: "Turkish Flavors.html" },
   { name: "Lady Killer", section: "turkish-style", page: "Turkish Flavors.html" },
-  { name: "Watermelon", section: "turkish-style", page: "Turkish Flavors.html" },
-  { name: "Melon", section: "turkish-style", page: "Turkish Flavors.html" },
-  { name: "Peach", section: "turkish-style", page: "Turkish Flavors.html" },
-  { name: "Blueberry", section: "turkish-style", page: "Turkish Flavors.html" },
-  { name: "Sweet Melon", section: "turkish-style", page: "Turkish Flavors.html" },
+  { name: "Watermelon tk", section: "turkish-style", page: "Turkish Flavors.html" },
+ 
 
-  // Russian Style - Darkside
+  // Rusian Style - Darkside
   { name: "Needles", section: "russian-style", page: "rusian flavors.html" },
   { name: "Lemon Blast", section: "russian-style", page: "rusian flavors.html" },
   { name: "Cola", section: "russian-style", page: "rusian flavors.html" },
   { name: "Supernova", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Cream soda", section: "russian-style", page: "rusian flavors.html" },
   { name: "Falling Star", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Ice crame", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Greyfrut", section: "russian-style", page: "rusian flavors.html" },
   
-  // Russian Style - Starline
+  // Rusian Style - Starline
   { name: "Blueberry Crumble", section: "russian-style", page: "rusian flavors.html" },
   { name: "Belgium Waffles", section: "russian-style", page: "rusian flavors.html" },
   { name: "Strawberry Millefeuille", section: "russian-style", page: "rusian flavors.html" },
   { name: "Banana", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Respberry", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Pinacolada", section: "russian-style", page: "rusian flavors.html" },
   
-  // Russian Style - Musthave
-  { name: "Ananas Shock", section: "russian-style", page: "rusian flavors.html" },
+  // Rusian Style - Musthave
   { name: "Melonade", section: "russian-style", page: "rusian flavors.html" },
   { name: "Kiwi Smoothie", section: "russian-style", page: "rusian flavors.html" },
   { name: "Vanilla", section: "russian-style", page: "rusian flavors.html" },
   { name: "Garnet", section: "russian-style", page: "rusian flavors.html" },
   { name: "Coconut", section: "russian-style", page: "rusian flavors.html" },
-  { name: "Raspberry", section: "russian-style", page: "rusian flavors.html" },
-  { name: "Epic Yoghurt", section: "russian-style", page: "rusian flavors.html" },
+  { name: "PineApple Rins", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Estragon", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Rocketman", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Pinkman", section: "russian-style", page: "rusian flavors.html" },
+
+  // Rusian Style - HOLSTER
+  { name: "VIVA La fiesta", section: "russian-style", page: "rusian flavors.html" },
+  { name: "watermelon Punch", section: "russian-style", page: "rusian flavors.html" },
+  { name: "lemon Punch", section: "russian-style", page: "rusian flavors.html" },
+  { name: "Unicron", section: "russian-style", page: "rusian flavors.html" },
 
   // Signature Mix
   { name: "Blume", section: "signature-mix", page: "Signature Mix Flavors.html", description: "Lady killer 25%, Watermelon 25%, Blueberry 50%" },

@@ -247,8 +247,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 searchInput.classList.add('hidden');
   
                 // Navigate to corresponding flavor page after scroll
+                const pageMap = {
+                  "arabic-style": "Arabic Flavors.html",
+                  "turkish-style": "Turkish Flavors.html",
+                  "russian-style": "rusian Flavors.html",
+                  "signature-mix": "Signature Mix Flavors.html"
+                };
                 setTimeout(() => {
-                  if (result.item.page) {
+                  if (result.item.section && pageMap[result.item.section]) {
+                    window.location.href = pageMap[result.item.section];
+                  } else if (result.item.page) {
                     window.location.href = result.item.page;
                   }
                 }, 500);
