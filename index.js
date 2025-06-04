@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const pageMap = {
                   "arabic-style": "Arabic Flavors.html",
                   "turkish-style": "Turkish Flavors.html",
-                  "russian-style": "rusian Flavors.html",
+                  "russian-style": "rusian flavors.html",
                   "signature-mix": "Signature Mix Flavors.html"
                 };
                 setTimeout(() => {
