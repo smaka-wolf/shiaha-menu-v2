@@ -34,7 +34,7 @@ const urlsToCache = [
   `./imag/blume5 mix image.png`,
   `./imag/Cinnamon.png`,
   `./imag/doubleApple.png`,
-  `./imag/GRAPE.png`,
+  `./imag/grape.png`,
   `./imag/GUM-MINT.png`,
   `./imag/hookah image.jpg`,
   `./imag/hookah2 image.jpg`,
