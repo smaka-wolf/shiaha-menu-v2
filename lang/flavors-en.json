@@ -1,145 +1,185 @@
 {
-    "arabic-style": {
-      "title": "Arabic Style",
-      "description": "Traditional Arabic Flavors",
-      "flavors": {
-        "Grape": "Grape",
-        "Double Apple": "Double Apple",
-        "Gum": "Gum",
-        "Gum Mint": "Gum Mint",
-        "Mint": "Mint",
-        "Gum Cinnamon": "Gum Cinnamon",
-        "Orange": "Orange",
-        "Lemon Mint": "Lemon Mint",
-        "Watermelon": "Watermelon",
-        "Melon": "Melon",
-        "Peach": "Peach",
-        "Blueberry": "Blueberry"
-       
-      }
-    },
-    "turkish-style": {
-      "title": "Turkish Style",
-      "description": "Premium Turkish Flavors",
-      "flavors": {
-        "Istanbul Night": {
-          "name": "Istanbul Night",
-          "description": "Blueberry, red berries, black currant, with a touch of balanced sourness and smooth sweetness"
+  "arabic-style": {
+    "title": "Arabic Style",
+    "description": "Traditional Arabic Flavors",
+    "flavors": {
+      "Grape": "Grape",
+      "Double Apple": "Double Apple",
+      "Gum": "Gum",
+      "Gum Mint": "Gum Mint",
+      "Mint": "Mint",
+      "Gum Cinnamon": "Gum Cinnamon",
+      "Orange": "Orange",
+      "Lemon Mint": "Lemon Mint",
+      "Watermelon": "Watermelon",
+      "Melon": "Melon",
+      "Peach": "Peach",
+      "Blueberry": "Blueberry"
+    }
+  },
+  "turkish-style": {
+    "title": "Turkish Style",
+    "description": "Premium Turkish Flavors",
+    "flavors": {
+      "Istanbul Night": {
+        "name": "Istanbul Night",
+        "description": "Blueberry, red berries, black currant, with a touch of balanced sourness and smooth sweetness"
+      },
+      "Marbella": {
+        "name": "Marbella",
+        "description": "Cherry, caramel, chocolate, flavors reminiscent of European desserts or chocolate confections with fruits"
+      },
+      "Lime Spice Peach": {
+        "name": "Lime Spice Peach",
+        "description": "Roasted peach, lime, refreshing touch, spices"
+      },
+      "Love 66": {
+        "name": "Love 66",
+        "description": "Passion fruit, watermelon, melon, mint, pure fruit sweetness with a light coolness"
+      },
+      "Lady Killer": {
+        "name": "Lady Killer",
+        "description": "Melon, mango, berries, light mint, balanced sweetness with light coolness"
+      },
+      "Watermelon": "Watermelon tk"
+    }
+  },
+  "russian-style": {
+    "brands": {
+      "darkside": {
+        "name": "Darkside",
+        "description": "Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.",
+        "flavors": {
+          "Needles": "Needles",
+          "Lemon Blast": "Lemon Blast",
+          "Cola": "Cola",
+          "Supernova": "Supernova",
+          "Falling Star": "Falling Star",
+          "Cream Soda": "Cream Soda",
+          "Ice crame": "Ice crame",
+          "Greyfrut": "Greyfrut"
         },
-        "Marbella": {
-          "name": "Marbella",
-          "description": "Cherry, caramel, chocolate, flavors reminiscent of European desserts or chocolate confections with fruits"
+        "flavorsDescription": {
+          "Needles": "A refreshing pine flavor.",
+          "Lemon Blast": "A strong lemon flavor.",
+          "Cola": "The classic cola flavor.",
+          "Supernova": "A cool and refreshing mint flavor.",
+          "Falling Star": "A sweet and fruity flavor.",
+          "Cream Soda": "A sweet and creamy flavor.",
+          "Ice crame": "A sweet and creamy ice cream flavor.",
+          "Greyfrut": "A tangy grapefruit flavor."
+        }
+      },
+      "starline": {
+        "name": "Starline",
+        "description": "Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.",
+        "flavors": {
+          "Blueberry Crumble": "Blueberry Crumble",
+          "Belgium Waffles": "Belgium Waffles",
+          "Raspberry": "Raspberry",
+          "Strawberry Millefeuille": "Strawberry Millefeuille",
+          "Banana": "Banana",
+          "Pinacolada": "Pinacolada"
         },
-        "Lime Spice Peach": {
-          "name": "Lime Spice Peach",
-          "description": "Roasted peach, lime, refreshing touch, spices"
+        "flavorsDescription": {
+          "Blueberry Crumble": "A sweet and fruity flavor.",
+          "Belgium Waffles": "A sweet and savory flavor.",
+          "Strawberry Millefeuille": "A sweet and creamy flavor.",
+          "Raspberry": "A sweet and tart flavor.",
+          "Pinacolada": "A tropical coconut and pineapple flavor.",
+          "Banana": "The classic banana flavor."
+        }
+      },
+      "musthave": {
+        "name": "Must Have",
+        "description": "Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.",
+        "flavors": {
+          "Melonade": "Melonade",
+          "Kiwi Smoothie": "Kiwi Smoothie",
+          "Vanilla": "Vanilla",
+          "Garnet": "Garnet",
+          "Coconut": "Coconut",
+          "PineApple Rings": "PineApple Rings",
+          "Rocketman": "Rocketman",
+          "Estragon": "Estragon",
+          "Pinkman": "Pinkman"
         },
-        "Love 66": {
-          "name": "Love 66",
-          "description": "Passion fruit, watermelon, melon, mint, pure fruit sweetness with a light coolness"
+        "flavorsDescription": {
+          "Melonade": "A refreshing melon flavor.",
+          "Kiwi Smoothie": "A sweet and tangy kiwi flavor.",
+          "Vanilla": "The classic vanilla flavor.",
+          "Garnet": "A sweet and sour pomegranate flavor.",
+          "Coconut": "The classic coconut flavor.",
+          "PineApple Rings": "A sweet and tangy pineapple flavor.",
+          "Estragon": "A unique and herbal flavor.",
+          "Rocketman": "A sweet and fruity flavor.",
+          "Pinkman": "A sweet and fruity flavor."
+        }
+      },
+      "holster": {
+        "name": "Holster",
+        "description": "Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.",
+        "flavors": {
+          "VIVA La Fiesta": "VIVA La Fiesta",
+          "Watermelon Punch": "Watermelon Punch",
+          "Lemon Punch": "lemon Punch",
+          "Unicorn": "Unicorn"
         },
-        "Lady Killer": {
-          "name": "Lady Killer",
-          "description": "Melon, mango, berries, light mint, balanced sweetness with light coolness"
+        "flavorsDescription": {
+          "VIVA La Fiesta": "A sweet and fruity flavor.",
+          "Watermelon Punch": "A refreshing watermelon flavor.",
+          "Lemon Punch": "A tangy lemon flavor.",
+          "Unicorn": "A sweet and mysterious flavor."
+        }
+      },
+      "blackburn": {
+        "name": "Blackburn",
+        "description": "Blackburn is a bold and innovative Russian shisha brand known for its intense flavors and dark leaf tobacco. Perfect for experienced smokers seeking rich, powerful, and long-lasting sessions",
+        "flavors": {
+          "Epic Yogurt": "Epic Yogurt"
         },
-        "Watermelon": "Watermelon tk"
-      }
-    },
-    "russian-style": {
-      "brands": {
-        "darkside": {
-          "name": "Darkside",
-          "flavors": {
-            "Needles": "Needles",
-            "Lemon Blast": "Lemon Blast",
-            "Cola": "Cola",
-            "Supernova": "Supernova",
-            "Falling Star": "Falling Star",
-            "Cream Soda": "Cream Soda",
-            "Ice crame": "Ice crame",
-            "Greyfrut": "Greyfrut"
-          }
-        },
-        "starline": {
-          "name": "Starline",
-          "flavors": {
-            "Blueberry Crumble": "Blueberry Crumble",
-            "Belgium Waffles": "Belgium Waffles",
-            "Raspberry": "Raspberry",
-            "Strawberry Millefeuille": "Strawberry Millefeuille",
-            "Banana": "Banana",
-           "Pinacolada": "Pinacolada"
-
-          }
-        },
-        "musthave": {
-          "name": "Must Have",
-          "flavors": {
-            "Melonade": "Melonade",
-            "Kiwi Smoothie": "Kiwi Smoothie",
-            "Vanilla": "Vanilla",
-            "Garnet": "Garnet",
-            "Coconut": "Coconut",
-            "PineApple Rings": "PineApple Rings",
-            "Rocketman": "Rocketman",
-            "Estragon": "Estragon",
-            "Pinkman": "Pinkman"        }
-        },
-        "holster": {
-          "name": "Holster",
-          "flavors": {
-            "VIVA La Fiesta": "VIVA La Fiesta",
-            "Watermelon Punch": "Watermelon Punch",
-            "Lemon Punch": "lemon Punch",
-            "Unicorn": "Unicorn"
-          }
-        },
-        "blackburn": {
-          "name": "Blackburn",
-          "flavors": {
-            "Epic Yogurt": "Epic Yogurt"
-
-          }
+        "flavorsDescription": {
+          "Epic Yogurt": "A sweet and fruity flavor."
         }
       }
+    }
+  },
+  "signature-mix": {
+    "Blume": {
+      "name": "Blume",
+      "description": "Lady killer 25%, Watermelon 25%, Blueberry 50%"
     },
-    "signature-mix": {
-      "Blume": {
-        "name": "Blume",
-        "description": "Lady killer 25%, Watermelon 25%, Blueberry 50%"
-      },
-      "Luxuria": {
-        "name": "Luxuria",
-        "description": "Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml"
-      },
-      "Leonardo": {
-        "name": "Leonardo",
-        "description": "Gum Mint 20%, Orange 30%, Vanilla 50%"
-      },
-      "Exotic Dreams": {
-        "name": "Exotic Dreams",
-        "description": "Melon 40%, Banana 40%, Coconut 20%"
-      },
-      "Moonlight": {
-        "name": "Moonlight",
-        "description": "Falling Star 40%, Istanbul Night 50%, SuperNova 10%"
-      },
-      "Love Berry": {
-        "name": "Love Berry",
-        "description": "Alternative Cherry 40%, Needles 20%, Pomegranate 40%"
-      },
-      "Mr. AXA": {
-        "name": "Mr. AXA",
-        "description": "Melon 50%, Melonade 45%, SuperNova 5%"
-      },
-      "Grandmother Cake": {
-        "name": "Grandmother Cake",
-        "description": "Belgium Waffles 20%, Melonade 20%, Blueberry Crumble 60%"
-      },
-      "Olala": {
-        "name": "Olala",
-        "description": "Cola 25%, Lemon Mint 75%, Ice water"
-      }
+    "Luxuria": {
+      "name": "Luxuria",
+      "description": "Kiwi Smoothie 40%, Grape Mint 60%, Kiwi Juice 250 Ml"
+    },
+    "Leonardo": {
+      "name": "Leonardo",
+      "description": "Gum Mint 20%, Orange 30%, Vanilla 50%"
+    },
+    "Exotic Dreams": {
+      "name": "Exotic Dreams",
+      "description": "Melon 40%, Banana 40%, Coconut 20%"
+    },
+    "Moonlight": {
+      "name": "Moonlight",
+      "description": "Falling Star 40%, Istanbul Night 50%, SuperNova 10%"
+    },
+    "Love Berry": {
+      "name": "Love Berry",
+      "description": "Alternative Cherry 40%, Needles 20%, Pomegranate 40%"
+    },
+    "Mr. AXA": {
+      "name": "Mr. AXA",
+      "description": "Melon 50%, Melonade 45%, SuperNova 5%"
+    },
+    "Grandmother Cake": {
+      "name": "Grandmother Cake",
+      "description": "Belgium Waffles 20%, Melonade 20%, Blueberry Crumble 60%"
+    },
+    "Olala": {
+      "name": "Olala",
+      "description": "Cola 25%, Lemon Mint 75%, Ice water"
     }
   }
-  
+}

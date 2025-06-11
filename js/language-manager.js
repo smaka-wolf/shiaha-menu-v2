@@ -102,18 +102,32 @@ const LanguageManager = {
     return key.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : null, obj);
   }
 
-  // Apply translations to page elements by replacing text content only
-  LanguageManager.applyTranslations = function(translations) {
+// Apply translations to page elements
+LanguageManager.applyTranslations = function(translations) {
     if (!translations) return;
-    // For each element with data-i18n attribute, get nested translation value and replace text content
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      const translation = getNestedValue(translations, key);
-      if (typeof translation === 'string') {
-        el.textContent = translation;
-      }
+        const key = el.getAttribute('data-i18n');
+        let translation = getNestedValue(translations, key);
+
+        if (translation !== null) {
+            if (el.tagName === 'IMG' && el.hasAttribute('src')) {
+                // Handle image translations (if needed)
+                el.src = translation;
+            } else if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
+                // Handle input placeholder translations
+                el.placeholder = translation;
+            } else if (el.hasAttribute('data-translate-attribute')) {
+                // Handle translations for other attributes
+                const attribute = el.getAttribute('data-translate-attribute');
+                el.setAttribute(attribute, translation);
+            } else {
+                // Default: replace text content
+                el.textContent = translation;
+            }
+        }
     });
-  };
+};
 
   // Export for use in other files
   window.LanguageManager = LanguageManager;

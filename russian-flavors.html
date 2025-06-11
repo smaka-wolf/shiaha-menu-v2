@@ -57,11 +57,42 @@
         .toggle-icon.open {
             transform: rotate(180deg);
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #aaa;
+        }
     </style>
 </head>
 <body class="bg-white min-h-screen">
     <div class="shisha-image-wrapper">
-<img 
+        <img 
             src="imag/roket image.webp"
             alt="Decorative image of a shisha pipe with golden background"
             class="shisha-image"
@@ -92,8 +123,7 @@
                     </button>
                     <button 
                         class="w-full px-3 py-2 text-left text-sm text-red-700 hover:bg-gray-100 flex items-center space-x-2"
-                        onclick="switchLanguage('ar')"
-                    >
+                        onclick="switchLanguage('ar')">
                         <span>العربية</span>
                     </button>
                 </div>
@@ -107,8 +137,29 @@
             <p class="text-red-600 text-lg mb-12">AED 220</p>
             <div class="text-left text-gray-800 text-sm">
                 <div class="space-y-4 px-4 pb-20" id="cardsContainer">
-                    <!-- Cards will be populated here -->
+                    <h2 data-i18n="flavors.russianStyleTitle" class="font-semibold mb-3">Russian Flavors</h2>
+                    <ul class="divide-y divide-red-300">
+                        
+                        <li class="py-2 flex justify-between text-lg items-center">
+                            <span data-i18n="common.extra_head">Extra Head</span>
+                            <span class="text-red-600 text-lg font-normal">+AED 70.00</span>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="flavorModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content bg-white w-11/12 max-w-lg mx-auto my-auto rounded-xl shadow-xl p-6">
+            <div class="relative">
+                <button class="close-button" onclick="closeModal(event, true)">
+                    <i class="fas fa-times text-red-600"></i>
+                </button>
+                <img id="flavorImage" src="" alt="" class="w-full h-80 object-cover rounded-lg mb-4">
+                <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
+                <p id="flavorDescription" class="text-gray-700 text-lg"></p>
             </div>
         </div>
     </div>
@@ -132,38 +183,103 @@
     <script src="./js/app.js?v=5"></script>
     <script src="js/language-manager.js?v=5"></script>
     <script>
+        // Flavor Key Map
+        const flavorKeyMap = {
+            'Needles': 'Needles',
+            'Lemon Blast': 'Lemon Blast',
+            'Cola': 'Cola',
+            'Supernova': 'Supernova',
+            'Falling Star': 'Falling Star',
+            'Cream Soda': 'Cream Soda',
+            'Ice crame': 'Ice crame',
+            'Greyfrut': 'Greyfrut',
+            'Blueberry Crumble': 'Blueberry Crumble',
+            'Belgium Waffles': 'Belgium Waffles',
+            'Strawberry Millefeuille': 'Strawberry Millefeuille',
+            'Banana': 'Banana',
+            'Raspberry': 'Raspberry',
+            'Pinacolada': 'Pinacolada',
+            'Melonade': 'Melonade',
+            'Kiwi Smoothie': 'Kiwi Smoothie',
+            'Vanilla': 'Vanilla',
+            'Garnet': 'Garnet',
+            'Coconut': 'Coconut',
+            'PineApple Rings': 'PineApple Rings',
+            'Estragon': 'Estragon',
+            'Rocketman': 'Rocketman',
+            'Pinkman': 'Pinkman',
+            'VIVA La Fiesta': 'VIVA La Fiesta',
+            'Watermelon Punch': 'Watermelon Punch',
+            'Lemon Punch': 'Lemon Punch',
+            'Unicorn': 'Unicorn',
+            'Epic Yogurt': 'Epic Yogurt'
+        };
+
         // Russian brands data
         const russianBrands = {
             darkside: {
                 title: 'DARKSIDE',
                 description: 'Darkside is a premium Russian shisha tobacco brand known for its strong flavors and rich, intense smoking experience. Perfect for experienced users.',
                 price: 'AED 220.00',
-                flavors: ['Needles', 'Lemon Blast', 'Cola', 'Supernova', 'Falling Star','Cream Soda', 'Ice crame', 'Greyfrut']
+                flavors: [
+                    { name: 'Needles', description: 'A refreshing pine flavor.', image: 'imag/melon.png' },
+                    { name: 'Lemon Blast', description: 'A strong lemon flavor.', image: 'imag/Lemon Blast.jpeg' },
+                    { name: 'Cola', description: 'The classic cola flavor.', image: 'imag/Cola.jpeg' },
+                    { name: 'Supernova', description: 'A cool and refreshing mint flavor.', image: 'imag/Supernova.jpeg' },
+                    { name: 'Falling Star', description: 'A sweet and fruity flavor.', image: 'imag/Falling Star.jpeg' },
+                    { name: 'Cream Soda', description: 'A sweet and creamy flavor.', image: 'imag/Cream Soda.jpeg' },
+                    { name: 'Ice crame', description: 'A sweet and creamy ice cream flavor.', image: 'imag/Ice crame.jpeg' },
+                    { name: 'Greyfrut', description: 'A tangy grapefruit flavor.', image: 'imag/Greyfrut.jpeg' }
+                ]
             },
             starline: {
                 title: 'STARLINE',
                 description: 'Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.',
                 price: 'AED 220.00',
-                flavors: ['Blueberry Crumble', 'Belgium Waffles', 'Strawberry Millefeuille', 'Banana', 'Raspberry', 'Pinacolada']
+                flavors: [
+                    { name: 'Blueberry Crumble', description: 'A sweet and fruity flavor.', image: 'imag/Blueberry Crumble.jpeg' },
+                    { name: 'Belgium Waffles', description: 'A sweet and savory flavor.', image: 'imag/Belgium Waffles.jpeg' },
+                    { name: 'Strawberry Millefeuille', description: 'A sweet and creamy flavor.', image: 'imag/Strawberry Millefeuille.jpeg' },
+                    { name: 'Banana', description: 'The classic banana flavor.', image: 'imag/Banana.jpeg' },
+                    { name: 'Raspberry', description: 'A sweet and tart flavor.', image: 'imag/Raspberry.jpeg' },
+                    { name: 'Pinacolada', description: 'A tropical coconut and pineapple flavor.', image: 'imag/Pinacolada.jpeg' }
+                ]
             },
             musthave: {
                 title: 'MUSTHAVE',
                 description: 'Musthave is a bold Russian brand famous for its powerful, long-lasting flavors. Designed for those who want an intense and flavorful experience.',
                 price: 'AED 220.00',
-                flavors: [ 'Melonade', 'Kiwi Smoothie', 'Vanilla', 'Garnet', 'Coconut', 'PineApple Rings', 'Estragon', 'Rocketman', 'Pinkman']
+                flavors: [
+                    { name: 'Melonade', description: 'A refreshing melon flavor.', image: 'imag/Melonade.jpeg' },
+                    { name: 'Kiwi Smoothie', description: 'A sweet and tangy kiwi flavor.', image: 'imag/Kiwi Smoothie.jpeg' },
+                    { name: 'Vanilla', description: 'The classic vanilla flavor.', image: 'imag/Vanilla.jpeg' },
+                    { name: 'Garnet', description: 'A sweet and sour pomegranate flavor.', image: 'imag/Garnet.jpeg' },
+                    { name: 'Coconut', description: 'The classic coconut flavor.', image: 'imag/Coconut.jpeg' },
+                    { name: 'PineApple Rings', description: 'A sweet and tangy pineapple flavor.', image: 'imag/PineApple Rings.jpeg' },
+                    { name: 'Estragon', description: 'A unique and herbal flavor.', image: 'imag/Estragon.jpeg' },
+                    { name: 'Rocketman', description: 'A sweet and fruity flavor.', image: 'imag/Rocketman.jpeg' },
+                    { name: 'Pinkman', description: 'A sweet and fruity flavor.', image: 'imag/Pinkman.jpeg' }
+                ]
             },
             holster: {
                 title: 'HOLSTER',
                 description: 'Holster is a modern German shisha brand that brings creative, exotic flavor mixes. Great for fans of unique and adventurous blends.',
                 price: 'AED 220.00',
-                flavors: ['VIVA La Fiesta', 'Watermelon Punch', 'Lemon Punch', 'Unicorn']
+                flavors: [
+                    { name: 'VIVA La Fiesta', description: 'A sweet and fruity flavor.', image: 'imag/VIVA La Fiesta.jpeg' },
+                    { name: 'Watermelon Punch', description: 'A refreshing watermelon flavor.', image: 'imag/Watermelon Punch.jpeg' },
+                    { name: 'Lemon Punch', description: 'A tangy lemon flavor.', image: 'imag/Lemon Punch.jpeg' },
+                    { name: 'Unicorn', description: 'A sweet and mysterious flavor.', image: 'imag/Unicorn.jpeg' }
+                ]
             },
             blackburn: {
                 title: 'BLACKBURN',
                 description: 'Blackburn is a bold and innovative Russian shisha brand known for its intense flavors and dark leaf tobacco. Perfect for experienced smokers seeking rich, powerful, and long-lasting sessions',
                 price: 'AED 220.00',
-                flavors: ['Epic Yogurt']
-            }
+                flavors: [
+                    { name: 'Epic Yogurt', description: 'A sweet and fruity flavor.', image: 'imag/Epic Yogurt.jpeg' }
+                ]
+            }   
         };
         // Keep a deep copy of original data for resetting
         const originalRussianBrands = JSON.parse(JSON.stringify(russianBrands));
@@ -177,27 +293,24 @@
 
         // Scroll animation
         document.addEventListener('DOMContentLoaded', () => {
-  const shishaImage = document.querySelector('.shisha-image');
-  const flavorsContainer = document.querySelector('.max-w-3xl');
+            const shishaImage = document.querySelector('.shisha-image');
+            const flavorsContainer = document.querySelector('.max-w-3xl');
 
-  if (!shishaImage || !flavorsContainer) return;
+            if (!shishaImage || !flavorsContainer) return;
 
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const imageHeight = shishaImage.offsetHeight;
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const imageHeight = shishaImage.offsetHeight;
 
-    // ✅ من 0 حتى imageHeight: تأثير تدريجي
-    let progress = Math.min(scrollY / imageHeight, 1);
+                // ✅ من 0 حتى imageHeight: تأثير تدريجي
+                let progress = Math.min(scrollY / imageHeight, 1);
 
-    // 🔁 عكس التأثير:
-    const opacity = 1 - progress;         // الصورة تختفي تدريجيا
-    const translateY = progress * 30;     // الصورة تهبط شوية (لجمالية الحركة)
+                // 🔁 عكس التأثير:
+                const opacity = 1 - progress;         // الصورة تختفي تدريجيا
+                const translateY = progress * 30;     // الصورة تهبط شوية (لجمالية الحركة)
 
-    shishaImage.style.opacity = opacity;
-    shishaImage.style.transform = `translateY(${translateY}%)`;
-
-    // container يطلع بشوية
-    flavorsContainer.style.transform = `translateY(-${progress * 40}px)`;
+                shishaImage.style.opacity = opacity;
+                shishaImage.style.transform = `translateY(-${progress * 40}px)`;
             });
         });
 
@@ -242,7 +355,12 @@
                     </div>
                     <div class="card-content">
                         <ul class="divide-y divide-red-300 px-4">
-                            ${brand.flavors.map(flavor => `<li class="py-2">${flavor}</li>`).join('')}
+${brand.flavors.map(flavor => `
+                                <li class="py-2 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showFlavorDetails('${brand.title}', '${flavor.name}')">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    <span data-i18n="flavors.${flavor.name}">${flavor.name}</span>
+                                </li>
+                            `).join('')}
                         </ul>
                     </div>
                 </div>
@@ -265,33 +383,35 @@
                     document.querySelector('p.text-red-600').textContent = translations.sections.russian.price;
 
                     if (lang === 'ar' && translations.flavors) {
-                    // Update brand information
-                    Object.keys(russianBrands).forEach(brandKey => {
-                        if (translations.russian?.brands[brandKey]) {
-                            russianBrands[brandKey].title = translations.russian.brands[brandKey].title;
-                            russianBrands[brandKey].description = translations.russian.brands[brandKey].description;
-                        }
-                    });
-
-                    // Update flavor names
-                    if (translations.flavors['russian-style']) {
+                        // Update brand information
                         Object.keys(russianBrands).forEach(brandKey => {
-                            const brandFlavors = translations.flavors['russian-style'].brands[brandKey]?.flavors;
-                            if (brandFlavors) {
-                                russianBrands[brandKey].flavors = russianBrands[brandKey].flavors.map(flavor => 
-                                    brandFlavors[flavor] || flavor
-                                );
+                            if (translations.russian?.brands[brandKey]) {
+                                russianBrands[brandKey].title = translations.russian.brands[brandKey].title;
+                                russianBrands[brandKey].description = translations.russian.brands[brandKey].description;
                             }
                         });
+    
+                        // Update flavor names
+                        if (translations.flavors['russian-style']) {
+                            Object.keys(russianBrands).forEach(brandKey => {
+                                const brandFlavors = translations.flavors['russian-style']?.brands[brandKey]?.flavors;
+                                if (brandFlavors) {
+                                    russianBrands[brandKey].flavors.forEach(flavor => {
+                                        if (brandFlavors[flavor.name]) {
+                                            flavor.name = brandFlavors[flavor.name];
+                                        }
+                                    });
+                                }
+                            });
+                        }
+    
+                        // Repopulate cards with updated translations
+                        populateCards(russianBrands);
+                    } else {
+                        // Reset to English - restore original data
+                        Object.assign(russianBrands, JSON.parse(JSON.stringify(originalRussianBrands)));
+                        populateCards(russianBrands);
                     }
-
-                    // Repopulate cards with updated translations
-                    populateCards(russianBrands);
-                } else {
-                    // Reset to English - restore original data
-                    Object.assign(russianBrands, JSON.parse(JSON.stringify(originalRussianBrands)));
-                    populateCards(russianBrands);
-                }
 
                     // Update extra head text
                     const extraHead = document.querySelector('div.py-2.flex.justify-between span:first-child');
@@ -307,6 +427,29 @@
                 }
             } catch (error) {
                 console.error('Error updating content:', error);
+            }
+        }
+
+        function showFlavorDetails(brandName, flavorName) {
+            let flavor = null;
+            for (const brandKey in russianBrands) {
+                if (russianBrands[brandKey].title === brandName) {
+                    flavor = russianBrands[brandKey].flavors.find(f => f.name === flavorName);
+                    break;
+                }
+            }
+            
+            if (flavor) {
+                document.getElementById('flavorImage').src = flavor.image;
+                document.getElementById('flavorTitle').textContent = flavor.name;
+                document.getElementById('flavorDescription').textContent = flavor.description;
+                document.getElementById('flavorModal').classList.add('active');
+            }
+        }
+
+        function closeModal(event, force = false) {
+            if (force || event.target.id === 'flavorModal') {
+                document.getElementById('flavorModal').classList.remove('active');
             }
         }
 
