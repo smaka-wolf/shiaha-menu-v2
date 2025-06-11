@@ -41,11 +41,16 @@ const LanguageManager = {
       document.documentElement.dir = 'ltr';
       document.documentElement.lang = lang;
       
+      
       // Load translations for all languages
-      await this.loadTranslations(lang);
+      const translations = await this.loadTranslations(lang);
+  
+      // Apply translations to the page
+      this.applyTranslations(translations);
   
       return lang;
     },
+  
   
     // Load translations from JSON files
     async loadTranslations(lang) {

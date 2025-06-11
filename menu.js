@@ -1,4 +1,13 @@
+// Update page content with translations
+
 // Global stores
+  // Initialize Fuse with options
+  const fuseOptions = {
+    keys: ['name', 'description', 'originalName'],
+    threshold: 0.3,
+    minMatchCharLength: 2
+  };
+
 let translations = {};
 let flavorTranslations = {};
 let currentLanguage = 'en';
@@ -163,33 +172,37 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
 
-    // Update search functionality with translated flavors
-    const translatedFlavors = getTranslatedFlavors(lang);
-    fuse = new Fuse(translatedFlavors, fuseOptions);
+  // Update search functionality with translated flavors
+  const translatedFlavors = getTranslatedFlavors(lang);
+  fuse = new Fuse(translatedFlavors, fuseOptions);
   }
-
-  // Initialize Fuse with options
-  const fuseOptions = {
-    keys: ['name', 'description', 'originalName'],
-    threshold: 0.3,
-    minMatchCharLength: 2
-  };
-  let fuse = new Fuse(flavors, fuseOptions);
 
   // Language switcher functionality
   const languageButton = document.getElementById('languageButton');
+
   const languageMenu = document.getElementById('languageMenu');
   const currentLang = document.getElementById('currentLang');
 
   // Toggle language menu
-  languageButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    languageMenu.classList.toggle('hidden');
-  });
+  if (languageButton) {
+    console.log('Language button found');
+    languageButton.addEventListener('click', (e) => {
+      console.log('Language button clicked');
+      e.stopPropagation();
+      if (languageMenu) {
+        console.log('Language menu found');
+        languageMenu.classList.toggle('hidden');
+      } else {
+        console.error('languageMenu is null');
+      }
+    });
+  } else {
+    console.log('Language button not found');
+  }
 
   // Close language menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (!languageButton.contains(e.target) && !languageMenu.contains(e.target)) {
+    if (!languageButton || (!languageButton.contains(e.target) && !languageMenu.contains(e.target))) {
       languageMenu.classList.add('hidden');
     }
   });
@@ -206,6 +219,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Update language using Language Manager
     LanguageManager.switchLanguage(lang);
-    await updatePageContent(lang);
+    currentLanguage = lang;
+    updatePageContent(lang);
   };
+
+  // Initial page load
+  updatePageContent(currentLanguage);
 });
