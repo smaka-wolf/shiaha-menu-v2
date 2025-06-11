@@ -21,7 +21,7 @@ const urlsToCache = [
   `${BASE_PATH}/input.css`,
   `${BASE_PATH}/src/styles.css`,
   `${BASE_PATH}/manifest.json`,
-+  `${BASE_PATH}/service-worker.js`,
+  `${BASE_PATH}/service-worker.js`,
   `${BASE_PATH}/icons/icon-192.png`,
   `${BASE_PATH}/icons/icon-512.png`,
   `${BASE_PATH}/imag/blueberry.jpg`,
