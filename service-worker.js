@@ -28,14 +28,13 @@ const urlsToCache = [
   `./imag/blume backg5.png`,
   `./imag/blume1 mix image.png`,
   `./imag/blume2 mix image.png`,
-  `./imag/blume3 back.png`,
   `./imag/blume3 mix image.png`,
   `./imag/blume4 mix image.png`,
   `./imag/blume5 mix image.png`,
   `./imag/Cinnamon.png`,
   `./imag/doubleApple.png`,
   `./imag/grape.png`,
-  `./imag/GUM-MINT.png`,
+  `./imag/gumMint.png`,
   `./imag/hookah image.jpg`,
   `./imag/hookah2 image.jpg`,
   `./imag/istanbulnight.jpg`,
@@ -50,7 +49,6 @@ const urlsToCache = [
   `./imag/PEACH.png`,
   `./imag/reacter image.webp`,
   `./imag/roket image.webp`,
-  `./imag/tt.jpg`,
   `./imag/watermelon.png`,
   `./imag/watertk.jpg`
 ];
