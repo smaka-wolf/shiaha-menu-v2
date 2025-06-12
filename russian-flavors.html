@@ -49,7 +49,7 @@
             transition: background-color 0.3s ease;
         }
         .card-header:hover {
-            background-color: #f7f7f7;
+            background-color: rgba(144, 229, 246, 0.5);
         }
         .toggle-icon {
             transition: transform 0.3s ease;
@@ -64,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(3, 110, 153, 0.768);
             z-index: 1000;
         }
 
@@ -157,13 +157,13 @@
                 <button class="close-button" onclick="closeModal(event, true)">
                     <i class="fas fa-times text-red-600"></i>
                 </button>
-                <img id="flavorImage" src="" alt="" class="w-full h-80 object-cover rounded-lg mb-4">
+                <img id="flavorImage" src="" alt="" class="w-full object-contain rounded-lg mb-4">
                 <h3 id="flavorTitle" class="text-xl font-semibold mb-2"></h3>
                 <p id="flavorDescription" class="text-gray-700 text-lg"></p>
             </div>
         </div>
     </div>
-
+ 
     <!-- Service Worker -->
     <script defer>
         if ('serviceWorker' in navigator) {
@@ -237,12 +237,12 @@
                 description: 'Starline offers smooth and balanced flavors, ideal for beginners or those who enjoy light and easy smoke sessions.',
                 price: 'AED 220.00',
                 flavors: [
-                    { name: 'Blueberry Crumble', description: 'A sweet and fruity flavor.', image: 'imag/Blueberry Crumble.jpeg' },
-                    { name: 'Belgium Waffles', description: 'A sweet and savory flavor.', image: 'imag/Belgium Waffles.jpeg' },
-                    { name: 'Strawberry Millefeuille', description: 'A sweet and creamy flavor.', image: 'imag/Strawberry Millefeuille.jpeg' },
-                    { name: 'Banana', description: 'The classic banana flavor.', image: 'imag/Banana.jpeg' },
-                    { name: 'Raspberry', description: 'A sweet and tart flavor.', image: 'imag/Raspberry.jpeg' },
-                    { name: 'Pinacolada', description: 'A tropical coconut and pineapple flavor.', image: 'imag/Pinacolada.jpeg' }
+                    { name: 'Blueberry Crumble', description: 'A sweet and fruity flavor.', image: 'imagrs/Blueberry Crumble.jpg' },
+                    { name: 'Belgium Waffles', description: 'A sweet and savory flavor.', image: 'imagrs/Belgium Waffles.jpg' },
+                    { name: 'Strawberry Millefeuille', description: 'A sweet and creamy flavor.', image: 'imagrs/Strawberry Millefeuille.jpg' },
+                    { name: 'Banana', description: 'The classic banana flavor.', image: 'imagrs/Banana.jpg' },
+                    { name: 'Raspberry', description: 'A sweet and tart flavor.', image: 'imagrs/Raspberry.webp' },
+                    { name: 'Pinacolada', description: 'A tropical coconut and pineapple flavor.', image: 'imagrs/Pinacolada.jpg' }
                 ]
             },
             musthave: {

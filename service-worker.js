@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v6.9.9";
+const CACHE_NAME = "blume-menu-cache-v7.0.0";
 const BASE_PATH = "";
 const urlsToCache = [ 
   `./`,
@@ -50,6 +50,12 @@ const urlsToCache = [
   `./imag/reacter image.webp`,
   `./imag/roket image.webp`,
   `./imag/watermelon.png`,
+  `./imagrs/Banana.jpg`,
+  `./imagrs/Blueberry Crumble.jpg`,
+  `./imagrs/Belgium Waffles.jpg`,
+  `./imagrs/Strawberry Millefeuille.jpg`,
+  `./imagrs/Pinacolada.jpg`,
+  `./imagrs/Raspberry.webp`,
   `./imag/watertk.jpg`
 ];
 
