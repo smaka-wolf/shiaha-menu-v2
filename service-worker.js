@@ -54,7 +54,7 @@ const urlsToCache = [
   `./imag/roket image.webp`,
   `./imag/tt.jpg`,
   `./imag/watermelon.png`,
-  `./imag/WATERMELONTK.jpg`
+  `./imag/watertk.jpg`
 ];
 
 // Installation with immediate activation
