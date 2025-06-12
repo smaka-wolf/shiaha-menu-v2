@@ -42,7 +42,7 @@ const urlsToCache = [
   `./imag/ladykiller.jpg`,
   `./imag/lime space peach.jpg`,
   `./imag/limon-mint.png`,
-  `./imag/love66 image.png`,
+  `./imag/love66.webp`,
   `./imag/marbella.jpg`,
   `./imag/MELON.png`,
   `./imag/MINT.png`,
