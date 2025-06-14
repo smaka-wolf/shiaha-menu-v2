@@ -1,5 +1,10 @@
 [
   {
+    "version": "7.1.0",
+    "date": "2024-06-14",
+    "description": "Fixed bugs and enhanced UI responsiveness."
+  },
+  {
     "version": "7.0.0",
     "date": "2024-06-12",
     "description": "Fixed bugs and enhanced UI responsiveness."

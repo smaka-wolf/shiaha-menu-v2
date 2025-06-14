@@ -1,4 +1,4 @@
-const CACHE_NAME = "blume-menu-cache-v7.0.0";
+const CACHE_NAME = "blume-menu-cache-v7.1.0";
 const BASE_PATH = "";
 const urlsToCache = [ 
   `./`,
@@ -56,6 +56,28 @@ const urlsToCache = [
   `./imagrs/Strawberry Millefeuille.jpg`,
   `./imagrs/Pinacolada.jpg`,
   `./imagrs/Raspberry.webp`,
+  `./imagrs/Coconut.jpg`,
+  `./imagrs/Cola.webp`,
+  `./imagrs/Cream-Soda.webp`,
+  `./imagrs/Epic-Yogurt.jpg`,
+  `./imagrs/Estragon.jpg`,
+  `./imagrs/Falling-Star.webp`,
+  `./imagrs/Garnet-grape.jpg`,
+  `./imagrs/grapefruit.jpg`,
+  `./imagrs/Ice-crame.webp`,
+  `./imagrs/Kiwi-Smoothie.jpg`,
+  `./imagrs/lee-punch.webp`,
+  `./imagrs/Lemon-Blast.jpg`,
+  `./imagrs/Melonade.jpg`,
+  `./imagrs/Needles.jpg`,
+  `./imagrs/PineApple-Rings.jpg`,
+  `./imagrs/Pinkman.jpg`,
+  `./imagrs/Rocketman.webp`,
+  `./imagrs/Supernova.jpg`,
+  `./imagrs/Unicorn.jpg`,
+  `./imagrs/Vanilla.jpg`,
+  `./imagrs/VIVA-La-Fiesta.jpg`,
+  `./imagrs/watermelon-punch.jpg`,
   `./imag/watertk.jpg`
 ];
 
